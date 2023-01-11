@@ -11,7 +11,7 @@
 #include <Arduino.h>
 #include "DataSource.h"
 #include "Pinouts.h"
-#include "Adafruit_GPS_E80.h"
+#include "Adafruit_GPS.h"
 
 typedef struct {
   float lat;

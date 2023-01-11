@@ -1,7 +1,6 @@
 #include "SensorGPS.h"
 #include "Printer.h"
 extern Printer printer;
-#include "Adafruit_GPS_E80.h"
   
 SensorGPS::SensorGPS(void) 
 : DataSource("lat,lon,nsats","float,float,uint8") 
