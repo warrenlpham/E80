@@ -15,7 +15,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <SD_E80.h>
+#include <SD.h>
 #include "DataSource.h"
 
 class Logger {
