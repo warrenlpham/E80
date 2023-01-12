@@ -80,21 +80,21 @@ This is the class that actually drives each of the motor pins.
 Changing these variables and then calling `apply()` allows you to change the power directed to each motor.
 Additionally, a public function called `drive()` is provided which takes control signals for each motor in the form of signed integers as input and internally calls the apply() function.
 
-## PControl
-- [PControl.h](./PControl.h)
-- [PControl.cpp](./PControl.cpp)
+## SurfaceControl
+- [SurfaceControl.h](./SurfaceControl.h)
+- [SurfaceControl.cpp](./SurfaceControl.cpp)
 
 Controls the movement of default_robot.
 The `init()` call stores the desired waypoints -- to change the waypoints, add more, or set up a more complicated system (such as adding a new dimensions like heading or height to the state), go to the `init()` call in the Initialize section of code.
 
-The `calculateControl()` function is the heart of PControl.
-It uses `updatePoint()` to check whether it should change which point it is targeting, sorts out how it should get there using proportional control of yaw, then sends this information to the motors with driveMotors().  Some of this may be left to you to code.
+The `calculateControl()` function is the heart of SurfaceControl.
+It uses `updatePoint()` to check whether it should change which point it is targeting, sorts out how it should get there using proportional control of yaw, then sends this information to the motors with `driveMotors()`.  Some of this may be left to you to code.
 
 **Note**: To get the coordinates of a wayPoint, you should use `getWayPoint()`.
 The short answer is just because; use 0 for x and 1 for y of the current coordinate.
-The long one is: though wayPoints is initially created as a two dimensional array, it's stored in PControl as a pointer to a double.
+The long one is: though wayPoints is initially created as a two dimensional array, it's stored in SurfaceControl as a pointer to a double.
 While you can often treat pointers as arrays, two dimensional arrays are more complicated.
-The call wayPoints[i] really translates to `*(wayPoints + i)`, or the data value stored wherever wayPoints points to plus `i*sizeof(double)` bytes over. Since it isn't stored in PControl as a two dimensional array, a call to `wayPoints[i][j]` would return `*(*(wayPoints + i) + j)` which doesn't make any sense to the compiler, because the inner value is a double, not a pointer. 
+The call wayPoints[i] really translates to `*(wayPoints + i)`, or the data value stored wherever wayPoints points to plus `i*sizeof(double)` bytes over. Since it isn't stored in SurfaceControl as a two dimensional array, a call to `wayPoints[i][j]` would return `*(*(wayPoints + i) + j)` which doesn't make any sense to the compiler, because the inner value is a double, not a pointer. 
 Therefore getWayPoint only uses one bracket, and more manually increments by factors of stateDims if totalWayPoints != 0. Hope that made any sense.
 
 ## Printer
