@@ -24,15 +24,16 @@ Previous Contributors:
 #include <MotorDriver.h>
 #include <Logger.h>
 #include <Printer.h>
-#include <PControl.h>
+#include <SurfaceControl.h>
 #define UartSerial Serial1
+#define DELAY 0
 #include <GPSLockLED.h>
 
 /////////////////////////* Global Variables *////////////////////////
 
 MotorDriver motor_driver;
 XYStateEstimator state_estimator;
-PControl pcontrol;
+SurfaceControl surface_control;
 SensorGPS gps;
 Adafruit_GPS GPS(&UartSerial);
 ADCSampler adc;
@@ -61,7 +62,7 @@ void setup() {
   logger.include(&imu);
   logger.include(&gps);
   logger.include(&state_estimator);
-  logger.include(&pcontrol);
+  logger.include(&surface_control);
   logger.include(&motor_driver);
   logger.include(&adc);
   logger.include(&ef);
@@ -77,7 +78,7 @@ void setup() {
   motor_driver.init();
   led.init();
 
-  pcontrol.init(number_of_waypoints, waypoint_dimensions, waypoints);
+  surface_control.init(number_of_waypoints, waypoints, DELAY);
   
   state_estimator.init(); 
 
@@ -90,7 +91,7 @@ void setup() {
   ef.lastExecutionTime              = loopStartTime - LOOP_PERIOD + ERROR_FLAG_LOOP_OFFSET;
   button_sampler.lastExecutionTime  = loopStartTime - LOOP_PERIOD + BUTTON_LOOP_OFFSET;
   state_estimator.lastExecutionTime = loopStartTime - LOOP_PERIOD + XY_STATE_ESTIMATOR_LOOP_OFFSET;
-  pcontrol.lastExecutionTime        = loopStartTime - LOOP_PERIOD + P_CONTROL_LOOP_OFFSET;
+  surface_control.lastExecutionTime        = loopStartTime - LOOP_PERIOD + SURFACE_CONTROL_LOOP_OFFSET;
   logger.lastExecutionTime          = loopStartTime - LOOP_PERIOD + LOGGER_LOOP_OFFSET;
 }
 
@@ -108,18 +109,18 @@ void loop() {
     printer.printValue(2,logger.printState());
     printer.printValue(3,gps.printState());   
     printer.printValue(4,state_estimator.printState());     
-    printer.printValue(5,pcontrol.printWaypointUpdate());
-    printer.printValue(6,pcontrol.printString());
+    printer.printValue(5,surface_control.printWaypointUpdate());
+    printer.printValue(6,surface_control.printString());
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
-  if ( currentTime-pcontrol.lastExecutionTime > LOOP_PERIOD ) {
-    pcontrol.lastExecutionTime = currentTime;
-    pcontrol.calculateControl(&state_estimator.state, &gps.state);
-    motor_driver.drive(pcontrol.uL,pcontrol.uR,0);
+  if ( currentTime-surface_control.lastExecutionTime > LOOP_PERIOD ) {
+    surface_control.lastExecutionTime = currentTime;
+    surface_control.navigate(&state_estimator.state, &gps.state, DELAY);
+    motor_driver.drive(surface_control.uL,surface_control.uR,0);
   }
 
   if ( currentTime-adc.lastExecutionTime > LOOP_PERIOD ) {

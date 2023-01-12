@@ -1,5 +1,5 @@
-#ifndef __PCONTROL_H__
-#define __PCONTROL_H__
+#ifndef __SURFACECONTROL_H__
+#define __SURFACECONTROL_H__
 
 #define SUCCESS_RADIUS 2.0 // success radius in meters
 
@@ -8,16 +8,16 @@
 #include "XYStateEstimator.h"
 extern MotorDriver motorDriver;
 
-class PControl : public DataSource
+class SurfaceControl : public DataSource
 {
 public:
-  PControl(void);
+  SurfaceControl(void);
 
-  // defines the waypoints used for pControl
-  void init(const int totalWayPoints_in, const int stateDims_in, double * wayPoints_in);
+  // defines the waypoints used for Surface Control
+  void init(const int totalWayPoints_in, double * wayPoints_in, int navigateDelay_in);
 
-  // sets the motor speeds using P-Control
-  void calculateControl(xy_state_t * state, gps_state_t * gps_state_p);
+  // sets the right and left motor efforts using P-Control
+  void navigate(xy_state_t * state, gps_state_t * gps_state_p, int currentTime_in);
 
   String printString(void);
 
@@ -37,9 +37,15 @@ public:
   float Kr=1.0;          // right motor gain correction
   float Kl=1.0;          // left motor gain correction
   float avgPower = 20.0; // average forward thrust
-  float uR;             // right motor effort
-  float uL;             // left motor effort
+  float uR;              // right motor effort
+  float uL;              // left motor effort
 
+  bool navigateState = 1;
+  bool atPoint;
+  bool complete = 0;
+
+  int totalWayPoints;
+  double * wayPoints;
 
 private:
 
@@ -48,10 +54,14 @@ private:
 
   int getWayPoint(int dim);
 
-  int totalWayPoints, stateDims;
-  double * wayPoints;
+  const int stateDims = 2;
   int currentWayPoint = 0;
   bool gpsAcquired;
+  
+  int navigateDelay;
+  int delayStartTime = 0;
+  int currentTime;
+  bool delayed;
 };
 
 #endif
