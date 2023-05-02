@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>. - Lab 5: Underwater Acoustics and Fourier Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lectures/" rel="" target="">
+ <span class="menu-text">Lectures</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../matlab/" rel="" target="">
+ <span class="menu-text">MATLAB Assignments</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_overview" rel="" target="">
+ <span class="dropdown-text">Lab Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab0" rel="" target="">
+ <span class="dropdown-text">Lab 0: Optional Tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab1" rel="" target="">
+ <span class="dropdown-text">Lab 1: Go Autonomous</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab2" rel="" target="">
+ <span class="dropdown-text">Lab 2: BEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab3" rel="" target="">
+ <span class="dropdown-text">Lab 3: Op-Amps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab4" rel="" target="">
+ <span class="dropdown-text">Lab 4: Temperature</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab5" rel="" target="">
+ <span class="dropdown-text">Lab 5: Acoustics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab6" rel="" target="">
+ <span class="dropdown-text">Lab 6: Fluids</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab7" rel="" target="">
+ <span class="dropdown-text">Lab 7: Navigation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reference/" rel="" target="">
+ <span class="menu-text">Reference Designs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../history/" rel="" target="">
+ <span class="menu-text">History</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HMC-E80/E80-SP2024" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">0. Introduction</a></li>
+  <li><a href="#introduction-to-the-fft" id="toc-introduction-to-the-fft" class="nav-link" data-scroll-target="#introduction-to-the-fft">1. Introduction to the FFT</a></li>
+  <li><a href="#circuit-interfaces-to-microphones" id="toc-circuit-interfaces-to-microphones" class="nav-link" data-scroll-target="#circuit-interfaces-to-microphones">2. Circuit Interfaces to Microphones</a></li>
+  <li><a href="#distance-measurement-based-on-amplitude-decay-from-continuous-wave-beacons" id="toc-distance-measurement-based-on-amplitude-decay-from-continuous-wave-beacons" class="nav-link" data-scroll-target="#distance-measurement-based-on-amplitude-decay-from-continuous-wave-beacons">3. Distance Measurement Based On Amplitude Decay from Continuous Wave Beacons</a></li>
+  <li><a href="#sampling-audio-with-a-teensy" id="toc-sampling-audio-with-a-teensy" class="nav-link" data-scroll-target="#sampling-audio-with-a-teensy">4. Sampling Audio with a Teensy</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">5. Deliverables</a></li>
+  <li><a href="#cleanup" id="toc-cleanup" class="nav-link" data-scroll-target="#cleanup">6. Cleanup</a></li>
+  <li><a href="#extra-credit-distance-measurement-based-on-time-of-flight-measurements" id="toc-extra-credit-distance-measurement-based-on-time-of-flight-measurements" class="nav-link" data-scroll-target="#extra-credit-distance-measurement-based-on-time-of-flight-measurements">Extra Credit: Distance Measurement Based on Time-of-Flight Measurements</a></li>
+  <li><a href="#extra-credit-velocity-detection-from-doppler-shift" id="toc-extra-credit-velocity-detection-from-doppler-shift" class="nav-link" data-scroll-target="#extra-credit-velocity-detection-from-doppler-shift">Extra Credit: Velocity Detection from Doppler Shift</a></li>
+  <li><a href="#extra-credit-self-powered-velocity-measurements" id="toc-extra-credit-self-powered-velocity-measurements" class="nav-link" data-scroll-target="#extra-credit-self-powered-velocity-measurements">Extra Credit: Self-Powered Velocity Measurements</a></li>
+  <li><a href="#a-note-for-the-project" id="toc-a-note-for-the-project" class="nav-link" data-scroll-target="#a-note-for-the-project">A Note for the Project:</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 5: Underwater Acoustics and Fourier Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Team size: 4</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>After successful completion of this lab, you will be able to…</p>
+<ol type="1">
+<li>Use the oscilloscope to perform Fourier analysis of a measured signal.</li>
+<li>Explain the impact of parameters such as sampling frequency and sample number on the resolution and frequency range of a Fast Fourier Transform.</li>
+</ol>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">0. Introduction</h2>
+<p>In this lab you will work as a team of four with underwater speakers to perform position measurements relative to your robot and relative to fixed beacons. The beacon measurements are most easily interpreted in the frequency domain, so you will be using Fourier analysis to understand the behavior of the signals. The purpose of this lab is to demonstrate the power of underwater acoustic measurements and to force you to wrangle early and often with Fourier analysis.</p>
+<p>For the required portion of the Lab, beacons will be broadcasting sine waves at 9 kHz, 11 kHz, 13 kHz.</p>
+<p>For the extra credit sections, each team is assigned an acoustic channel, and the team will need to filter out other teams’ measurements in addition to the ambient beacon signals in order to extract useful information. If you attempt these extra credit sections, you will be free to transmit up to 5 W at 14 kHz +1 kHz *(team number)+/- 300 Hz. If you emit at other frequencies while your peers are taking data then you may damage their experiments, so be diligent in controlling the frequency at which you broadcast.</p>
+<p>These channels are in the audio range, so try to keep your experiments underwater and short lest your peers shout at you scornfully about the high-pitched whine you’re producing. Be aware that your receiver could be overloaded by broadcasters in other channels, so keep an eye on your time domain signal to be sure that it is not clipping.</p>
+<p>We are using both benchtop electronics and water in this lab, and the two don’t mix, so BE EXTREMELY CAREFUL when putting anything in the water, removing anything from the water or mounting anything near the water. Instructors will stop your experiments if they think they pose a water hazard to equipment.</p>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/11uKvoSTr7nxAG990ZbKKM8kMYkUs4idxev3BearHA8g/edit?usp=sharing">here</a>.</p>
+</section>
+<section id="introduction-to-the-fft" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-the-fft">1. Introduction to the FFT</h2>
+<p>Even if not every student can have hands on the oscilloscope (as a reminder, the <a href="http://literature.cdn.keysight.com/litweb/pdf/75015-97045.pdf">Agilent/Keysight 2024A</a> which has this <a href="http://literature.cdn.keysight.com/litweb/pdf/5990-6618EN.pdf">spec sheet</a>) during this part of the experiment, we would like every student to, at minimum, watch the proceedings. Please carry out this section as a whole group. Also note that much of this section can be predicted and analyzed very accurately in prelab with sample data generated in MATLAB.</p>
+<p>Connect a function generator to an input channel of the oscilloscope. Double check that your oscilloscope channel is DC coupled. Drive an 11 kHz sine wave with an amplitude of 1.5 V and an offset of 0 V into the oscilloscope. Set the time scale of the oscilloscope so that 50 cycles of the signal fit on the screen. Use the math function of the oscilloscope to display the FFT of the signal. Set the span of the FFT to 100 kHz, the center to 50 kHz and the window to rectangular. Look at the FFT produced by the math menu. Is it what you expect?</p>
+<p>Describe what happens to the FFT when you do each of the following:</p>
+<ol type="1">
+<li>Increase the drive signal’s frequency by 1 kHz.</li>
+<li>Change the drive signal into a square wave. Back up your assertions that this makes sense with a rigorous analytical analysis.</li>
+<li>Change the window from rectangular to Hanning. Back up your assertions that this makes sense with a graphical analysis.</li>
+<li>Change the time scale of the oscilloscope. Explain your results in terms of the sample rate, the number of samples and the total amount of time over which samples have been recorded. What is your oscilloscope’s sample rate? You can find it displayed on the oscilloscope or figure it out from the scope’s datasheet. Note that the sample rate may vary with your time scale: if you are taking a long acquisition, it is set by the size of the oscilloscopes memory – i.e.: your total number of samples is fixed – and if you are taking a short acquisition it is limited by the speed of the sampling circuitry in the oscilloscope.</li>
+</ol>
+<p>Drive the square wave signal from item 3 into the oscilloscope, export your data (make sure that the max length option is turned on in your save settings) and then use MATLAB to take the FFT of your data. First take the FFT with no windowing and then use a Hanning window. Does the FFT in MATLAB match the oscilloscope and your analysis?</p>
+</section>
+<section id="circuit-interfaces-to-microphones" class="level2">
+<h2 class="anchored" data-anchor-id="circuit-interfaces-to-microphones">2. Circuit Interfaces to Microphones</h2>
+<p>You will need to use microphones to pick up sounds in the tank. We will be using a waterproof electret microphone called the <a href="http://www.cui.com/product/resource/cme-1538-100lb.pdf">CME-1538-100LB</a>. Build the reference circuit for your electret microphone. The reference circuit’s output is AC coupled – which means a capacitor is attached in series with the output – and your oscilloscope probe looks like a large impedance attached to ground. What effects do the coupling capacitor and the probe resistance have when both are in place? Drawing a full circuit model may help to answer that question. Be sure that you consider the effects of the AC coupling circuit at both low and high frequencies. Verify that you can receive signals with your electret microphone by clapping near it. What frequencies in your hand clap signal contain the most energy?</p>
+<p>You will need to amplify the signal that you receive in the tank to make it visible on your oscilloscope. Build an amplifier with a gain of 100 by cascading two stages that each have a gain of 10. You need to spread your gain over two stages because of an op-amp parameter called the gain-bandwidth product (often abbreviated GBW or GBP). How do you calculate your bandwidth once you know your amplifier’s gain and the GBW? Use a dual-rail op-amp to build these amplifier stages (why?). Record your amplifier schematic in the submission sheet.</p>
+<p>If your first amplifier stage is a non-inverting amplifier, then add a large resistor (~100k) between the positive amplifier input and ground. You don’t need this resistor if your first stage is an inverting amplifier. This resistor is necessary to prevent the input leakage current in your op-amp from changing your results.</p>
+<p>You may need to solder leads to this electret microphone to plug it into your breadboard. You should consider twisting the leads together to form twisted pair wire. These wires do not need to be very long. In the tankroom, you will be provided with water-proofed microphones with long leads so that you can dip the microphones into the tank from the work tables.</p>
+</section>
+<section id="distance-measurement-based-on-amplitude-decay-from-continuous-wave-beacons" class="level2">
+<h2 class="anchored" data-anchor-id="distance-measurement-based-on-amplitude-decay-from-continuous-wave-beacons">3. Distance Measurement Based On Amplitude Decay from Continuous Wave Beacons</h2>
+<p>One way to locate your robot in the water is to listen to three beacons and calculate your distance to each of them based on the beacon power received at your robot. In this section we are going to create calibration curves which could allow you to trilaterate your robot based on a set of beacons. You will need to put your microphone into the tank, which will require long microphone wires as discussed in the last section.</p>
+<p>Three beacons are installed in the test tank and will be constantly emitting sine waves of approximately 9 kHz, 11 kHz and 13 kHz. Figure out which beacon corresponds to which frequency by taking acoustic measurements in the water. Which beacon corresponds to which frequency? What are their exact frequencies?</p>
+<p>Our goal is to see if we can infer the position of our microphone by measuring the power emitted by the beacons. We have an analytical expectation of how much power we should receive at a given distance from a speaker (what is it?), and you are going to compare that ideal analytical expression to measurements in the noise-limited, high-multipath environment of the tank. You need to be sure that your measurements capture evidence of multipath in the tank, so how closely will you need to space your measurements? (Hint: think about the wavelength of your waves and the size of the tank to predict multipath interference – which is kind of “spatial frequency” – to figure this out. Also, don’t be afraid to look this up on external resources.)</p>
+<p>Move your microphone around in the tank and measure the power to create received voltage vs.&nbsp;distance calibration curves for each beacon. Be sure to test how the orientation of your measurement system affects your received power and take that information into account when recording measurements. The FFT will be important to separate out the contribution of each speaker. Be sure to save and report some examples of the underlying FFT data which confirms that you have taken these measurements.</p>
+<p>Make an analytical calculation of how much voltage you expect to observe. Note that you don’t need to have the transmit power of the beacon or the pressure-to-voltage constant of your microphone (which is linear) to make this model. You can fit an appropriate voltage vs distance function to your data even without knowing these constants. How many parameters will you use to fit your function?</p>
+<p>Compare your measurements against your ideal analytical model by overlaying them on the same plot. Comment on the suitability of amplitude measurements for range finding. Your comment should not conclude that your hardware is not working: your equipment needs to be working well enough to tease out interesting environmental effects.</p>
+<p>Always connect to your Teensy pins through the E80 motherboard, which has protection circuits designed to prevent damage to the Teensy.</p>
+</section>
+<section id="sampling-audio-with-a-teensy" class="level2">
+<h2 class="anchored" data-anchor-id="sampling-audio-with-a-teensy">4. Sampling Audio with a Teensy</h2>
+<p>This section requires that you use the <a href="https://drive.google.com/file/d/1E3q6aML1yzfEQCIf2IRF8aNnYXfuPZUK/view?usp=sharing">Teensy sampling rigs</a> that have been set up in the tank room. It is an amplifier with an offset, and an E80 MTB is used to digitize your data. While tempting to connect your single analog signal directly to a Teensy, an E80 MTB with protection circuits should be used to prevent damage to the Teensy. Connect your microphone to a Teensy sampling rig, connect the rig to your computer with a micro USB cable and then run <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/MATLAB/E80_Lab_05_Teensy_Rig.m">E80_Lab05_Teensy_Rig.m</a> in order to retrieve information from the rig. This software uses the Teensy’s analog to digital converter to measure signals received from the microphone attached to the setup. The sample rate on the Teensy is programmable in this software. (The Teensy should already be running <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_05_Teensy_Rig/E80_Lab_05_Teensy_Rig.ino">E80_Lab05_Teensy_Rig.ino</a>)</p>
+<ol type="1">
+<li>Use the software to measure vectors of sample data with sample rates of 10kHz and 100 kHz.</li>
+<li>Plot the magnitude of FFTs of the 10 kHz and 100 kHz sampled data. Describe any differences between the resulting graphs and explain what causes the differences.</li>
+<li>Plot the first 100 points of the time data for the 10 kHz and 100 kHz signals. Pay attention to the x axis of the signals. Describe any differences in the measured data and explain why they are there.</li>
+<li>What is the minimum sampling rate you should use to measure signals in the tank? Prove it by sampling data at the frequency and presenting an FFT of that data.</li>
+</ol>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">5. Deliverables</h2>
+<p>All labs require two submissions per group. The first submission is a submission sheet in which specific data must be shown. The submission sheet is due at the end of the 4-hour lab period and must be uploaded before the end of your lab session at 5:15 pm. Note that only ONE member of each team should access and submit the submission sheet. It is the responsibility of that team member to add the rest of the team’s names to the submission sheet.</p>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/11uKvoSTr7nxAG990ZbKKM8kMYkUs4idxev3BearHA8g/edit?usp=sharing">here</a>.</p>
+<p>The second submission is a writing assignment, usually around 1 page in length. Each writing assignment will be based on a prompt, and must be completed by each student individually; no collaboration is allowed on the text or figures in these assignments, though you may speak among yourselves about concepts in keeping with the collaboration rules of the course. A first draft of the writing assignment must be uploaded by noon on Friday, and you need to bring a printed copy of your draft to the writing and reflection section on Friday at 1:15 p.m. During the first hour of the writing and reflection, you will engage in a peer editing exercise. The second hour of the Writing and Reflection section is reserved for you to edit your draft to produce a final draft of the writing assignment. This final draft must be uploaded before the end of the Writing and Reflection section on Friday at 3:15 p.m. Since multiple submissions are permitted, and only the last one is graded, you may want to submit a draft at 3 p.m. as insurance. The writing assignment is based on this <a href="https://drive.google.com/file/d/1FWlXA7SBoo6eFWfrl3foJgwEkMriGja3/view?usp=sharing">prompt</a>. This is the <a href="https://drive.google.com/open?id=1EVtHLA8f-613D1dW9d1qwWfeLvITiCyk">peer feedback worksheet</a>. Note that you should include relevant calculations to explain the ideal analytical curves on your calibration plots on your submission sheet.</p>
+<p>Note that the rubric is included in the prompt.</p>
+<p>Recall that no late work is accepted, we will grade whatever is submitted at the deadlines.</p>
+<p>After the writing and reflection section at the end of each week every person (not just one person per team) must submit a team dynamics check-in survey. These are part of your participation grade. The survey link can be found on the home page.</p>
+</section>
+<section id="cleanup" class="level2">
+<h2 class="anchored" data-anchor-id="cleanup">6. Cleanup</h2>
+<p>Return your PVC to the stock in the E80 lab. Be sure to return electret microphones, power amplifier boards and speakers to the electronics table.</p>
+</section>
+<section id="extra-credit-distance-measurement-based-on-time-of-flight-measurements" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-distance-measurement-based-on-time-of-flight-measurements">Extra Credit: Distance Measurement Based on Time-of-Flight Measurements</h2>
+<p>Another common acoustic measurement is time-of-flight (ToF) range finding. ToF measurement relies on sending out a specially designed acoustic pulse from a speaker and measuring how long it takes for it to reach a microphone. Often the microphone is measuring reflections of your initial speaker pulse (eg. on a sounding vessel), but we’ll get started by just sending our speaker pulse straight to our microphone.</p>
+<p>You need to be able to carefully control the signals being sent from your speaker in order to stay in your audio channel while creating a short pulse. Specifically, you will send a burst of sine waves: a small number of sine wave cycles. We can accomplish this by using internally triggered burst modulation, an advanced feature of the old signal generators (the <a href="http://www.eng.hmc.edu/NewE80/PDFs/HP33120A_UserGuide.pdf">HP/Agilent 33120A</a>). This function is not available on the function generators in your oscilloscope. You can control burst mode by pressing the series of keys shown below. Read the manual for clarification on how these key presses work.</p>
+<ul>
+<li>Turn burst modulation mode on: Shift + the ramp/burst button / The text ‘burst’ will be highlighted at the top of the screen.</li>
+<li>Turn burst modulation mode off: Shift + the ramp/burst button / The text ‘burst’ will no longer be highlighted at the top of the screen.</li>
+<li>Turn manual triggering on and internal triggering off: Shift + the TRIG button / The text ‘trig’ will be highlighted at the top of the screen</li>
+<li>Turn manual triggering off and internal triggering on: Shift + the TRIG button / The text ‘trig’ will no longer be highlighted at the top of the screen</li>
+<li>Change the number of cycles sent out in each burst or the burst repetition rate:</li>
+<li>Shift + Enter / Screen says “A: Mod Menu,”</li>
+<li>v / Screen says “AM Shape,”</li>
+<li><blockquote class="blockquote">
+<pre><code> / Screen says "AM Source,"</code></pre>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<pre><code> / Screen says "FM Shape,"</code></pre>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<pre><code> / Screen says "Burst CNT, "</code></pre>
+</blockquote></li>
+<li>v / Screen says some number.” OR &gt; / “Burst Rate,” and then V / “some number.”</li>
+<li>Edit the number you see and press enter to save the setting.</li>
+</ul>
+<p>You will be using Dayton <a href="https://drive.google.com/open?id=1Jrxe618k8KY_t4pc5sp_lyUTn6-bCDne">DAEX25W-8</a> Audio Exciters as speakers to convert voltage signals into acoustic signals. These speakers, like most speakers, have very low input impedance. What is their impedance? Calculate the maximum power you could drive into them using one of the old <a href="http://www.eng.hmc.edu/NewE80/PDFs/HP33120A_UserGuide.pdf">HP/Agilent 33120A</a> signal generators. You need to account for the output impedance of the signal generator in this calculation. Audio amplifiers, like the <a href="http://www.ti.com/lit/ds/symlink/lm384.pdf">LM384</a>, help us to bypass this problem. They are designed to drive large amounts of power through speakers. What is the maximum average power an LM384 can drive into a DAEX25W-8?</p>
+<p>We have created a power amplifier board containing an LM384 to allow you to drive your speakers. Follow <a href="https://docs.google.com/document/d/1qWEORVg34CGcCEvArqbF1Zvz5JboWvJmLXS1v33wLos/edit?usp=sharing">these instructions</a> to use the driver board. You only have access to one power supply in the tank room, so you’ll need to power your microphone amplifier off the same rails as the LM384 amplifier board. Be careful not to provide too much voltage to the microphone amplifier.</p>
+<p>You are measuring in a noisy environment (beacons, other teams, etc), so measuring your received signal will also depend on carefully timing the snapshot that your oscilloscope takes. By gathering data that is synchronized with the signal you are sending and averaging over many samples, you can cancel out signals that are not at the same frequency as the burst repetition rate of your signal. This is called coherent averaging. Set this up using the following steps:</p>
+<ul>
+<li>Use a second oscilloscope channel to probe the output of your function generator (or attach the trigger output of your function generator to your scope’s trigger input)</li>
+<li>Trigger your oscilloscope on the channel attached to the output of the function generator (or on the trigger input)</li>
+<li>Set your oscilloscope to normal mode acquisition (so that it will only capture a new screen of data when it receives a trigger) and adjust the horizontal position of your oscilloscope trigger so that you don’t waste samples recording data before you send out a burst.<br>
+</li>
+<li>Turn on averaging on your oscilloscope using the Acquisition/Mode button.</li>
+</ul>
+<p>Affix your speaker to the wall and move your microphone to different distances away from it. Measure the time of flight to your receiver to create a calibration curve of distance vs.&nbsp;measured time of flight. Include an ideal analytical calculation of time-of-flight vs.&nbsp;distance on your calibration curve and compare it to your data. How long should a sound wave take to propagate from your speaker to the other side of the pool? How long for a round trip? A schematic of the test tank can be found <a href="https://drive.google.com/file/d/0BwiB3SVueuOpY182bENDQmwwWU0/view?usp=sharing&amp;resourcekey=0-_8rrYHgHU7tybj0cLFDteA">here</a>. If you’re feeling particularly bold, you can try putting your speaker next to your microphone to measure a reflection off of something.</p>
+<p>You may refer to <a href="https://drive.google.com/file/d/1oBBkm4o01ZZupTHBEN3McYiGxioi8_sz/view?usp=sharing">this picture</a> of an example range finding setup. As mentioned in the introduction, it is extremely important that your electronics and the tank water are not mixed. <a href="https://drive.google.com/file/d/1MLQDMKdA0Lh1eyxujIAGwgewM1vTXVeF/view?usp=sharing">Use tape to hold electronics down</a> so they can’t fall into the tank, and <a href="https://drive.google.com/file/d/1MLQDMKdA0Lh1eyxujIAGwgewM1vTXVeF/view?usp=sharing">keep bench top equipment as far from the tank edge as possible</a>. Always dry your test apparatus with a towel as you remove it from the water and be mindful of nearby electrical setups. This is an opportunity for some careful mechanical design: a little PVC can go a long way towards making your setup work well. Include one to three pictures of your experimental setup on the table and pool edge in your submission sheet. These pictures will be graded on safety and quality of construction.</p>
+</section>
+<section id="extra-credit-velocity-detection-from-doppler-shift" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-velocity-detection-from-doppler-shift">Extra Credit: Velocity Detection from Doppler Shift</h2>
+<p>It is possible to use more complex modulation of the signal that your speaker emits to learn more about your robot. In this section you will use a frequency modulated sine wave to measure the velocity of your robot by leveraging the Doppler effect. This type of measurement is called a frequency modulated continuous wave (FMCW) measurement because, unlike your time of flight experiment, you are not sending out bursts of signal.</p>
+<p>Use the signal generator to generate a triangle frequency modulated FMCW signal to drive into your speaker. Instructions to do so can be found in the manual. Set the frequency deviation to fill your channel, the modulation frequency to 10 Hz, and the modulation shape to be a triangle.</p>
+<p>You will need a “true” measurement of velocity to compare against your Doppler measured velocity. We will record video of your robot and analyze it with frame tracking software. <a href="http://www.videolan.org/vlc/index.html">VLC</a> works well as capture software, and we recommend <a href="http://physlets.org/tracker/">tracker</a> for tracking software (though some students have used <a href="https://www.vernier.com/products/software/video-physics">video-physics</a>). Attach one of the USB web cameras to your computer and build a PVC frame so that it has a top-down view of your robot. Make sure a length reference like a meter stick is visible in the image that you capture. Attach a brightly colored piece of pool noodle to your robot so that it is visible above the water. This will enable you to use auto tracking features in the video analysis software. Test your image capture / velocity measurement system before deploying your robot to be sure that it is working.</p>
+<p>Use a claw hand or a piece of PVC to move your receiver through the water while driving the transmitter with your FMCW wave and recording the received audio. Also record video of the test using your image tracking system. It’s easiest to carry out your recordings by taking a very long acquisition on the oscilloscope which you start manually by pressing the force trigger button.</p>
+<p>Use the instructions in <a href="https://drive.google.com/file/d/0B7Ols9Km9Pa1Z205RDZ6SDczck0/view?usp=sharing">this</a> document to process your received audio and extract the velocity as a function of time from your received FMCW. Bear in mind that you need to isolate your velocity signal before doing any signal processing, so don’t be afraid to take an FFT and filter out other channels before processing your data. Also extract velocity from your recorded video. Generate a plot comparing your Doppler velocity against the velocity measured using your image capture system.</p>
+<p>Writeups for this extra credit section are not counted against the page limit of your report. You may submit this as an additional document labeled “lab 5 doppler extra credit addendum.”</p>
+</section>
+<section id="extra-credit-self-powered-velocity-measurements" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-self-powered-velocity-measurements">Extra Credit: Self-Powered Velocity Measurements</h2>
+<p>Affix your speaker and microphone to your AUV and take velocity measurements while it is driving under its own power as in lab 1. Compare logged accelerometer data, image capture system data and Doppler data.</p>
+</section>
+<section id="a-note-for-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-for-the-project">A Note for the Project:</h2>
+<p>You won’t be able to use our audio amplifier boards during the final project, but it’s pretty easy to whip up your own LM384 on your protoboard. You can find the reference design for a typical 5 W amplifier in the LM384 datasheet. This reference design involves using a <a href="http://www.resistorguide.com/potentiometer/">potentiometer</a> for volume control, which you can probably replace with a fixed divider or omit depending on your design. Place an extra 4.7 µF bypass capacitor on the supply rails (not the bypass pin) in addition to your normal bypassing. Your amplifier will be unstable without this extra capacitor, so it may be educational to remove the capacitor and observe the amplifier output to understand exactly what bypassing does for you.</p>
+<p>Notice this design has a capacitor in series with the speaker. This is done for two reasons: speakers can be damaged by DC current, and the audio response of the speaker is linked to relatively high frequency oscillations. The capacitor lets high frequencies through and stops DC. This technique of driving an output through a series capacitor is called AC coupling. You’ll probably drive the input from a Teensy, but this input likes to have zero centered input signals, so we recommend AC coupling the input too.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

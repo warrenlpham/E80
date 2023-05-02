@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>. - Lab 1: Go Autonomous</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lectures/" rel="" target="">
+ <span class="menu-text">Lectures</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../matlab/" rel="" target="">
+ <span class="menu-text">MATLAB Assignments</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_overview" rel="" target="">
+ <span class="dropdown-text">Lab Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab0" rel="" target="">
+ <span class="dropdown-text">Lab 0: Optional Tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab1" rel="" target="">
+ <span class="dropdown-text">Lab 1: Go Autonomous</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab2" rel="" target="">
+ <span class="dropdown-text">Lab 2: BEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab3" rel="" target="">
+ <span class="dropdown-text">Lab 3: Op-Amps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab4" rel="" target="">
+ <span class="dropdown-text">Lab 4: Temperature</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab5" rel="" target="">
+ <span class="dropdown-text">Lab 5: Acoustics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab6" rel="" target="">
+ <span class="dropdown-text">Lab 6: Fluids</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab7" rel="" target="">
+ <span class="dropdown-text">Lab 7: Navigation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reference/" rel="" target="">
+ <span class="menu-text">Reference Designs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../history/" rel="" target="">
+ <span class="menu-text">History</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HMC-E80/E80-SP2024" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">0. Introduction</a></li>
+  <li><a href="#battery" id="toc-battery" class="nav-link" data-scroll-target="#battery">1. Battery</a></li>
+  <li><a href="#motherboard-assembly" id="toc-motherboard-assembly" class="nav-link" data-scroll-target="#motherboard-assembly">2. Motherboard Assembly</a></li>
+  <li><a href="#arduino-programming" id="toc-arduino-programming" class="nav-link" data-scroll-target="#arduino-programming">3. Arduino Programming</a></li>
+  <li><a href="#motherboard-validation-and-imu-calibration-and-error-measurement" id="toc-motherboard-validation-and-imu-calibration-and-error-measurement" class="nav-link" data-scroll-target="#motherboard-validation-and-imu-calibration-and-error-measurement">4. Motherboard Validation and IMU Calibration and Error Measurement</a></li>
+  <li><a href="#penetrator-and-motor-assembly" id="toc-penetrator-and-motor-assembly" class="nav-link" data-scroll-target="#penetrator-and-motor-assembly">5. Penetrator and Motor Assembly</a></li>
+  <li><a href="#auv-assembly" id="toc-auv-assembly" class="nav-link" data-scroll-target="#auv-assembly">6. AUV Assembly</a></li>
+  <li><a href="#open-loop-control-navigation" id="toc-open-loop-control-navigation" class="nav-link" data-scroll-target="#open-loop-control-navigation">7. Open Loop Control Navigation</a></li>
+  <li><a href="#acceleration-and-orientation-data" id="toc-acceleration-and-orientation-data" class="nav-link" data-scroll-target="#acceleration-and-orientation-data">8. Acceleration and Orientation Data</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">9. Deliverables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 1: Go Autonomous</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Team size: 4</strong></p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>After successful completion of this lab, you will be able to…</p>
+<ol type="1">
+<li>Explain the basic operation of your robot including details about the battery powering it.</li>
+<li>Demonstrate how to autonomously navigate your robot through an obstacle course.</li>
+<li>Explain the limitations and challenges of open loop control and articulate how a closed loop design addresses them</li>
+</ol>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">0. Introduction</h2>
+<p>The objectives of this lab are to transform the ROV (remotely operated vehicle) used in E79 into an AUV (autonomous underwater vehicle). You might remember that cables ran between your control box and your E79 robot. The cables were cumbersome and limited the range of the robot. In E80, you will build an autonomous robot with an on-board microcontroller that controls its motors and collects data from its sensors. This lab should get you acquainted with the microcontroller, and in it you will build your first autonomous robot. In doing so you will come to understand your robot’s limitations when only open-loop control is used.</p>
+<p>While most AUVs built in Lab 1 will look the same, students will modify these vehicles as the course progresses so that by end of semester, each will be configured and equipped for unique ocean-sampling experiments.</p>
+<p>Lab 1 is to be completed in teams of 4. Team members will be assigned by the instructor. It is up to the team to determine which parts of the lab are done by whom, and at what time during the four hours of lab time. A work breakdown showing what each team member intends to work on during the four-hour lab time is required for entry to the lab. The work breakdown will be submitted on paper to a lab instructor or proctor at the start of lab. Here is an <a href="https://drive.google.com/open?id=1UE9QmSXXGauzLUS0ZWm355lViUqZoC_F">example work breakdown</a>. No hardware can be used outside of lab hours and no real data can be processed outside of lab hours. However, writing software or processing simulated data sets is allowed and, in fact, encouraged during the pre-lab period.</p>
+<p>A submission sheet is due at the end of the 4-hour lab period. The submission sheet must be uploaded before the end of your lab session at 5:15 pm. Note that only <strong>ONE</strong> member of each team should access and submit the submission sheet. It is the responsibility of that team member to add the rest of the team’s names to the submission sheet.</p>
+<p><strong>For pre-lab purposes</strong>, a sample submission sheet that contains all of the questions and requirements on the submission sheet on can be found <a href="https://docs.google.com/document/d/1IdCT00qJ_P5gtN7wcFKwaBd6rTRSuXSB/edit?usp=sharing&amp;ouid=100121681850908143159&amp;rtpof=true&amp;sd=true">here</a>.</p>
+<p>You will work with some expensive hardware in this lab and in many future labs. This hardware needs to be explicitly checked out from a professor or proctor so that we can track where it is. If any hardware that you checked out breaks, you will need to request a replacement from a professor. You make this request by filling out an <a href="https://drive.google.com/open?id=1FnHDzDSCuc3pAsEXzUg6BnTacfLF-ODs">error report</a> (paper copies will be in lab). This report needs to be well thought out; professors will reject reports that don’t represent sufficient testing or thought. You will keep this hardware with you throughout the semester in your storage box.</p>
+</section>
+<section id="battery" class="level2">
+<h2 class="anchored" data-anchor-id="battery">1. Battery</h2>
+<p>Your AUV will need power, and we provide that with a battery pack. The battery pack used in E80 is a 3000 mAh to 3500 mAh, 30 C, 11.1 V LiPo battery pack. Determine the maximum, minimum and nominal voltage outputs of these battery packs. Determine how many cells are in the battery pack. To charge the batteries, we will use a <a href="https://hitecrcd.com//images/products/pdf/419_X1mini_Manual_BAS-V2-Web.pdf">HiTec x1 Mini charger</a> or a <a href="http://www.hrpdealer.com/pdf/manuals/UPTUP60AC%20Manual.pdf">UP60AC multi charger</a>. Read the manual on how to use the chargers.</p>
+<p>Request a battery and a LiPo safe bag from an instructor. You will need to check out and set up your battery for charging as soon as you start the lab. ASK AN INSTRUCTOR OR PROCTOR TO CHECK YOUR RECHARGE SETUP. Here are some helpful <a href="https://drive.google.com/open?id=1K1DSOdeqAjU_JU-sTOdiBUnwMmpwUTPP">images</a>. Charge the battery up to its nominal voltage, NOT its maximum voltage, which means that you will need to periodically monitor the voltage on the battery and stop the charging at the appropriate time. You will normally charge the battery to its maximum value, but for this lab, you don’t have the time.</p>
+<div class="note-box">
+<p><strong>Note</strong>: Make sure you plug the balancer cable into the balance lead socket (the black wire should align with the minus sign). <strong>Failure to do this may cause the battery to explode!</strong> Always use a LiPo-safe bag while charging.</p>
+</div>
+<p><br></p>
+<div class="note-box">
+<p><strong>Note</strong>: You can use the power supply on your work bench to power your board without your battery. However, the bench power supply can’t provide nearly as much current as the battery. Your board has a screw terminal labeled P.S. which can be connected to the power supply. The power supply switch must be set in the P.S. direction for this screw terminal to power the board. Be very careful to get power and ground connections to the P.S. screw terminal correct by following the silkscreen V+ and GND labels on the board.</p>
+</div>
+</section>
+<section id="motherboard-assembly" class="level2">
+<h2 class="anchored" data-anchor-id="motherboard-assembly">2. Motherboard Assembly</h2>
+<p>For E80, a motherboard has been designed to interface the major electrical components of your AUV. Familiarize yourself with the components on the motherboard by reading the <a href="https://drive.google.com/file/d/18bMajGNwH1K2yHB1dQLZRx5eqrYiNQWA/view?usp=sharing">Introduction to the E80 Motherboard</a> document. You will add some necessary components to the board in Lab 1. Use this <a href="https://docs.google.com/document/d/1v1vE3GXXUw8o6T2IJJws_xr_b3ntKiPx/edit?usp=sharing&amp;ouid=105511935419108795487&amp;rtpof=true&amp;sd=true">motherboard assembly document</a> as a guide and add the components. Checkout your motherboard from a professor and find the other parts you need in the parts rack on the central table. For reference, the schematic for the motherboard is <a href="https://drive.google.com/file/d/1pk_mORYsxhedKjjqzhMrxj9H5ZVH3zqp/view?usp=sharing">here</a> , the layout is <a href="https://drive.google.com/file/d/1pmm8xwpyAHAL5YvwMIQma4W8DuV-MP31/view?usp=sharing">here</a> , and <a href="https://www.kicad.org/">KiCAD</a> design files are <a href="https://drive.google.com/file/d/1pi9WNW7WoIx80xgb_0LWSUyA-LMfp94Z/view?usp=sharing">here</a>.</p>
+<p>Before you begin assembly, <strong>write your section number and team number and board version on your board. </strong> This will be version 1 for all of you, you will increment your version if, for example, your board blows up and you have to make a new one.</p>
+<p>There are two ways that <strong>you can damage your motherboard irreparably </strong>during this process. One is soldering components in the wrong position or orientation (e.g., screw terminals facing inward or header on the back side of the board), which is very difficult to rework. Double check that you are using the correct header and try fitting all the pieces together before soldering. The other is attaching your battery or power supply leads backwards or soldering the red and black wires to the incorrect terminals on the motherboard. Have an instructor or proctor check your battery connector. Make sure to heed the warnings in the assembly guide.</p>
+<p>Cover the back of your motherboard with insulating foam sheet using these<a href="https://drive.google.com/open?id=1x0CMBDFia2uY5qxPkWFfg_pN3FcR7Pth">instructions</a> to prevent inadvertent short circuits when you set it down. Also, find a sharpie and color the GND side of your P.S. screw black, so that you don’t forget the polarity of the connector.</p>
+</section>
+<section id="arduino-programming" class="level2">
+<h2 class="anchored" data-anchor-id="arduino-programming">3. Arduino Programming</h2>
+<p>You will use the Arduino language to program your microcontroller, the <a href="https://www.pjrc.com/store/teensy40.html">Teensy 4.0</a>. If your computer doesn’t have Arduino software installed, go to <a href="https://www.arduino.cc/en/software">the Arduino download page</a> and download the latest version of the Arduino software (2.0.3 as of this writing). Since version 2.0.0, the Teensy is supported directly in the Arduino software. Follow the instructions <a href="https://www.pjrc.com/arduino-ide-2-0-0-teensy-support/">here</a> to add the required board support packages to the Arduino IDE. The Teensy bootloader uploads Arduino programs (aka sketches) onto the Teensy. Note you must use a micro USB cable (see image <a href="https://drive.google.com/file/d/0BwiB3SVueuOpd3VHSjZFczUwZ1E/view?usp=sharing&amp;resourcekey=0-mdD6t8RsgB-2txW00XCDYw">here</a>) to connect the Teensy to your computer before you can upload sketches.</p>
+<p>It is advisable to ensure that you can compile and upload the RGB LED example to the Teensy.</p>
+<ul>
+<li>The RGB LED example can be found in File -&gt; Examples -&gt; 0.1 Basics -&gt; Blink.</li>
+<li>Follow the instructions <a href="https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-uploading-a-sketch">here</a> to compile and upload to the Teensy</li>
+</ul>
+<p>Note: you will not have a Teensy for pre-lab, but you can download the necessary software, go through the tutorial and try modifying and compiling the code.</p>
+<p>If you have not done so yet, complete the Github Desktop Setup in Lab 0 and clone the <a href="https://github.com/HMC-E80/E80-SP2023">E80 codebase</a>.</p>
+<p>Make sure to change the Arduino IDE Sketchbook location to the folder you just downloaded under File-&gt;Preferences. Open <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_01/E80_Lab_01.ino">E80_Lab_01.ino</a>. This sketch will be used as starter code to send PWM signals to your motors and to log the output on the SD card. Confirm that you can compile and upload the starter code to your Teensy.</p>
+<p>The Teensy creates two files to save data every time it runs: an INF file which contains text and a BIN file which contains your measured data in a binary format. Special programs are required to decode the binary data, and those programs also depend on having a matching INF file. We provide a MATLAB script for reading SD card data: <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/MATLAB/logreader.m">logreader.m</a>. These links provide <a href="https://drive.google.com/open?id=18-MICAN9QopCYHtpTnUVNme07YvaUmFD">sample INF</a> and <a href="https://drive.google.com/open?id=1h086niwvAh4C3Gs6r4vE12ZvaD1KYria">sample BIN</a> files. The sample file is very noisy, so it can’t be used to find answers to the questions in Section 4.</p>
+<p>Finally, find the loop() function in your sketch where you set the values of the PWM signals sent to motors. Modify the sketch to turn each motor on for 2 seconds in the following sequence: No motors on for 2 seconds, vertical motor on for 2 seconds, no motors on for 2 seconds, port motor on for two seconds, no motors on for 2 seconds, starboard motor on for 2 seconds, no motors on. Upload this code to your Teensy. You will test this code in section 4.</p>
+</section>
+<section id="motherboard-validation-and-imu-calibration-and-error-measurement" class="level2">
+<h2 class="anchored" data-anchor-id="motherboard-validation-and-imu-calibration-and-error-measurement">4. Motherboard Validation and IMU Calibration and Error Measurement</h2>
+<p>Your motherboard has a circuit on it called an inertial measurement unit, specifically an <a href="https://www.st.com/content/ccc/resource/technical/document/datasheet/74/c4/19/54/62/c5/46/13/DM00177685.pdf/files/DM00177685.pdf/jcr:content/translations/en.DM00177685.pdf">LSM303AGRTR</a> , which allows you to measure acceleration and magnetic fields. This is a very useful sensor that we will explore more later in the course. However, you need to understand the output units of the sensor and the error properties of the data it reports to use the accelerometer for this lab. You also need to be sure that your motherboard is working, and testing the accelerometer is a good way to check the motherboard.</p>
+<p>Sign out an SD card from an instructor. Put your Teensy and your SD card into your motherboard and program the Teensy with your code from Section 3 if you have not already done so. Provide power to the Teensy using either your battery or the power supply terminals (be careful with the polarity!). Several lights should turn on, including PWR LED, the IMU LED, the SD LED, and a small blinking LED on top of the Teensy. You have the option of plugging in your USB cable so you can use the serial monitor to watch the Teensy’s serial output as it runs. Please be very careful when connecting or disconnecting the micro USB cable to the Teensy!! Pull or push laterally while holding down the connector with your other hand. They are fragile and can be pulled off the board easily. You can put your Teensy into programmer mode manually by pressing the button on top of the Teensy. Note that this is not a reset button but only a way to recover from bad code. The easiest way to reset your board is to power cycle it.</p>
+<p>Remove power from your board (you do not need to remove the USB cable if it’s plugged in). Take out the SD card and put it into your computer. Take the INF and BIN files off of the SD card and read them. Verify that you are saving the following data to your SD card: acceleration values from your accelerometer, magnetic field strengths from your magnetometer, roll, pitch and yaw angles calculated from your IMU measurements, and motor PWM values.</p>
+<p>Use the acceleration due to gravity to figure out the size of one ‘accelerometer unit’ in your saved data: i.e.: if your accelerometer reports a value of 1, how many m/s^2 of acceleration is the accelerometer experiencing? Figure out the value the accelerometer reports when it is experiencing zero acceleration on each axis. Take ten seconds of accelerometer data and determine the mean, the standard deviation, the standard error, and the 95% confidence bounds for a static acceleration measurement in the z direction.</p>
+<p>Verify that your motherboard can drive motors by attaching motors to motor ports A, B and C. If your motors are not yet ready, you may measure the voltages at screw terminals A, B and C to observe whether they are being correctly applied by your software.</p>
+</section>
+<section id="penetrator-and-motor-assembly" class="level2">
+<h2 class="anchored" data-anchor-id="penetrator-and-motor-assembly">5. Penetrator and Motor Assembly</h2>
+<p>In E80 we use special bolts to make waterproof electrical connections across a robot, and we refer to them as penetrators.</p>
+<div id="fig-penetrators" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="fig-penetrator-bolt" class="quarto-figure quarto-figure-center anchored" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure">
+<p><img src="img/penetrator-bolt.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">(a) Penetrator bolt.</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-nut-and-gasket" class="quarto-figure quarto-figure-center anchored" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure">
+<p><img src="img/penetrator-bolt-with-nut.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">(b) Penetrator nut and gasket.</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-project-box-with-penetrator-bolt" class="quarto-figure quarto-figure-center anchored" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure">
+<p><img src="img/project-box-with-penetrator-bolt.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">(c) Project box with penetrator bolt assembly.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Project box and penetrator bolt details</figcaption><p></p>
+</figure>
+</div>
+<p>Notice that it has three sets of twisted pair encased in epoxy in the center. The penetrator bolts are usually used with a <a href="https://drive.google.com/open?id=19zd7uGmDGzpwX9YdT5cwSuXPqOZ6DwqY">nut and rubber washer</a> in order to make <a href="https://drive.google.com/open?id=1YuLADsJsaUKNrsQMq1pnMB8SvsLyND1p">a waterproof seal on a project box</a>. This image shows two important details about using penetrator bolts: the threads must point INTO the box and the washer must be OUTSIDE the box.</p>
+<p>These penetrators have six wires passing through them because your AUV will use three motors. Look through the stock of motors and select three motors. You may cut them off the used E79 umbilicals if the standalone motor box does not have any useful motors for you. If necessary, you can prep new motors as you did in E79. Instructions can be found <a href="https://sites.google.com/g.hmc.edu/e79-practicum/module-1/practicum-1a">here</a>. Test your motors using a power supply to make sure they work:</p>
+<ul>
+<li>If the current draw during this test is more than 500 mA, then the friction in your motor is likely to severely limit your top speed; consider debugging it.<br>
+</li>
+<li>Selecting motors that have similar current draws may simplify your software because the motors will exert similar thrusts at the same level of applied PWM.</li>
+<li>Make sure your motors still work when they are submerged in water.</li>
+</ul>
+<p>Solder the leads of your three motors to the twisted pair on the non-threaded side of your penetrator bolt (because the motors will be OUTSIDE of your box). Waterproof your solder joints with heat shrink tubing (do you need to put the heat shrink over your wires before or after you solder your motor?). Test that all three motors work when the waterproofed solder joints are underwater.</p>
+</section>
+<section id="auv-assembly" class="level2">
+<h2 class="anchored" data-anchor-id="auv-assembly">6. AUV Assembly</h2>
+<p>Find a waterproof box on the central table of the lab. Attach your penetrator and motor assembly to the box (remember threads are in and washer is on the outside). Hold your box and penetrator combination underwater to check for leaks. DON’T perform this test with any electronics or batteries in the box. If you find leaks, fix them before proceeding.</p>
+<p>Dry your box and place your battery, motherboard and Teensy into the box. Use Velcro to attach the box to a PVC robot frame. Make sure to select a frame that has a plastic mesh on the bottom for carrying payloads. If you need to add a plastic mesh, use zip ties to secure it to the robot frame.</p>
+<p>You will need to add ballast to your robot to keep it close to neutrally buoyant. For now, you will add mass to the INSIDE of your waterproof box, and you must determine how much mass to add. To do this, it helps to know the mass of your robot, and that the robot (including motors and two 1.25’’ foam blocks, but not including the watertight box) has a buoyancy force measured to be approximately 10 N.</p>
+<p>When selecting weights for ballasting be mindful that their distribution inside of your payload box could affect the resting pitch, yaw or roll of the robot. It may be useful to adjust the resting buoyancy, pitch, yaw, and roll of your robot with the waterproof box before attempting the obstacle course in section 7.</p>
+<p>Many of the weights we use are metal, so they can short the back of your motherboard. Make sure the back of your motherboard is covered with insulating foam or electrical tape before setting it on top of your ballast. We also recommend wrapping your ballast in plastic wrap.</p>
+</section>
+<section id="open-loop-control-navigation" class="level2">
+<h2 class="anchored" data-anchor-id="open-loop-control-navigation">7. Open Loop Control Navigation</h2>
+<p>A simple obstacle course will be set up in the test tank. The course will require your robot to navigate through 3 hoops as pictured <a href="https://drive.google.com/file/d/1cPRYAAH8nNd4z_daR9zeMKnhbt3fVw_g/view?usp=sharing">here</a>, <a href="https://drive.google.com/file/d/1LSbtq-jKKMQwlefHNDO72OFRp0G_OosE/view?usp=sharing">here</a>, and <a href="https://drive.google.com/file/d/1OGl3oxe45qmDD3jOou5rWVhgW8yni4oq/view?usp=sharing">here</a>.</p>
+<p>Modify the Arduino test program from step 3 to direct your robot to fly through the course so that it ends within the red hoop (3). You can assume your AUV can start in the middle of the yellow hoop (1). Since we don’t have absolute measurements of the AUV position, no closed-loop control is used here. Instead, write a sequence of motor actions for the AUV to follow. Be sure to test your code with your robot ahead of time, in air, before you visit the test tank room. It is important to know how to control each motor, including which direction each motor turns. Make sure your code accounts for the time you will need to seal up the waterproof box, attach it to the robot frame, and position it in the water. You will only have 5 attempts in the test tank room.</p>
+</section>
+<section id="acceleration-and-orientation-data" class="level2">
+<h2 class="anchored" data-anchor-id="acceleration-and-orientation-data">8. Acceleration and Orientation Data</h2>
+<p>Plot the AUV acceleration data as a function of sample number from the experiment in step 7. On a different figure, plot the AUV orientation data as a function of sample number. Confirm that positive acceleration is in the correct direction. Confirm qualitatively whether the measured acceleration data matches your expectations, and quantitatively compare the non-spurious peaks of your acceleration against an analytical model of the robot. Use the analytical model of the E79 robot as a starting point. The thrust curves linked <a href="https://drive.google.com/file/d/0BwiB3SVueuOpY2hmODROVHdSU1k/view?usp=sharing&amp;resourcekey=0-SZzOHYEO_CQ81gmm-ubhHg">here</a> may be helpful in your modeling effort.</p>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">9. Deliverables</h2>
+<p>All labs require two submissions per group. The first submission is a submission sheet in which specific data must be shown. The submission sheet is due at the end of the 4-hour lab period and must be uploaded before the end of your lab session at 5:15 pm. Note that only <strong>ONE</strong> member of each team should access and submit the submission sheet. It is the responsibility of that team member to add the rest of the team’s names to the submission sheet.</p>
+<p><strong>For pre-lab purposes</strong>, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/1IdCT00qJ_P5gtN7wcFKwaBd6rTRSuXSB/edit?usp=sharing&amp;ouid=100121681850908143159&amp;rtpof=true&amp;sd=true">here</a>.</p>
+<p>The second submission is a writing assignment, usually around 1 page in length. Each writing assignment will be based on a prompt and must be completed by each student individually; no collaboration is allowed on the text or figures in these assignments, though you may speak among yourselves about concepts in keeping with the collaboration rules of the course. A first draft of the writing assignment must be uploaded by noon on Friday, and you need to bring a printed copy of your draft to the writing and reflection section on Friday at 1:15 pm. During the first hour of the writing and reflection, you will engage in a peer editing exercise. The second hour of the Writing and Reflection section is reserved for you to edit your draft to produce a final draft of the writing assignment. This final draft must be uploaded before the end of the Writing and Reflection section on Friday at 3:15 pm. The <a href="https://drive.google.com/file/d/1FPFqd0ZnJcfwMfKFVoNy0DByp9T9axu7/view?usp=sharing">prompt</a> and <a href="https://drive.google.com/file/d/1FcMpVTSb6hSvgote7KdVcmwAaD1l9oxq/view?usp=sharing">guided peer feedback worksheet</a> for Lab 1 are linked, note that the rubric is included in the prompt.</p>
+<p>Recall that <strong>no late work is accepted</strong>, we will grade whatever is submitted at the deadlines. Since multiple submissions are allowed, you may want to submit a less-than-perfect draft early as insurance against missing the deadline.</p>
+<p>After the writing and reflection section at the end of each week every person (not just one person per team) must submit a team dynamics check-in survey. These are part of your participation grade. The survey link can be found on the home page.</p>
+<p><strong>IMPORTANT CLEANUP</strong>: Please return the battery charger and ballast weights to the center table. These will be shared among the different lab sections. Also, put your board, Teensy, penetrator bolt (with motors), battery and robot frame in your labelled Tupperware container in the cupboard. Please return SD card and SD card reader to the proctor or Lynn.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

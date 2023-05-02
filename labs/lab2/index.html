@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>. - Lab 2: Basic Electrical Measurements</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lectures/" rel="" target="">
+ <span class="menu-text">Lectures</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../matlab/" rel="" target="">
+ <span class="menu-text">MATLAB Assignments</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_overview" rel="" target="">
+ <span class="dropdown-text">Lab Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab0" rel="" target="">
+ <span class="dropdown-text">Lab 0: Optional Tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab1" rel="" target="">
+ <span class="dropdown-text">Lab 1: Go Autonomous</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab2" rel="" target="">
+ <span class="dropdown-text">Lab 2: BEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab3" rel="" target="">
+ <span class="dropdown-text">Lab 3: Op-Amps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab4" rel="" target="">
+ <span class="dropdown-text">Lab 4: Temperature</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab5" rel="" target="">
+ <span class="dropdown-text">Lab 5: Acoustics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab6" rel="" target="">
+ <span class="dropdown-text">Lab 6: Fluids</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab7" rel="" target="">
+ <span class="dropdown-text">Lab 7: Navigation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reference/" rel="" target="">
+ <span class="menu-text">Reference Designs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../history/" rel="" target="">
+ <span class="menu-text">History</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HMC-E80/E80-SP2024" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">0. Introduction</a></li>
+  <li><a href="#logging-analog-data-with-the-teensy" id="toc-logging-analog-data-with-the-teensy" class="nav-link" data-scroll-target="#logging-analog-data-with-the-teensy">1. Logging Analog Data with the Teensy</a></li>
+  <li><a href="#instrumentation-and-connectors" id="toc-instrumentation-and-connectors" class="nav-link" data-scroll-target="#instrumentation-and-connectors">2. Instrumentation and Connectors</a></li>
+  <li><a href="#output-load-setting-of-signal-generators-and-amplitude-measurements" id="toc-output-load-setting-of-signal-generators-and-amplitude-measurements" class="nav-link" data-scroll-target="#output-load-setting-of-signal-generators-and-amplitude-measurements">3. Output Load Setting of Signal Generators and Amplitude Measurements</a></li>
+  <li><a href="#oscilloscope-probes" id="toc-oscilloscope-probes" class="nav-link" data-scroll-target="#oscilloscope-probes">4. Oscilloscope Probes</a></li>
+  <li><a href="#source-and-load-impedance" id="toc-source-and-load-impedance" class="nav-link" data-scroll-target="#source-and-load-impedance">5. Source and Load Impedance</a></li>
+  <li><a href="#op-amps-and-impedance" id="toc-op-amps-and-impedance" class="nav-link" data-scroll-target="#op-amps-and-impedance">6. Op Amps and Impedance</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">7. Deliverables</a></li>
+  <li><a href="#extra-credit-1" id="toc-extra-credit-1" class="nav-link" data-scroll-target="#extra-credit-1">Extra Credit 1</a></li>
+  <li><a href="#extra-credit-2" id="toc-extra-credit-2" class="nav-link" data-scroll-target="#extra-credit-2">Extra Credit 2</a></li>
+  <li><a href="#extra-credit-3" id="toc-extra-credit-3" class="nav-link" data-scroll-target="#extra-credit-3">Extra Credit 3</a></li>
+  <li><a href="#op-amp-fundamentals" id="toc-op-amp-fundamentals" class="nav-link" data-scroll-target="#op-amp-fundamentals">Op-Amp Fundamentals</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 2: Basic Electrical Measurements</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Team size: 2</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>After successful completion of this lab, you will be able to…</p>
+<ol type="1">
+<li>Demonstrate how to use electrical test equipment such as a multimeter, function generator, and oscilloscope.</li>
+<li>Explain why oscilloscope probes have 1X and 10X settings and when each setting should be used.</li>
+<li>Demonstrate error analysis techniques using resistive voltage dividers and voltage measurements with electrical measurement equipment.</li>
+</ol>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">0. Introduction</h2>
+<p>In this lab you review the use of electrical test equipment, gain experience with advanced features of some equipment, calculate the uncertainty in a measurement based on its components, and apply equivalent circuit models (input/output impedance models) to a variety of circuits, drivers and loads: notably op-amp buffers and voltage dividers. Goals of the lab are that you learn about non-idealities of your measurement equipment, especially source and load impedance effects, and how they affect your measurements. Another goal of the lab is for you to practice error analysis.</p>
+<p>This lab will be completed in sub-teams of two students. Before the lab you must decide how you will split your team. Two other labs will also be completed as sub-teams, and you must use a different sub-team for each of these labs. Each sub-team will be responsible for its own version of the lab’s deliverables. Pre-lab work may still be carried out with your whole team, but be sure each sub-team is ready to tackle the in-lab work independently. Between lab and Friday (the post-lab period) the two sub-teams in a team may discuss their experiences, but the sub-teams may not share data, code or text with one another.</p>
+<p>Even though your team will be split into two sub-teams, you will only have access to one motherboard/Teensy assembly. Plan your work carefully so that you share it equitably.</p>
+<p>A work breakdown showing what each sub-team member intends to work on during the four hour lab time is required for entry to the lab. The work breakdown will be submitted on paper to the lab instructor or proctor at the start of lab. Here is an <a href="https://drive.google.com/open?id=1UE9QmSXXGauzLUS0ZWm355lViUqZoC_F">example work breakdown</a>. No hardware can be used outside of lab hours and no real data can be processed outside of lab hours. However, writing software or processing simulated data sets is allowed and, in fact, encouraged during the pre-lab period.</p>
+<p><strong>For pre-lab purposes</strong>, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/1i5vG08lq4HfAgMKqH7ONPxKtZEuw023A/edit?usp=sharing&amp;ouid=100121681850908143159&amp;rtpof=true&amp;sd=true">here</a>.</p>
+<p>There are a variety of references which might make your life easier. Two documents from previous iterations of E80 <a href="http://www.eng.hmc.edu/NewE80/PDFs/AuntieSparksGuideToBreadboarding.pdf">Auntie Spark’s Guide to breadboards</a> and <a href="http://www.eng.hmc.edu/NewE80/PDFs/Uncle%20Sparky's%20Guide%20to%20Voltage%20Current%20and%20Resistance%20Measurement.pdf">Uncle Sparky’s guide to Voltage, Current, and Resistance Measurements</a> are recommended in particular.</p>
+</section>
+<section id="logging-analog-data-with-the-teensy" class="level2">
+<h2 class="anchored" data-anchor-id="logging-analog-data-with-the-teensy">1. Logging Analog Data with the Teensy</h2>
+<p>The Teensy contains an analog to digital converter which can measure analog signals on many of its pins. In this section you will take your first analog measurement with the Teensy. Teensy measurements will be used frequently in this lab and the next. Always connect to your Teensy pins through the E80 motherboard, which has protection circuits designed to prevent damage to the Teensy.</p>
+<p>You will use two different pieces of software to log data from the Teensy in this section: A program on your Teensy (using Arduino code) which will sample data and a MATLAB program which will interpret serial data sent by your Teensy. These programs record input from input A0, which is identified on the silk screen on the back of your motherboard. Attach a wire to the empty hole on your motherboard which is connected to this pin (male-male jumper wires work OK) but DO NOT solder it in place. We will solder a header there later, and desoldering a wire will make that more difficult. You will also need a connection between your motherboard ground and your signal generator ground.</p>
+<p>Connect a 200 Hz, 1 Vpp, +0.4 V offset signal from a signal generator to the analog pin and run the following sketch on your Teensy: <code>matlablogging.ino</code>. While matlablogging.ino is running and the Teensy is connected by USB, use <code>matlablogging.m</code> to receive a vector of data from the Teensy.</p>
+<p>You may need to modify the function so that it points at the COM port which is correct for your Teensy. The MATLAB program can’t access your COM port if the Arduino serial monitor is open, so be sure that it is closed. Sometimes COM ports get stuck in unusual states and MATLAB can’t access them. Closing all of your programs will usually fix this problem.</p>
+<p>What is the sample rate achieved by <code>matlablogging.ino</code>? What is the relation between the values recorded by matlablogging.ino and the voltage applied to the pin? (i.e.: how many volts is one “Teensy Unit”?)<br>
+What happens when the voltage on the Teensy pin is less than zero volts?</p>
+<p>Now change your input signal such that you are measuring a 175 kHz, 1 Vpp, +0.6 V offset signal. What signal does your Teensy observe? Why? (Hint: you may need to think back to some parts of E79 to figure this one out.)</p>
+<p>FOR MACs:</p>
+<ul>
+<li>The serial port (COM) can be found by going to Tools -&gt; Ports in the Arduino IDE or by calling <code>ls /dev/</code> in the terminal and looking for a file of the form: <code>/dev/tty.XYZABCDEF</code></li>
+<li>In the matlablogging.ino file, if you don’t see any output on the serial port, you may need to comment out these two lines and re-upload the program to the Teensy</li>
+<li>while(!Serial.available()) {</li>
+<li>Serial.println(“Waiting…”); }</li>
+</ul>
+</section>
+<section id="instrumentation-and-connectors" class="level2">
+<h2 class="anchored" data-anchor-id="instrumentation-and-connectors">2. Instrumentation and Connectors</h2>
+<p>Read the manuals of the:</p>
+<ul>
+<li><a href="https://www.pjrc.com/teensy/K20P64M50SF0.pdf">Teensy</a></li>
+<li><a href="http://www.eng.hmc.edu/NewE80/PDFs/Elenco_LCM-1950Manual.pdf">Elenco multimeter</a>, oscilloscope</li>
+<li>(<a href="http://literature.cdn.keysight.com/litweb/pdf/75015-97045.pdf">Agilent 2024A</a> and <a href="http://literature.cdn.keysight.com/litweb/pdf/5990-6618EN.pdf">spec sheet</a>)</li>
+<li>Power supply: (<a href="http://literature.cdn.keysight.com/litweb/pdf/5968-9727EN.pdf?id=1000070544:epsg:dow">Keysight E3630A</a>).</li>
+</ul>
+<p>Fill out the following information:</p>
+<ol type="1">
+<li>Record the output impedance for the waveform generator on the oscilloscope, and the input impedances for the Elenco multimeter (both AC Volts and DC Volts), the Teensy analog pin and the oscilloscope. The impedance may not be called the impedance in the manuals. Ask the proctors or professors if you can’t find them. For the power supply, record the maximum current out for each voltage range. Do not proceed with the rest of the lab until you have all of these values recorded correctly. You need this information for the rest of the lab.</li>
+<li>Record the accuracy or uncertainty of the measurements on the Teensy, Elenco multimeter, oscilloscope, and meter on the power supply and fill in the table on the submission sheet. Verify with a proctor or professor that you understand what the accuracy specifications mean, for example, what do rdg and dgt in ±(1.5% rdg + 1 dgt) mean? They most likely don’t mean what you expect. Use these accuracies or uncertainties when reporting measured quantities throughout the lab.</li>
+<li>Turn on the power supply. Make sure TRACKING RATIO is on FIXED. Set the METER switch to +6 V. Adjust the +6 V knob until the meter reads 5 V. Set the Elenco to 40 V DC. With the Elenco measure (and record) the voltage between +6 V and COM, between +6 V and earth ground (the small symbol with diagonal lines on the bottom), and between COM and earth ground. Explain your measurement results while answering the following questions (when in doubt ask a professor or proctor):
+<ol type="1">
+<li>What does “COM” mean?</li>
+<li>What does “earth ground” mean?</li>
+<li>Would you ever connect “COM” and “earth ground” (a sketch may help)?</li>
+<li>Would you ever NOT connect “COM” and “earth ground” (a sketch may help)?</li>
+</ol></li>
+</ol>
+</section>
+<section id="output-load-setting-of-signal-generators-and-amplitude-measurements" class="level2">
+<h2 class="anchored" data-anchor-id="output-load-setting-of-signal-generators-and-amplitude-measurements">3. Output Load Setting of Signal Generators and Amplitude Measurements</h2>
+<p>The purpose of this section is to determine the purpose of the Output Load setting on the Oscilloscope Signal Generator and/or the OUT TERM setting on the signal generator. They both behave in exactly the same way, and when used incorrectly, you will find a factor of 2 or 1/2 in your measurements that you can’t explain.</p>
+<p>We strongly recommend that you use the function generator built into your oscilloscope but bench top signal generators are available in the electronics lab.</p>
+<p>Before you begin, make sure that the “Output Load” setting of your waveform generator is set to High-Z. Instructions adjusting the output load setting on both the oscilloscope and bench top signal generators are <a href="https://docs.google.com/document/d/1dxD5BLERp5jU67nL9XBJaF959TPHSdrLRrk-XDM9qNc/edit?usp=sharing">here</a>. Set the frequency of your signal generator to 200 Hz, the amplitude to 0.6 Vpp, and the offset to 0.0 V.</p>
+<ol type="1">
+<li>What is the amplitude of the sine wave as measured by the Teensy logging pin, Elenco, and oscilloscope? Did you have to do any calculations to convert the number reported by the instrument into an amplitude? You may have to review the differences between Vp, Vpp, and Vrms. Are the measurement accuracies within the manufacturer’s specifications?</li>
+<li>Do not adjust the amplitude (don’t turn any of the knobs or push any of the buttons that affect amplitude), but reset “Output Load” to “50 Ω” or “OUT TERM” to “50 OHM,” record the Vpp displayed on the oscilloscope waveform generator or stand-alone function generator and repeat your measurements with the Elenco and ’scope. What are the relationships among the amplitude displayed on the waveform or function generator and the amplitude displayed by the meter and ’scope?</li>
+<li>Measure and record the resistance of a 50 Ohm BNC Terminator. It should be close to the nominal 50 Ω.</li>
+<li>Keep the waveform or function generator settings as those in question 2 of this section. Connect its output signal to a 50 Ohm BNC Terminator as <a href="https://drive.google.com/file/d/0B7Ols9Km9Pa1YnluZElUZFdRclk/view?usp=sharing&amp;resourcekey=0-8fqPxsymKo0qo5he2RS_zw">shown</a>. A BNC Tee makes the connection trivial. Measure the voltage V0 across the terminator with the Elenco and ’scope. Explain the purpose of the “Output Load” or “OUT TERM” setting. Confirm your explanation with a professor or proctor.</li>
+</ol>
+<p>Be sure to set the output load of your signal generator back to High-Z before proceeding with the lab.</p>
+</section>
+<section id="oscilloscope-probes" class="level2">
+<h2 class="anchored" data-anchor-id="oscilloscope-probes">4. Oscilloscope Probes</h2>
+<p>In this section you will investigate the difference between 1X and 10X oscilloscope probes and explore why these probes might be used. Unusually, we’ll give you a hint at the answer: the output impedance of the oscilloscope probe forms a resistive divider with the input impedance of the oscilloscope itself. Knowing this should make the calculations (with uncertainty) for questions 2, 3 and 4 easier.</p>
+<p>As alluded to above, oscilloscope probes come typically with two settings: 1X and 10X. Oscilloscopes are designed to match these settings to make it easier to read out results, so oscilloscopes usually permit you to enter the setting of the probe you are currently using. For example, our oscilloscopes permit you to enter any setting (in a 2, 5, 10 order) from 0.1X to 100X. To enter the probe setting, push the channel button for the channel you’re using, e.g., push the (1) button for channel 1. Then push the button below the Probe menu item. Rotate the settings knob until the desired setting is displayed and push the settings knob.</p>
+<p>We recommend you normally use the grayish probes kept in the drawer beneath the work surface. They are 10X probes and can’t be set to any other setting. However, for this section, find one of the black probes that can be switched between 1X and 10X.</p>
+<ol type="1">
+<li>Measure (don’t just look it up) and record the DC impedance (the resistance) of the scope probes on both 1X and 10X settings (most easily accomplished by connecting the probe tip to the ground clip with a wire and connecting the probe BNC connector to a BNC Female to Double Banana Plug adaptor and then directly into the Elenco), and then answer questions 2 through 4. Don’t measure the input impedance of the scope itself, recall you looked it up for Section 2.</li>
+<li>What is the input impedance of the scope (meaning the scope and probe together, not just the probe by itself) when the probe is on the 1X setting?</li>
+<li>What is the input impedance of the scope (meaning the scope and probe together, not just the probe by itself) when the probe is on the 10X setting?</li>
+<li>Does the 10X setting have any effect on the measured voltage? Why?</li>
+</ol>
+<p>Unless you have a _very _specific need to do something else, always make oscilloscope measurements with a 10X scope probe, and with the scope channel programmed to 10X probe mode. <em>Never</em> use an oscilloscope probe to feed a signal from the signal generator (either on the oscilloscope or stand alone) to a circuit.</p>
+</section>
+<section id="source-and-load-impedance" class="level2">
+<h2 class="anchored" data-anchor-id="source-and-load-impedance">5. Source and Load Impedance</h2>
+<p>This section is to give you practice in accounting for both source and load impedances and for doing error propagation. Each component, such as a resistor, has an uncertainty specified by the manufacturer, such as ±1% for resistors and ±10% for capacitors. Each generating instrument or measurement instrument has a specified accuracy, which you looked up in Section 2. For the circuit shown <a href="https://drive.google.com/file/d/0B7Ols9Km9Pa1d0xabmtQZlpLZms/view?usp=sharing&amp;resourcekey=0-YWvxHN1wmqQoIBEpUox8kg">here</a>, and for each of the values of Z1 and Z2 and the measuring instruments in the table <a href="https://docs.google.com/document/d/1XyjMOSfLSAxeISbdkoIjHSgfmwIXOMNOndOAGM-aBbw/edit?usp=sharing">here</a>, calculate the expected output voltages with confidence intervals accounting for both components and instruments. Assume the resistors are 5% resistors. Note that these analytical calculations can (and should) be made during prelab. Now, build the actual circuit as (still) shown <a href="https://drive.google.com/file/d/0B7Ols9Km9Pa1d0xabmtQZlpLZms/view?usp=sharing&amp;resourcekey=0-YWvxHN1wmqQoIBEpUox8kg">here</a> on your own protoboard for each of the values of Z1 and Z2 in the table as (still) listed <a href="https://docs.google.com/document/d/1XyjMOSfLSAxeISbdkoIjHSgfmwIXOMNOndOAGM-aBbw/edit?usp=sharing">here</a>. Measure and record each component value with uncertainty using the Elenco. Generate the input voltage using a signal generator and measure the output voltage with each of the instruments in the table. Now redo the expected calculations using your measured component values. Explain any differences between your measured voltages and your two sets of predicted voltages. Do the measured voltages lie within the predicted confidence intervals? Are there any lessons here on how best to increase the accuracy of predicted measurements?</p>
+<p>You might find it convenient to build all the circuits at once, neatly on your protoboard, but be careful that you don’t accidentally use the power busses to build a circuit that doesn’t match this schematic. Similarly, be sure you don’t connect any outputs which should not be connected. It is good practice to trim the resistors with wire cutters so that they lie neatly on the protoboard.</p>
+<pre><code>    Note: If Case (D) is giving you problems, try just twisting the components together and measuring things off of the protoboard. The leakage current is fairly high on the protoboard, and it may interfere with your measurements. 
+
+
+    Note: For Case (E) you may have to get creative with BNC adaptors and other components to make the circuits. A 10X probe will clearly not lie flat on a breadboard. </code></pre>
+</section>
+<section id="op-amps-and-impedance" class="level2">
+<h2 class="anchored" data-anchor-id="op-amps-and-impedance">6. Op Amps and Impedance</h2>
+<p>Read the “Op-amp Fundamentals” section at the bottom of this page and/or <a href="http://www.eng.hmc.edu/NewE80/PDFs/AuntieSparksGuideToOpAmpCircuits.pdf">Auntie Spark’s Guide to Op-Amp Circuits</a>.</p>
+<p>Replace the circuit in Case (A) of Section 5 on your breadboard with <a href="https://drive.google.com/file/d/112zAzKTlFnLNu0iGhkG-0-ZmZYd9k822/view?usp=sharing">this</a> circuit and repeat your measurements. Power the op-amp with ±15 V. Compare and contrast your results from Case (A) with your current results. What is the function of the op-amp in this measurement?</p>
+<p>Replace the circuit in Case (D) of Section 5 on your breadboard with <a href="https://drive.google.com/file/d/120NRFwKZS3b15vdk9vhQ_I2UELT95kO5/view?usp=sharing">this</a> circuit and repeat your measurements. Power the op-amp with ±15 V. Compare and contrast your results from Case (D) with your current results. What is the function of the op-amp in this circuit?</p>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">7. Deliverables</h2>
+<p>All labs require two submissions per group. The first submission is a submission sheet in which specific data must be shown. The submission sheet is due at the end of the 4-hour lab period. The submission sheet must be uploaded before the end of your lab session at 5:15 pm. Note that only ONE member of each team should access and submit the submission sheet. It is the responsibility of that team member to add the rest of the team’s names to the submission sheet.</p>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is<a href="https://docs.google.com/document/d/1i5vG08lq4HfAgMKqH7ONPxKtZEuw023A/edit?usp=sharing&amp;ouid=100121681850908143159&amp;rtpof=true&amp;sd=true">here</a>.</p>
+<p>The second submission is a writing assignment, usually around 1 page in length. Each writing assignment will be based on a prompt, and must be completed by each student individually; no collaboration is allowed on the text or figures in these assignments, though you may speak among yourselves about concepts in keeping with the collaboration rules of the course. A first draft of the writing assignment must be uploaded by noon on Friday, and you need to bring a printed copy of your draft to the writing and reflection section on Friday at 1:15 pm. During the first hour of the writing and reflection, you will engage in a peer editing exercise. The second hour of the Writing and Reflection section is reserved for you to edit your draft to produce a final draft of the writing assignment. This final draft must be uploaded before the end of the Writing and Reflection section on Friday at 3:15 pm. The<a href="https://drive.google.com/file/d/1FRKQoeDmspXT7tTAlJB4JDjkD6xJi8T2/view?usp=sharing">prompt</a> and<a href="https://drive.google.com/open?id=1Bah6Xfwcps05_m5qhfMZkzPXmJfkOdhT">guided peer feedback worksheet</a> for Lab 2 are linked, note that the rubric is included in the prompt.</p>
+<p>Recall that no late work is accepted, we will grade whatever is submitted at the deadlines. Since multiple submissions are allowed, you may want to submit a less-than-perfect draft early as insurance against missing the deadline.</p>
+<p>After the writing and reflection section at the end of each week every person (not just one person per team) must submit a team dynamics check-in survey. These are part of your participation grade. The survey link can be found on the home page.</p>
+</section>
+<section id="extra-credit-1" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-1">Extra Credit 1</h2>
+<p>Replace Z2 in Case (C) of Section 5 on your breadboard with a 100kΩ thermistor and derive a formula to calculate the temperature from Vin and Vout. Also determine the error specifications for all of the components in your system. Measure Vin and Vout with the 10x Scope and calculate the room temperature from the measured Vin and Vout complete with propagation of errors to calculate the uncertainty.</p>
+<p>Try to reduce your uncertainty by measuring the actual resistance of Z1 instead of using its printed value. Note that we’re measuring Z1 because we are using the output voltage of the thermistor voltage divider to guess Z2. Repeat the measurement and calculation. How much did the uncertainty change?</p>
+<p>Compare your calculated temperatures with the room temperature measured by one of the digital thermometers. Do the measurements agree within the uncertainty of the measurements? Why would you use the voltage divider circuit with a Teensy instead of simply measuring the resistance of the thermistor? In your answer you may want to explain how the Elenco measures resistance. For your circuit explore how the measured temperature changes with Vin as you vary from 1 Vpp to the maximum the signal generator can generate. Why does it change?</p>
+</section>
+<section id="extra-credit-2" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-2">Extra Credit 2</h2>
+<p>How do the accuracies of the Teensy and Elenco vary as you adjust the input frequency to 100 Hz, 200 Hz, 500 Hz, 1000 Hz, 2000 Hz, 5000 Hz,10,000 Hz, 20,000 Hz, 50,000 Hz, and 100,000 Hz? Be sure you select appropriate input signals as you conduct this experiment. In particular, reflect on the Teensy’s behavior in Section 1 and Section 3 when selecting the signal.</p>
+<p>The definition of “accuracy” can be slippery here, so you should think carefully about it as you compose your answer. This is particularly true for the Teensy, which will return a sample to you that consists of many numbers. Will you consider the accuracy of a single data point (compared to what)? Of a single cycle? Or of some kind of aggregation of cycles that includes uncertainty? Consider carefully.</p>
+<p>Writeups for this extra credit section are not counted against the page limit of your report. You may submit this as an additional document labeled “Lab2 instrument frequency response extra credit addendum.”</p>
+</section>
+<section id="extra-credit-3" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-3">Extra Credit 3</h2>
+<p>Connect the set of circuits in<a href="https://drive.google.com/open?id=1XyjMOSfLSAxeISbdkoIjHSgfmwIXOMNOndOAGM-aBbw">this</a> table (Circuits F through I) in the same manner as in Section 5. Note that the Elenco can measure capacitance. Measure the output voltages with any appropriate equipment (justify your choice). Vary the input frequency as shown on the table. Repeat the predictions and measurements as in Section 5. Use an input amplitude of 5Vpp and, if using the Teensy, be sure to offset the signal. Measure the phase difference between the input and output voltages where possible. Explain the results of your measurements and possible function for each circuit. Consider carefully in what (graphical) format(s) you want to present your results.</p>
+</section>
+<section id="op-amp-fundamentals" class="level2">
+<h2 class="anchored" data-anchor-id="op-amp-fundamentals">Op-Amp Fundamentals</h2>
+<ul>
+<li>Neatly laid out protoboards work better. Seriously, they do. They’re easier to troubleshoot as well. Seriously, they are! Please take the time to do it right.</li>
+<li>Keep your leads short and close to the board.</li>
+<li>Strip off the minimum amount of insulation to let your patch wire work; Don’t have big bare areas that can touch other things and short.</li>
+<li>Trim your resistors and capacitors to keep the components close to the boards. Don’t leave the leads long. Get the components down by the board.</li>
+<li>Use the long busses for power only. Do use them for power and ground. Don’t use them for signals. Use bypass capacitors (see below) on your power busses.</li>
+<li>To the extent possible use coaxial cables to get signals on and off of your board. Put the input signals onto the board as close to the circuit inputs as possible. For example, use a coaxial cable with BNC connectors from the signal generator and then put spring-loaded mini-clips on the other end. Connect the mini clips to your circuit input and ground.</li>
+<li>If you are using dual supplies for your op-amps, have three power busses: V+ connected to the +20 V output on your power supply, V– connected to the –20 V output on your power supply, and GND connected to the COM output on the power supply. You can adjust your supply voltage to be anything from ±1 V to ±15 V depending on what chips you are using.</li>
+<li>If you are using a single supply for your op-amps, have two power busses: V+ connected to the +20 V output on your power supply, and GND connected to the COM output on the power supply. You can adjust your supply voltage to be anything from +1 V to +15 V depending on what chips you are using.</li>
+<li>Color code your wiring. A common practice is to use red for V+ power, black for V– power, green for ground, and white or blue for signal lines. If you have a rat’s nest of all red wires, neither the professors nor the proctors (nor you for that matter) will be able to figure out what goes where.</li>
+</ul>
+<p>In standard practice, op-amps are shown in schematics without the power connections. However, you must supply power to the power pins or the op-amps won’t work! For reference,<a href="https://drive.google.com/file/d/0B7Ols9Km9Pa1NC1fSThWcW9wTjA/view?usp=sharing&amp;resourcekey=0-hf94gUb3mJC3f1bfJYRjWQ">this</a> circuit shows the power connected to the op-amp.</p>
+<p>You may have noticed that the circuit has many capacitors connected to its power rails. These are called decoupling or bypass capacitors and they help to stabilize (in a feedback sense) the operational amplifier. The high gain of operational amplifiers can cause op-amps to interact with long power busses to cause oscillations. This manifests as intermittent, large noise in the output of the circuit. You can almost totally eliminate this issue by placing bypass capacitors between the power supply pins and ground <em>as close as physically possible</em> to each op-amp.</p>
+<p>Standard practice recommends both a 10 µF electrolytic capacitor and a 0.1 µF standard capacitor. For E80 you can get away with just the 0.1 µF standard capacitor. If you use electrolytic capacitors, remember that they are polar and if you put them in backwards they won’t work and may explode.</p>
+<p>For dual supplies the capacitors run between V+ and ground, and V– and ground. For single-sided supplies, they run between V+ and ground. The circuit below shows a unity-gain buffer amp with dual power supplies and bypass capacitors.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

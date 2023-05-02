@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>. - Lab 3: Operational Amplifiers and Marine Sensors</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lectures/" rel="" target="">
+ <span class="menu-text">Lectures</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../matlab/" rel="" target="">
+ <span class="menu-text">MATLAB Assignments</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_overview" rel="" target="">
+ <span class="dropdown-text">Lab Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab0" rel="" target="">
+ <span class="dropdown-text">Lab 0: Optional Tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab1" rel="" target="">
+ <span class="dropdown-text">Lab 1: Go Autonomous</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab2" rel="" target="">
+ <span class="dropdown-text">Lab 2: BEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab3" rel="" target="">
+ <span class="dropdown-text">Lab 3: Op-Amps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab4" rel="" target="">
+ <span class="dropdown-text">Lab 4: Temperature</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab5" rel="" target="">
+ <span class="dropdown-text">Lab 5: Acoustics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab6" rel="" target="">
+ <span class="dropdown-text">Lab 6: Fluids</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab7" rel="" target="">
+ <span class="dropdown-text">Lab 7: Navigation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reference/" rel="" target="">
+ <span class="menu-text">Reference Designs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../history/" rel="" target="">
+ <span class="menu-text">History</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HMC-E80/E80-SP2024" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">0. Introduction</a></li>
+  <li><a href="#op-amp-familiarity" id="toc-op-amp-familiarity" class="nav-link" data-scroll-target="#op-amp-familiarity">1. Op-Amp Familiarity</a></li>
+  <li><a href="#op-amps-and-impedance" id="toc-op-amps-and-impedance" class="nav-link" data-scroll-target="#op-amps-and-impedance">2. Op Amps and Impedance</a></li>
+  <li><a href="#turbidity-meter-introduction" id="toc-turbidity-meter-introduction" class="nav-link" data-scroll-target="#turbidity-meter-introduction">3. Turbidity Meter Introduction</a></li>
+  <li><a href="#transimpedance-amplifiers" id="toc-transimpedance-amplifiers" class="nav-link" data-scroll-target="#transimpedance-amplifiers">4. Transimpedance Amplifiers</a></li>
+  <li><a href="#driving-leds-and-555-timers" id="toc-driving-leds-and-555-timers" class="nav-link" data-scroll-target="#driving-leds-and-555-timers">5. Driving LEDs and 555 Timers</a></li>
+  <li><a href="#turbidity-measurements" id="toc-turbidity-measurements" class="nav-link" data-scroll-target="#turbidity-measurements">6. Turbidity Measurements</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">7. Deliverables</a></li>
+  <li><a href="#extra-credit-1.-ph-measurement" id="toc-extra-credit-1.-ph-measurement" class="nav-link" data-scroll-target="#extra-credit-1.-ph-measurement">Extra Credit 1. pH Measurement</a></li>
+  <li><a href="#extra-credit-2.-salinity-measurement" id="toc-extra-credit-2.-salinity-measurement" class="nav-link" data-scroll-target="#extra-credit-2.-salinity-measurement">Extra Credit 2. Salinity Measurement</a></li>
+  <li><a href="#extra-credit-3.-pressure-measurement" id="toc-extra-credit-3.-pressure-measurement" class="nav-link" data-scroll-target="#extra-credit-3.-pressure-measurement">Extra Credit 3. Pressure Measurement</a></li>
+  <li><a href="#extra-extra-credit-4.-true-synchronous-detection-only-do-after-extra-credits-1-2-and-3." id="toc-extra-extra-credit-4.-true-synchronous-detection-only-do-after-extra-credits-1-2-and-3." class="nav-link" data-scroll-target="#extra-extra-credit-4.-true-synchronous-detection-only-do-after-extra-credits-1-2-and-3.">Extra Extra Credit 4. True Synchronous Detection – Only do after Extra Credits 1, 2 and 3.</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 3: Operational Amplifiers and Marine Sensors</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Team size: 2</strong></p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>After successful completion of this lab, you will be able to…</p>
+<ol type="1">
+<li>Design an operational amplifier circuit to appropriately scale and shift an input from a sensor to be read.</li>
+<li>Explain why operational amplifiers are needed for making measurements</li>
+</ol>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">0. Introduction</h2>
+<p>The purpose of this lab is to use operational amplifiers to build a turbidity meter, a sensor that measures physical quantities that are often of interest in the ocean. The lab will require sensor design, circuit design and experiment design. Extra credit sections offer the opportunity to explore many other interesting marine sensors. The main take away from the laboratory is that operational amplifier circuits can be used for a variety of sensing applications and that careful sensor design is necessary to achieve repeatable results.</p>
+<p>This lab will be carried out as sub-teams of two. As discussed in the class Home page, teams of 4 will be assigned by the instructor. Before this lab you must decide how you will split your team. Two other labs will also be completed as sub-teams, and you must use a different sub-team for each of these labs. Each sub-team will be responsible for its own version of the lab’s deliverables. Pre-lab work may still be carried out with your whole team but be sure each sub-team is ready to tackle the in-lab work independently. Between lab and Friday (the post-lab period) the two sub-teams in a team may discuss their experiences, but the sub-teams may not share data, code or text with one another.</p>
+<p>It is up to the sub-team to determine which parts of the lab are done by whom, and at what time during the 4 hours of lab time. A work breakdown showing what each team member intends to work on during the 4-hour lab time is required for entry to the lab. The work breakdown will be submitted on paper to the lab instructor or proctor at the start of lab. Here is an <a href="https://drive.google.com/open?id=1UE9QmSXXGauzLUS0ZWm355lViUqZoC_F">example work breakdown</a>. No hardware can be used outside of lab hours and no real data can be processed outside of lab hours. However, writing software or processing simulated data sets is allowed and, in fact, encouraged during the pre-lab period.</p>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/1tKz63eOyO-PKklt6ysxv7QqVT3qfW5ciuUxvZIkOFQg/edit?usp=sharing">here</a>.</p>
+<p>You will work with some expensive hardware in this lab and in many future labs. This hardware needs to be explicitly checked out from a professor or proctor so that we can track where it is. If any hardware that you checked out breaks, then you will need to request a replacement from a professor. You make this request by filling out an <a href="https://drive.google.com/open?id=1FnHDzDSCuc3pAsEXzUg6BnTacfLF-ODs">error report</a> (paper copies will be in lab). This report needs to be well thought out. Professors will reject reports that don’t represent sufficient testing or thought. You will keep this hardware with you throughout the semester in your storage box.</p>
+<p>There are four extra credit sections. They would make the lab too long for most teams of two to complete. If you complete the required sections, you may attempt any or all and include the results in a separate written document summarizing your findings. We DO request that you remember the extra credit sections in this lab when deciding on instrumentation for your final project.</p>
+<p>This lab will often call upon you to prepare solutions or handle chemicals. Though we aren’t working with anything hazardous (or which can’t be flushed down the drain), be sure to observe good chemical hygiene practices and use gloves and goggles when handling chemicals or sensitive equipment. Notably, always use gloves when handling any glassware that will go into the turbidity meter.</p>
+<p>There are a few resources used in this lab which must be shared. Please respect others and don’t abuse these resources. All the teams in lab are going to have to share a single turbidity meter and beaker of mystery solution. There will be three digital scales available. For Extra Credit 1, we have a limited supply of buffer solutions which must last for all our labs, so don’t pour out more than you need to cover your pH probes and be sure to use the smaller set of beakers.</p>
+</section>
+<section id="op-amp-familiarity" class="level2">
+<h2 class="anchored" data-anchor-id="op-amp-familiarity">1. Op-Amp Familiarity</h2>
+<p>Read the datasheets for the <a href="http://www.ti.com/lit/ds/symlink/tl084.pdf">TL081</a>, <a href="http://www.analog.com/media/en/technical-documentation/data-sheets/OP07.pdf">OP07</a>, <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf">MCP601</a>, and <a href="https://www.digikey.com/en/products/detail/microchip-technology/MCP6004-I-P/523060">MCP6004</a>. Find the following values: single rail or dual rail, maximum supply voltage, minimum supply voltage, positive input pin, negative input pin, output pin, open-loop gain (which is A from our class videos), maximum input voltage.</p>
+<p>Read the datasheet for the <a href="http://www.analog.com/media/en/technical-documentation/data-sheets/AD623.pdf">AD623</a>. The AD623 is a type of amplifier called an instrumentation amplifier which is similar to an operational amplifier. Is the AD623 single rail or dual rail? What is the input impedance of the AD623? What is the maximum gain of the AD623? Note that the datasheet reports a gain for the AD623 and NOT an open loop gain: the AD623 isn’t a simple op-amp.</p>
+<p>First, use an MCP601 to build a single-rail non-inverting amplifier with a gain of two. Be sure to stay within the supply voltage limits you found earlier when powering it. Exceeding the supply voltages is a sure way to destroy the op amp. Apply the following signals to the amplifier input: a 100mV amplitude sine wave with a 1 V offset, and a 100 mV amplitude sine wave with a 0 V offset. What do you observe at the amplifier’s output and why?</p>
+<p>Use an MCP601 to build a single rail inverting amplifier with a gain of five. Apply an input sine wave to this amplifier that obeys the input voltage limits you found earlier. What output do you observe and why? After observing the output of a standard inverting amplifier, use offset amplifier techniques to observe a sine wave at the output. What resistor values did you use for your inverting amplifier? Describe your offset circuit.</p>
+</section>
+<section id="op-amps-and-impedance" class="level2">
+<h2 class="anchored" data-anchor-id="op-amps-and-impedance">2. Op Amps and Impedance</h2>
+<p>We will be using voltage dividers and op-amp circuits to demonstrate how op-amps can reduce instrument loading.</p>
+<p>Build the circuit shown <a href="https://drive.google.com/file/d/0B7Ols9Km9Pa1d0xabmtQZlpLZms/view?usp=sharing&amp;resourcekey=0-YWvxHN1wmqQoIBEpUox8kg">here</a> using values of Z1 and Z2 specified in case (A) and case (D) in the table <a href="https://docs.google.com/document/d/1XyjMOSfLSAxeISbdkoIjHSgfmwIXOMNOndOAGM-aBbw/edit?usp=sharing">here</a>, Measure the outputs of these circuits with an Elenco (you may ignore all of the other measurement tools in the table. You may find <a href="https://testguy.net/content/%20270-Peak-vs-Average-vs-RMS-Voltage">this reference</a> useful.). Calculate the expected output of this circuit including instrument impedances (for our purposes the DC resistances of the instrument inputs and/or outputs) and compare with measurements.</p>
+<p>Replace the circuit in Case (A) of the table on your breadboard with <a href="https://drive.google.com/file/d/112zAzKTlFnLNu0iGhkG-0-ZmZYd9k822/view?usp=sharing">this</a> circuit and repeat your measurements. Power the op-amp with ±15 V. Compare and contrast your results from Case (A) with your current results. What is the function of the op-amp in this measurement?</p>
+<p>Replace the circuit in Case (D) of the table on your breadboard with <a href="https://drive.google.com/file/d/120NRFwKZS3b15vdk9vhQ_I2UELT95kO5/view?usp=sharing">this</a> circuit and repeat your measurements. Power the op-amp with ±15 V. Compare and contrast your results from Case (D) with your current results. What is the function of the op-amp in this circuit?</p>
+<p>It may help to read up a bit on how the type of circuit you load the op-amp with affects the op-amp impedance. See this <a href="https://www.electronics-notes.com/articles/analogue_circuits/operational-amplifier-op-amp/input-impedance.php">link</a>.</p>
+</section>
+<section id="turbidity-meter-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="turbidity-meter-introduction">3. Turbidity Meter Introduction</h2>
+<p>Turbidity is an optical measurement which is related to the total undissolved solids in the water, which is an important environmental monitor since undissolved solids can be indicative of eroded runoff, disturbance of the sea floor or other sources of particles. In contrast, salinity <a href="https://sites.google.com/g.hmc.edu/e80/labs/lab-3-op-amps#h.p_B--YFNzvhcre">(Extra Credit 2)</a> is a measurement related to the total <em>dissolved</em> solids in the water. Because of time constraints we’ve relegated it to Extra Credit 2.</p>
+<p>Modern electronic measurements of turbidity are measured by shining light through a sample and measuring transmission — how much light passes directly through — and 90° scattering — how much light bounces off the particles to a sensor located at 90° relative to the light source. Devices which measure only 90° scattering are called nephelometers, and devices which measure the ratio of the 90° signal to the transmitted signal are called turbidity meters or turbidimeters. The relative effectiveness of the two devices depends on exactly how many solids are in the water.</p>
+<p>The device you build will compare transmission against 90° scattering to make a prediction of turbidity. You will use an <a href="https://media.digikey.com/PDF/Data%20Sheets/Everlight%20PDFs/9-IR1503.pdf">IR1503</a> IR LED as a light source and two <a href="http://datasheet.octopart.com/OP950-TT-datasheet-7617992.pdf">OP950</a> IR photodiodes as sensors. Why use IR instead of colored light? (Hint: what if the suspended particles were a mix of red clay and green organic matter?) What is the emission wavelength of the IR1503? What is the wavelengths of peak sensitivity of the OP950? <a href="http://www.physics.unlv.edu/~bill/PHYS483/LED_PIN.pdf">This</a> reference provides background information on LEDs and photodiodes. Note that IR LEDs are invisible to the human eye. You’ll need a photodiode or an IR-sensitive camera, like some cell-phone cameras, to tell if it is on.</p>
+<p><a href="https://www.lakesuperiorstreams.org/understanding/param_turbidity.html">This link</a> has some additional information about turbidity, including a picture of some suspensions of different turbidity for visual reference.</p>
+</section>
+<section id="transimpedance-amplifiers" class="level2">
+<h2 class="anchored" data-anchor-id="transimpedance-amplifiers">4. Transimpedance Amplifiers</h2>
+<p>The current through a photodiode is linear in irradiance, so measuring the current passing through a photodiode is equivalent to making a linear measure of incident optical power. Operational amplifiers can help with this, but this is different than the voltage-amplifying operational amplifier configurations that we have observed so far. <a href="https://drive.google.com/open?id=1FVvZDle2WeQHRIZQ2bZXO4C8IE3KCRIB">This</a> schematic, depicts an operational amplifier configuration called a transimpedance amplifier that measures current. Analyze this schematic so that you understand how transimpedance amplifiers work. An equivalent circuit for the photodiode can help when analyzing this circuit: under illumination the photodiode looks like a current source pointing away from the amplifier.</p>
+<p>Design and test your own transimpedance amplifier using an MCP6004 for your turbidity meter. Configure any unused op amps in the MCP6004 as unity gain buffers with the input connected to ground. Note that flipping the leads on the photodiode reverses the current direction and the sign of the output voltage; if the output voltage appears to be 0 on a single supply op-amp, try flipping the photodiode and see if the voltage appears. The photodiode in the schematic above is correctly oriented. Report the value of R1 that you picked. A quick experiment using only a scope, a photodiode, an LED, and power for the LED (see the next paragraph) might help you to estimate the currents in your system.</p>
+<p>Note: Transimpedance amplifiers can be designed in many ways. The design we are recommending that you use is not the highest-speed design, but it does have excellent low-noise characteristics. High-speed designs will reverse bias the diode to reduce its junction capacitance (a type of parasitic capacitance found in all diodes) and add a capacitor in parallel with the feedback resistor to filter out noise. However, applying the reverse bias makes current flow the other direction, which would require that the op-amp be dual rail or have an offset to ensure correct operation. This design is the simplest for a single-rail system, and it doesn’t lose performance when measuring large, slow signals like ours.</p>
+</section>
+<section id="driving-leds-and-555-timers" class="level2">
+<h2 class="anchored" data-anchor-id="driving-leds-and-555-timers">5. Driving LEDs and 555 Timers</h2>
+<p>We are going to power our LEDs using an alternating current signal. You will produce this signal using a <a href="https://www.ti.com/lit/ds/symlink/se555.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&amp;ts=1633540176810&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fgeneral%252Fdocs%252Fsuppproductinfo.tsp%253FdistId%253D10%2526gotoUrl%253Dhttps%253A%252F%252Fwww.ti.com%252Flit%252Fgpn%252Fse555">555 timer</a> in astable operation mode. Using the reference information in the datasheet, select resistors such that the 555 timer output has a frequency between 500 Hz and 1 kHz and an output waveform <a href="https://en.wikipedia.org/wiki/Duty_cycle">duty cycle</a> (ratio of high time to sum of low time and high time) of 3/5 (60%). Then build your 555 timer and verify that it produces a square wave output. Why are we having you use alternating signals in your LED instead of just using a DC input for the LED and reading the DC outputs of the photodiode circuits?</p>
+<p>LEDs, like all diodes, have an exponential relationship between the voltage applied across them and the current that passes through them. That means applying voltage carelessly can easily blow them up. We are going to fix that by installing a resistor in series with our 555 timer output. You will connect a resistor and the IR1503 in series between the output of the 555 timer and ground. Read the IR1503 datasheet to find the voltage-current relationship for the diode and pick values of Vcc and the series resistor that will result in 20-40 mA of current. Build it, and then check that your LED + 555 timer assembly is working by shining it at a photodiode and observing a signal of appropriate frequency.</p>
+</section>
+<section id="turbidity-measurements" class="level2">
+<h2 class="anchored" data-anchor-id="turbidity-measurements">6. Turbidity Measurements</h2>
+<p>Now it is time to assemble and use the turbidity meter. There is a two-piece fixture for holding the cuvette, LED and photodiodes. The instructions for its use are <a href="https://drive.google.com/open?id=1-pEcuCK1zzoU1dhB6DvrvpxaZKwmPZqh">here</a>. Use a cuvette to hold your solution. You should not need to fill it more than 1/2 full. Place the LED and photodiodes in the fixture, secure the fixture to your bench top (perhaps using the base legs with blue tape, electrical tape, or double-sided tape) and connect the components to their circuits in a reliable manner. Soldering long wires to your components or using female-female jumpers may help, but you may also be able to use a breadboard as a base and put component feet directly into it. (For reference: The Solidworks part for the fixture base is <a href="https://drive.google.com/open?id=1peSZif9B1dCVGjBPbByFevaRjnXc4YCT">here</a> and the Solidworks part for the fixture cover is <a href="https://drive.google.com/open?id=1zrdfRXLA9rLq4WYW_jSm_Pb-nRgdP9Iq">here</a>.)</p>
+<p>Prepare a set of solutions of different turbidities using milk and water. Eyedroppers or beakers may help you to add more precise volumes of milk to your solution. Check the turbidities of your solutions using the <a href="https://drive.google.com/file/d/1aRRGL3DGFiiZZP9Hb7o4LIQauYPwHxP3/view?usp=sharing">TU-2016</a> calibrated laboratory turbidity meter. Be sure to read the instruction manual to familiarize yourself with the operation of the meter before using it. Never touch the glass of the turbidity testing containers with your fingers (why?). You may need to perform a calibration on the laboratory turbidity meter to get best performance, be sure to sanity check the measurements it produces before measuring your sample. DO NOT EVER OPEN THE CALIBRATION STANDARDS.</p>
+<p>Measure your solutions with your own turbidity measurement setup. Examine the effect of ambient light on your measurements. Plot the ratio of the 90° Vpp to the transmission Vpp against the calibrated turbidity of your solutions (recall that the turbidity is calculated from the ratio of the 90° signal to the transmitted (straight through) signal). Add a line of best fit and appropriate uncertainty measurements.</p>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">7. Deliverables</h2>
+<p>All labs require two submissions per group. The first submission is a submission sheet in which specific data must be shown. The submission sheet is due at the end of the 4-hour lab period and must be uploaded before the end of your lab session at 5:15 pm. Note that only ONE member of each team should access and submit the submission sheet. It is the responsibility of that team member to add the rest of the team’s names to the submission sheet.</p>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/1tKz63eOyO-PKklt6ysxv7QqVT3qfW5ciuUxvZIkOFQg/edit?usp=sharing">here</a>.</p>
+<p>The second submission is a writing assignment, usually around 1 page in length. Each writing assignment will be based on a prompt and must be completed by each student individually; no collaboration is allowed on the text or figures in these assignments, though you may speak among yourselves about concepts in keeping with the collaboration rules of the course. A first draft of the writing assignment must be uploaded by noon on Friday, and you need to bring a printed copy of your draft to the writing and reflection section on Friday at 1:15 p.m. During the first hour of the writing and reflection, you will engage in a peer editing exercise. The second hour of the Writing and Reflection section is reserved for you to edit your draft to produce a final draft of the writing assignment. This final draft must be uploaded before the end of the Writing and Reflection section on Friday at 3:15 p.m. Since multiple submissions are permitted, and only the last one is graded, you may want to submit a draft at 3 p.m. as insurance. The writing assignment is based on this <a href="https://drive.google.com/file/d/1FMTLwr-IsuOF5eEKsK1_9khydISQwQSy/view?usp=sharing">prompt</a>. This is the <a href="https://drive.google.com/open?id=1DtbKb9WNYaRubRhzVVezDUKYr96OSaVK">peer feedback worksheet</a>.</p>
+<p>Note that the rubric is included in the prompt.</p>
+<p>Recall that no late work is accepted, we will grade whatever is submitted oat the deadlines.</p>
+<p>After the writing and reflection section at the end of each week every person (not just one person per team) must submit a team dynamics check-in survey. These are part of your participation grade. The survey link can be found on the home page.</p>
+</section>
+<section id="extra-credit-1.-ph-measurement" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-1.-ph-measurement">Extra Credit 1. pH Measurement</h2>
+<p>pH needs no introduction, but in oceanography it can be an important indicator of acidic runoff from the surface. The pH of the water also has a strong impact on the health of various plant and animal species, notably coral. You will build a circuit to interact with a pH sensor and calibrate it against buffer solutions.</p>
+<p>You will be using buffer solutions in this portion of the lab and they are relatively expensive chemicals. Use the smaller 50mL beakers to hold buffer solutions at your station and take pains not to spill any buffer solution when pouring it from the main supply. Buffer solutions may be rinsed down the sink when you are done with them.</p>
+<p>Find a <a href="https://www.pasco.com/prodCatalog/PS/PS-2102_pasport-ph-sensor/">Pasco pH electrode</a>. These electrodes are generally used with interface boxes provided by Pasco (the Pasport system), but we are going to be hooking circuits directly to the BNC connector of the pH probe. The pH probes are delicate instruments, so be sure to always re-cap them in a bath of pH 7 buffer solution and never leave them sitting exposed to air. Rinse them in a bath of deionized water and shake off any excess droplets before returning them to buffer solution.</p>
+<p>The probes need special care to make repeatable and accurate measurements, so a few experimental tips will help you to get consistent results: stir the probes gently when you first immerse them in a bath, be sure to wait for the probe voltage to stabilize when taking a measurement because their time constants are long, and keep your hands away from the probes during measurement because the unshielded connections are sensitive to noise that can couple in through your body.</p>
+<p>Measure the output voltage on the BNC connector in pH 4, 7 and 10 buffer solutions with a multimeter. What values do you observe?</p>
+<p>You are going to attempt to improve the voltage swing achieved with these measurements by using a circuit. Your choice of circuit depends on the output impedance of the pH probe, consult this <a href="http://www.ti.com/lit/an/snoa529a/snoa529a.pdf">application note</a> to get a ballpark estimate for the output impedance and report it. Also, read <a href="http://www.explainthatstuff.com/how-ph-meters-work.html">this</a> reference, a handy guide to the operation of pH sensors, and then describe the physical mechanism which explains the value of the output impedance for this sensor.</p>
+<p>Use a TL081 to interface with the pH sensor to achieve a voltage swing of at least 1V between pH 4 and pH 10. What circuit topology did you use and why? Describe your interface circuit.</p>
+<p>Measure the voltage your interface circuit produces when the pH sensor is immersed in pH 4, 7 and 10 buffer solutions. Use these measurements to make a calibration plot and add a line of best fit with appropriate quantification of uncertainty. Use your sensor and the line of best fit to determine the pH with confidence limits of the mystery solution in the middle of the room. There is only one small flask of mystery solution that should last for all teams in all sections. DO NOT pour the contents of the flask into another beaker! Rinse off your probe in distilled water. Uncap the mystery solution. Test the pH <em>in situ</em>. Remove the electrode and recap the solution. Rinse off your electrode and store it properly.</p>
+</section>
+<section id="extra-credit-2.-salinity-measurement" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-2.-salinity-measurement">Extra Credit 2. Salinity Measurement</h2>
+<p>Salinity is a measure of the total dissolved salt content of water. It is an extremely important and common measurement in oceanographic studies. Salinity measurements are used to track the flow of water and map the hydrological cycle, calibrate acoustic communication links, and understand biological phenomena like algal blooms. In this section you will build a sensor to measure salinity using an inverting operational amplifier. You will prove that it works by calibrating it against saline solutions with different salinity.</p>
+<p>In order to design your sensor, you need to know reasonable values for what you’re trying to measure. Your sensor will measure conductivity and the measured value will be used to extract salinity. Find the salinity and conductivity of the ocean using any resource you choose. Note that the equivalent circuit model of a saline solution whose value depends on the separation of the probe electrodes and the salt concentration (why?) is a resistor in parallel with a capacitor. We will ignore the capacitor for this extra credit section, but it is critically important in a design for the final project. You may want to read <a href="https://drive.google.com/file/d/1wtEeyfcI0ObH-54Jn9V4pzgGdI38T4-9/view">this</a> reference for further information.</p>
+<p>Design an inverting operational amplifier circuit using one or more TL081 op-amps which has an output voltage that is linear with the conductivity of your solution. Be sure to consider source and load impedances when designing your circuit. Ensure that the output voltage of this circuit will vary over a wide voltage range for the range of saline solutions that you plan to use for calibrating your circuit. This design depends on some of your experimental parameters including the separation of electrodes and the conductivities of the solutions you intend to measure.</p>
+<p>One thing to be careful of when measuring salinity is that salt, water and electrons will undergo chemical reactions which can deposit metal salts on your electrodes. These salts can form non-conductive films which stop your conductivity measurements. What kind of waveform should you apply to your circuit in order to make a measurement stable over time? This chemistry can also cause your circuit to fail if the electrode area is too small or the voltage applied to the solution is too low.</p>
+<p>Prepare an experimental setup that will allow you to measure the conductivity of salt water. You have access to beakers, wire, electrical tape and digital thermometers. Prepare a set of saline solutions to be used with this setup which are sufficient to prove the sensor is linear. Graduated cylinders would usually be used to measure the volume of water in these solutions. Those are not available to you, so instead you will need to use the digital scales and the well-known relationship between the mass and volume of water. What is that relationship?</p>
+<p>Record a calibration curve for your sensor which plots the voltage output of your sensor against the concentration of your salt solution in units of grams per liter on logarithmic X and Y axes. Find a line of best fit including appropriate uncertainty measurements. Then use your sensor and your calibration curve to measure the salinity of the mystery salinity solution on the central table.</p>
+<p>Note: You may use <a href="http://www.fivecreeks.org/monitor/sal.shtml">this</a> resource to convert from a measured conductivity to salinity and <a href="https://www.hamzasreef.com/Contents/Calculators/SalinityConversion.php">this</a> resource to convert from salinity to conductivity.</p>
+<p>Writeups for this extra credit section are not counted against the page limit of your report. You may submit this as an additional document labeled “Lab 3 salinity extra credit addendum.”</p>
+</section>
+<section id="extra-credit-3.-pressure-measurement" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-3.-pressure-measurement">Extra Credit 3. Pressure Measurement</h2>
+<p>In this section you will replicate the pressure circuit on your E79 board to understand its operation. After that you will modify the sensing circuit to optimize the range of the output voltage for the graduated cylinder test that we have used to test pressure sensor operation.</p>
+<p>Analyze <a href="https://docs.google.com/drawings/d/1pTpKT0Fry4J3rTBcaDEpxpQXTKx3VQGQRzOxNTUFSZ4/edit?usp=sharing">this</a> circuit and select values of R1, R2 and R3 such that output voltage will swing from 1V to 4V when you apply a pressure varying from atmospheric to 50cm below water. Implement the circuit using the <a href="http://www.mouser.com/ds/2/302/MPX5700-783436.pdf">MPX5700</a> pressure sensor and the <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf">MCP601</a> op-amp, which are the devices used on the E79 board. Use Vdd=5V. Why is the pressure sensor attached to the positive input of the amplifier?</p>
+<p>Create an experimental setup to vary the pressure on the sensor using a large graduated cylinder, water and plastic tubing. Create a calibration curve relating your measured voltage to the applied pressure, and include appropriate measures of uncertainty.</p>
+<p>Return the pressure sensor to stock when you are done with it under pain of a grade penalty and be careful not to damage the pins while using it in your breadboard.</p>
+<p>Writeups for this extra credit section are not counted against the page limit of your report. You may submit this as an additional document labeled “lab 3 pressure extra credit addendum.”</p>
+</section>
+<section id="extra-extra-credit-4.-true-synchronous-detection-only-do-after-extra-credits-1-2-and-3." class="level2">
+<h2 class="anchored" data-anchor-id="extra-extra-credit-4.-true-synchronous-detection-only-do-after-extra-credits-1-2-and-3.">Extra Extra Credit 4. True Synchronous Detection – Only do after Extra Credits 1, 2 and 3.</h2>
+<p>In this section you will do true synchronous detection like you would do when using the Teensy on an AUV. In true synchronous detection, the excitation is generated by a modulated or chopped signal of known (measured) frequency. In our case we’re using the signal generator to modulate the LED. In some cases, a slotted wheel is spun at a known frequency in front of a constant light source to provide the modulated signal. Either hardware or software is used to generate two constant-amplitude signals at the same frequency as the excitation signal. One is a sine wave in phase with the excitation signal and the other is a cosine wave 90° out of phase with the excitation signal. Each measured response signal (in our case the directly transmitted and the scattered signals form the photodiodes) is multiplied (either by analog or digital means) by the sine and the cosine signals. The two resulting signals (per measured input signal) are lowpass filtered with a cutoff frequency of at most the modulation frequency, and perhaps much lower if a great deal of noise reduction is required. The lowpass-filtered signals are then added in quadrature (square root of the sum of the squares of the signals) and if desired, the phase is calculated as atan2(sin signal, cosine signal). In our case, the phase information is not needed, and the ratio of the scattered quadrature signal to the transmitted quadrature signal is used to calculate the turbidity. In practice, lock-in amplifiers are used to recover signals that are -60 dB below the noise floor. In other words, the noise amplitude is 1000 times the signal amplitude.</p>
+<p>For this extra credit, you need to wire up a connector to input three analog signals to your motherboard (a scaled and shifted reference signal, the 90° scattered signal, and the transmitted signal; all scaled and shifted to fit into the 0-to-3.3 V input range of the Teensy), and then log the three signals onto your microSD card and then modify <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/MATLAB/LockInTest.m">LockInTest.m</a> to process your results. You may need to consult with a proctor or professor to find out how to wire the motherboard or Teensy for three analog inputs, and for access to the basic robot package, that has code for high-speed data logging to the Teensy.</p>
+<p>Writeups for this extra credit section are not counted against the page limit of your report. You may submit this as an additional document labeled “lab 3 synchronous detection extra credit addendum.”</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

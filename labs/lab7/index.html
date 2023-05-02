@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>. - Lab 7: Autonomous Navigation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lectures/" rel="" target="">
+ <span class="menu-text">Lectures</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../matlab/" rel="" target="">
+ <span class="menu-text">MATLAB Assignments</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_overview" rel="" target="">
+ <span class="dropdown-text">Lab Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab0" rel="" target="">
+ <span class="dropdown-text">Lab 0: Optional Tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab1" rel="" target="">
+ <span class="dropdown-text">Lab 1: Go Autonomous</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab2" rel="" target="">
+ <span class="dropdown-text">Lab 2: BEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab3" rel="" target="">
+ <span class="dropdown-text">Lab 3: Op-Amps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab4" rel="" target="">
+ <span class="dropdown-text">Lab 4: Temperature</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab5" rel="" target="">
+ <span class="dropdown-text">Lab 5: Acoustics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab6" rel="" target="">
+ <span class="dropdown-text">Lab 6: Fluids</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab7" rel="" target="">
+ <span class="dropdown-text">Lab 7: Navigation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reference/" rel="" target="">
+ <span class="menu-text">Reference Designs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../history/" rel="" target="">
+ <span class="menu-text">History</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HMC-E80/E80-SP2024" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">0. Introduction</a></li>
+  <li><a href="#familiarize-yourself-with-the-software" id="toc-familiarize-yourself-with-the-software" class="nav-link" data-scroll-target="#familiarize-yourself-with-the-software">1. Familiarize Yourself With the Software</a></li>
+  <li><a href="#position-measurements-via-imu" id="toc-position-measurements-via-imu" class="nav-link" data-scroll-target="#position-measurements-via-imu">2. Position Measurements via IMU</a></li>
+  <li><a href="#magnetometer-calibration" id="toc-magnetometer-calibration" class="nav-link" data-scroll-target="#magnetometer-calibration">3. Magnetometer Calibration</a></li>
+  <li><a href="#position-measurements-via-gps" id="toc-position-measurements-via-gps" class="nav-link" data-scroll-target="#position-measurements-via-gps">4. Position Measurements via GPS</a></li>
+  <li><a href="#p-control-on-depth" id="toc-p-control-on-depth" class="nav-link" data-scroll-target="#p-control-on-depth">5. P Control on Depth</a></li>
+  <li><a href="#clean-up" id="toc-clean-up" class="nav-link" data-scroll-target="#clean-up">6. Clean up</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">7. Deliverables</a></li>
+  <li><a href="#extra-credit-1.-go-autonomous" id="toc-extra-credit-1.-go-autonomous" class="nav-link" data-scroll-target="#extra-credit-1.-go-autonomous">Extra Credit 1. Go Autonomous</a></li>
+  <li><a href="#extra-credit-2-proportional-surface-control" id="toc-extra-credit-2-proportional-surface-control" class="nav-link" data-scroll-target="#extra-credit-2-proportional-surface-control">Extra Credit 2: Proportional Surface Control</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 7: Autonomous Navigation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Team size: 4</p>
+<p><strong>In order to give everyone access to the tank, we will be running the lab as follows:</strong></p>
+<ul>
+<li>Group A: Run the lab as-is - Sections 1, 2, 3, 4, 5.</li>
+<li>Group B: Run the lab out of order - Sections 1, 5, 2, 3, 4.</li>
+</ul>
+<p>Until every team has completed the required portion of the lab, tank access for extra credit sections will be at the discretion of the Professor in charge.</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>After successful completion of this lab, you will be able to…</p>
+<ol type="1">
+<li>Use your robot to log GPS signals.</li>
+<li>Implement a proportional control algorithm for depth control.</li>
+<li>Calibrate the magnetometer on in the inertial measurement unit.</li>
+</ol>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">0. Introduction</h2>
+<p>The objective of this lab is to equip your robot with the ability to autonomously navigate between depth or X, Y waypoints. By doing so, you will learn how your robot’s software fits together and about various navigation sensors.</p>
+<p>This lab will be done in teams of 4 students. The lab will take place in multiple locations: students will start work in the E80 lab room, but some experiments will be conducted in the Parsons parking lot (where your GPS can receive signals) and in the tank room. Don’t forget that you need to check out GPS’s and other expensive equipment from professors or proctors. You will also need to fill out hardware failure reports if you need replacements for these pieces of equipment.</p>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/1Otjc2N6Xdpct_byAJIK1l4fUhNEvcfCu8h8wzWKg-kM/edit?usp=sharing">here</a>.</p>
+</section>
+<section id="familiarize-yourself-with-the-software" class="level2">
+<h2 class="anchored" data-anchor-id="familiarize-yourself-with-the-software">1. Familiarize Yourself With the Software</h2>
+<p>Open <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_07/E80_Lab_07.ino">E80_Lab_07.ino</a> in the Arduino IDE. This sketch will be used as starter code for lab 7. Also make sure you have the up to date <a href="https://github.com/HMC-E80/E80-SP2023">E80 libraries</a> by performing a git fetch and checking that it’s set as your current sketchbook. Confirm that you can compile and upload the starter code to your Teensy.</p>
+<p>In lab 1 you modified your main .ino file using the Arduino IDE. In this lab you will be modifying library files which are written in C++ (and thus have file extension .cpp). These files need to be opened in a text or code editor like Notepad or Sublime, not a Word Processor like Microsoft Word. The most popular source code editor these days is Visual Studio (VS) Code which is cross platform. Both support syntax coloring. The changed files will be compiled to your robot when you compile the E80_Lab_07.ino file from the Arduino IDE. You will also be asked to refer to header files (with the file extension .h) which are used to set up constants, initialize variables and do other house cleaning for the .cpp files of the same name.</p>
+<p>The libraries are included in E80_Lab_07.ino using #include statements at the top of the file. Then commands from the libraries are used to create special variables, which we call objects, to represent your sensors like the GPS and the IMU. Finally, those objects are used to interact with the sensors. Read the E80_Lab_07.ino file and make note of where the libraries are included and used. Figure out how often your sensors are sampled by reading E80_Lab_07.ino and the TimingOffsets.h header file located in libraries/main and record your answer on your submission sheet.</p>
+</section>
+<section id="position-measurements-via-imu" class="level2">
+<h2 class="anchored" data-anchor-id="position-measurements-via-imu">2. Position Measurements via IMU</h2>
+<p>Set up your PCB board stack that includes a teensy/dataloggerIMU/E80 PCB with a battery. Confirm you can successfully log IMU data. Refer to <a href="https://sites.google.com/d/0B7Ols9Km9Pa1ZVlBVi14eFJjZ00/p/0BwiB3SVueuOpLUFvQWg0VXJfOTQ/edit">lab 1 instructions</a> if you need help. Information about the IMU can be found <a href="https://www.st.com/content/ccc/resource/technical/document/datasheet/74/c4/19/54/62/c5/46/13/DM00177685.pdf/files/DM00177685.pdf/jcr:content/translations/en.DM00177685.pdf">here</a>.</p>
+<p>With the data logger running, move your board stack along a linear path in the horizontal x-y plane, keeping the orientation fixed. That is, create your own global Cartesian coordinate frame on a table, and set the position of the board stack to be (0,0,0), and set the orientation of the board stack to be (0,0,0). Then, move the board stack through the following positions: (0,0,0), (0.5,0,0), (0,0,0). Assume coordinates are in units of meters. Don’t move too fast. It may help to wait 5 seconds at the (0.5,0,0) way point.</p>
+<p>Using MATLAB, load the IMU data and calculate the position of the board stack as a function of time. Plot the x,y coordinates of the board stack. Does the plotted path resemble the straight 0.5 meter path? If not, why? Think about how errors are accrued with double integration of IMU measurements. You can review the <a href="https://www.youtube.com/playlist?list=PLDA3QBjykWVxDiGsN1Xpm2ynGekSvEC9E">Integrals and Derivatives</a> videos from the Data Analysis lectures if you need a refresher.</p>
+</section>
+<section id="magnetometer-calibration" class="level2">
+<h2 class="anchored" data-anchor-id="magnetometer-calibration">3. Magnetometer Calibration</h2>
+<p>A magnetometer measures the earth’s magnetic field, so it can be used as a compass to sense your robot’s heading. Read <a href="https://digilent.com/blog/how-to-convert-magnetometer-data-into-compass-heading/">this</a> article describing how it works. We have a magnetometer integrated into our IMU.</p>
+<p>Every magnetometer has errors in its measurement, which can be byproducts of manufacturing or of local magnetic disturbances (eg: the magnetic declination is -10.52 degrees at Mudd). You need to calibrate those errors out before you can trust your magnetometer results. This <a href="https://github.com/kriswiner/MPU6050/wiki/Simple-and-Effective-Magnetometer-Calibration">article on magnetometer calibration</a> is a good summary of the process.</p>
+<p>Take your robot outside, far from buildings, and log your magnetometer data while your robot is held upright and you slowly (over ~10s) rotate 360 degrees while standing in place. Log your data. Next, program your Teensy with our magnetic calibration software – <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/Mag_Calibration/Mag_Calibration.ino">Mag_Calibration.ino</a> – and use <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/MATLAB/Mag_Calibration.m">Mag_Calibration.m</a> to extract the hard and soft iron correction coefficients. You will need MATLAB version 2018b or later to run this code. Save the figure generated by Mag_Calibration.m to your submission sheet. Update SensorIMU.h, which is included in the IMU reading library SensorIMU.cpp, with these coefficients. Turn in a circle again outside and save your magnetometer readings again. Generate the following two plots: a scatter plot of mx vs.&nbsp;my where your calibrated and uncalibrated data are superimposed (what units are the axes?), and a plot of heading vs.&nbsp;time for both your calibrated and uncalibrated data.</p>
+<p>In this class we are using east-north-up <a href="https://en.wikipedia.org/wiki/Local_tangent_plane_coordinates">local tangent plane coordinates</a>. This means that you need to convert the heading from the IMU, which should have 0 degrees due North and positive angle in the CW direction, to yaw angles where 0 degrees points in the positive X direction (due East), and positive angles are in the CCW direction. If 0 degrees doesn’t face perfectly East, (which is location dependent due to abnormalities in the Earth’s magnetic field), you can add an offset angle to ensure it does. Put code to make this conversion in XYStateEstimator.cpp. Include the code you use to convert from heading to yaw in your submission sheet.</p>
+<div class="note-box">
+<p><strong>Note:</strong> the most common programming mistakes that we see are messing up units (is this angle in degrees or radians?) and failing to re-map angles between -<span class="math inline">\(\pi\)</span> and <span class="math inline">\(\pi\)</span> after they are calculated (3<span class="math inline">\(\pi\)</span>/2 will crash a lot of your code unless you’re very careful).</p>
+</div>
+</section>
+<section id="position-measurements-via-gps" class="level2">
+<h2 class="anchored" data-anchor-id="position-measurements-via-gps">4. Position Measurements via GPS</h2>
+<p>Integrate the <a href="https://www.adafruit.com/product/746">Adafruit Ultimate GPS</a> into the board stack so that the Teensy has access to GPS measurements: First, solder a 9x1 female header pin row onto the motherboard at the position labelled GPS (see <a href="https://sites.google.com/d/0B7Ols9Km9Pa1ZVlBVi14eFJjZ00/p/0BwiB3SVueuOpLUFvQWg0VXJfOTQ/edit">Lab 1</a> for details). Second, solder male header pins to the BOTTOM of the GPS breakout board. Be sure to get the orientation correct, (see image <a href="https://drive.google.com/file/d/1lottcceJ83MBIgc4sj6F24H2B01YVizx/view?usp=sharing">here</a>). Note that screws, nuts, and standoffs may help secure the GPS breakout board to the motherboard.</p>
+<p>Test your GPS Sensor integration by opening the serial monitor while E80_Lab_07.ino is running. Make sure your battery is plugged into the stack (your GPS is powered off the battery and not off the same USB connection that powers your Teensy), and that you are outside the building so that you can get GPS lock and measurements.</p>
+<p>Modify the library file named XYStateEstimator.cpp so that it calculates the x,y position (in meters) of the board stack with respect to a Cartesian coordinate frame whose origin is at ( 34.106465°, -117.712488°). Consult the XYStateEstimator.h file to see what variables you have available. Design your coordinate frame so the X axis points due East and the Y axis points due North. The code to make this transformation should be placed in the function named XYStateEstimator::updateState(), which is already in the file. Note, the x,y positions will be stored in the variables state.x and state.y</p>
+<p>It may help to first make sure you are aware of how longitude and latitude work. This <a href="http://whatis.techtarget.com/definition/latitude-and-longitude">link</a> is helpful and has a nice image to help visualize the coordinate system. There are several algorithms that have been used to convert longitude-latitude coordinates to x-y coordinates. There is the <a href="http://www.movable-type.co.uk/scripts/latlong-vincenty.html">Vincenty formula</a>, the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine equation</a>, and linear transformations that simply scale the coordinates. The first two methods incorporate the curvature of the earth which is important when the vehicle is traveling many kilometers. Scaling methods are easier, but can only be used if distances are short. A good reference can be found <a href="http://www.movable-type.co.uk/scripts/latlong.html">here</a>.</p>
+<p>We will use a modified version of the <a href="https://en.wikipedia.org/wiki/Equirectangular_projection">Forward Equirectangular Projection</a>, where we multiply by the radius of curvature R_earth. We note that the conversion of latitude to y is easier and if we assume the earth is a sphere (which it is to within ±0.25%), so we can use the relationship between the distance along an arc’s edge, the radius of the arc, and the angle, (e.g.&nbsp;state.y = R_earth<em>latitudeChange). To calculate x, note that it is a function of latitude, (e.g.&nbsp;state.x=R_earth</em>longituteChange*cos(latitude at origin)</p>
+<p>To test that your sketch is functioning well, log the x,y positions (they are logged by default in the sample code) as you walk from the coordinate system origin to Foothill Blvd. Walk along the sidewalk East towards Shanahan. Then walk South between Shanahan and Parsons. Cut West back to Parson’s building and end at the origin. The path is illustrated <a href="https://drive.google.com/open?id=1rBsJs8E7wg4oA9Xmiy82D-S-YzqJeyOO">here</a>. It takes time (sometimes a few minutes) before the GPS receiver gets a lock on the signals from the satellites. The GPS lock LED can help you identify if your board has achieved lock. You may want to have the serial monitor open (and print x,y to the screen) when walking the course: this will inform you if your conversion makes sense. Using MATLAB, plot the logged x,y positions from the path. Only plot the x,y points for which the GPS has a lock on satellites.</p>
+<div class="note-box">
+<p><strong>Note: </strong>See above note on common programming errors. They really crop up here.</p>
+</div>
+</section>
+<section id="p-control-on-depth" class="level2">
+<h2 class="anchored" data-anchor-id="p-control-on-depth">5. P Control on Depth</h2>
+<p>In order to implement closed loop depth control with your AUV, it first needs to be able to sense its current depth. To measure depth, you will be using a pressure sensor adapter PCB (<a href="https://drive.google.com/open?id=1LEGhYjHPmEy7TEqDj1MgLXBuiTXaycc3">picture</a>, <a href="https://drive.google.com/open?id=1KLr1kXQqwAI7urwtZSGdn_CvxM2G_UvH">schematic</a>, <a href="https://drive.google.com/open?id=1L3BF7umlX180xhOMnQ9K8Ubop1LF_Auk">layout</a>, <a href="https://drive.google.com/open?id=1JyV-FahVbUNkURrN65v0to_McqpwAE12">KiCAD</a>) to connect a pressure sensor to pin A0 of your Teensy. This adapter can be found on the central table.</p>
+<p>In the library file named ZStateEstimator.cpp, in the function called ZStateEstimator::updateState(), you can see that the z position (depth) of the robot is calculated using the function’s input pressure_signal. The main loop() of the Arduino code is where z_state_estimator.updateState() is called. By reviewing this loop(), you can see that this pressure_signal input is receiving the output of analogRead(PRESSURE_PIN). analogRead() is an Arduino function that reads the value of a specified pin, and PRESSURE_PIN is a variable set in Pinouts.h, currently set to pin A0 (pin 14) of the Teensy. The pressure_signal input provides the pressure sensor signal in Teensy units. The ZStateEstimator::updateState() function then converts from Teensy units to Volts, then finally converts from Volts to depth [m] using the variables depthCal_slope and depthCal_intercept. This depth measurement is stored in state.z.</p>
+<p>The depthCal_slope and depthCal_intercept are not calibrated to your pressure sensor, so you will have to update them. Find where these variables are defined in the library file called ZStateEstimator.h (which is included in ZStateEstimator.cpp), and write down the default values and line numbers for these variables. After finding the calibration slope and intercept for your pressure sensor, this is where you will update them.</p>
+<div class="note-box">
+<p><strong>Note:</strong> Navigating the code like this is helpful in understanding the interaction between the .h files, the .cpp files, and the Arduino sketch. The .h files are the interfaces, they hold information on variables that are used in other files and the functions of the .cpp files of the same name; the .cpp files are the implementations of these functions where the variables held in .h files are used; and the sketch is the top level instructions where some of these functions and variables are used to implement the desired behavior of the robot.</p>
+</div>
+<p>To calibrate your pressure sensor, get a pressure sensor adapter PCB and a pressure sensor, a graduated cylinder and a meter stick with pressure tubing. Edit ZStateEstmiator::updateState() by uncommenting the two lines of code below the calculation of the z position that initialize a string and print a string with the function printer.printMessage(). The pressure sensor voltage should now appear in the serial monitor, and you will use that display to calibrate your pressure sensor.</p>
+<p>Attach the pressure tube to the pressure sensor and attach the adapter PCB to the motherboard, then plug the pressure sensor into the adapter. Open the serial monitor while E80_Lab_07.ino is running and record both depth and voltage readings. Measure at least seven evenly spaced depths (measured in meters) between the water level and the bottom of the cylinder. Plot the data in order to make a calibration curve and determine the equation of the line of best fit, then update the calibration slope and intercept in ZStateEstimator.h.</p>
+<p>Add a Proportional depth control system to your robot by modifying the DepthControl.cpp file. Add the following steps:</p>
+<ul>
+<li>Set the variable depth_des to the desired depth, which can be found in the wayPoints array at the index currentWayPoint (i.e.&nbsp;wayPoints[currentWayPoint]).</li>
+<li>Calculate the current depth depth using the state.z variable, which was calculated in ZStateEstimator::updateState().</li>
+<li>Calculate the error e as the difference between depth_des and depth. Pay attention to the order you subtract these (How will this affect the control effort?).</li>
+<li>Set the vertical motor control effort uV to be the product of the control gain Kp and the error e. The default value of Kp is 80, but you can change it if your motor is too weak or too strong.</li>
+<li>Bound the vertical control effort between -200 and 200. These are empirical values that work well for most situations. Depending on your motor, you may need to go beyond these limits. You can go up to a maximum of +/- 250.</li>
+</ul>
+<p>Test your depth P control using the meter stick with tubing and the graduated cylinder. Attach the pressure tubing to your pressure sensor (careful not to bend the pressure sensor - it’ll be easier if you take the pressure sensor out of the adapter, attach the tubing, then plug it back in). Then, while E80_Lab_07.ino is running with the serial monitor open, insert the meter stick into the cylinder, keeping an eye on the DepthControl:, Depth_Des:, Depth:, and uV: values printed to the serial monitor. Make sure that the Depth is reporting a similar value to the current depth of the meter stick to confirm that your calibration works. Then watch the control effort uV change as the difference between Depth and Depth_Des changes, making sure it behaves as expected for proportional control.</p>
+<p>Finally, get an E79 umbilical (found in the lab room) and attach it to your robot. Put the motor in the vertical position, and use a ziptie to secure the tube to the frame. Connect the tubing to your pressure sensor and the motor wires to the Motor C port on your motherboard. Test if the umbilical works by running E80_Lab_07.ino while the serial monitor is open. The motor should start spinning to get to the first waypoint at 0.5 meters. Check if it’s rotating in the correct direction; if not, switch the wires on your motherboard (or change the order you subtracted the depth and depth_des to get the error in DepthControl.cpp, or change the sign of Kp). Blow in the pressure tubing and confirm that the depth changes, and that the motor responds to the change in depth.</p>
+<p>Once everything is tested and working, bring your robot to the tank room. Put it into the tank, run the sketch, and let the robot go to the two depth waypoints at 0.5m and 1m. Keep an eye on the values and messages printed to the serial monitor. Be sure to log your data, then plot the logged uV, depth and depth_des as a function of time.</p>
+<div class="note-box">
+<p><strong>Note:</strong> Be careful with the umbilical, it may not have enough slack for the robot to go down to 1 meter; if that’s the case, you can change the depth waypoints in the setup() function of E80_Lab_07.ino. If your robot’s motor is too strong or too weak, you may need to change your Kp in DepthControl.h.</p>
+</div>
+<p><br></p>
+<div class="note-box">
+<p><strong>Note:</strong> You can instruct the robot to stay at each depth waypoint for a specified amount of time by changing the diveDelay variable defined in the setup() function of E80_Lab_07.ino. e.g.: diveDelay = 3000 will tell the robot to wait at each depth waypoint for 3 seconds before continuing.</p>
+</div>
+</section>
+<section id="clean-up" class="level2">
+<h2 class="anchored" data-anchor-id="clean-up">6. Clean up</h2>
+<p>Be sure to dry and return your robot and board stack to your designated Tupperware container in the cupboard. Because this is the last lab of the semester, your team may keep the battery and GPS used for this lab. Make sure the battery is not stored fully charged.</p>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">7. Deliverables</h2>
+<p>All labs require two submissions per group. The first submission is a submission sheet in which specific data must be shown. The submission sheet is due at the end of the 4 hour lab period. The submission sheet must be uploaded before the end of your lab session at 5:15 pm. Note that only ONE member of each team should access and submit the submission sheet. It is the responsibility of that team member to add the rest of the team’s names to the submission sheet.</p>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is <a href="https://docs.google.com/document/d/1Otjc2N6Xdpct_byAJIK1l4fUhNEvcfCu8h8wzWKg-kM/edit?usp=sharing">here</a>.</p>
+<p>The second submission is a writing assignment. In a deviation from normal patterns, we will do the whole writing assignment in class, and it will be due after the first 30 minutes of the writing and reflection section. The rest of the 3/10/2023 Friday section will be our Project Kickoff meeting.</p>
+</section>
+<section id="extra-credit-1.-go-autonomous" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-1.-go-autonomous">Extra Credit 1. Go Autonomous</h2>
+<p>In this section you will once again have your robot dive in the tank room using Proportional depth control, but this time you will use your waterproof box to hold your battery, motherboard and pressure sensor on your robot instead of using the umbilical, going completely autonomous.</p>
+<p>You will need to use a pressure tube penetrator bolt (found in the lab room) so that the pressure sensor inside the box will be able to read the pressure outside the box. You will also need to drill another hole for this pressure penetrator bolt into your waterproof box. Be sure to use a 1/2” step drill bit (which we have in our cupboards) to drill out the hole. Standard drill bits will result in ragged holes that are not watertight. Make sure that the placement of your hole isn’t too close to any protrusions on the surface of the box; You want the rubber washer to be completely flat against the surface.</p>
+<p>Next, you will want to test if your box is waterproofed with the new hole, then add ballast to your robot in order to make it close to neutrally buoyant. Refer to the section on AUV Assembly in Lab 1 for directions on doing this.</p>
+<p>When your robot is ready, bring it to the tank room. Upload the sketch, make sure you’re logging your data, close your box and place your AUV in the water. Let your robot dive to the two depth waypoints (0.5) and (1), then include a plot of the uV, depth and depth_des as a function of time in the submission sheet (it should look similar to the submission for section 3). Then change the waypoints and the diveDelay, keeping the values within reason. Run the updated sketch and let your robot dive to the new waypoints, confirming that it’s waiting at each waypoint. Include a plot of the uV, depth and depth_des as a function of time for this run, which should show the depth staying still at each waypoint and the depth_des changing only after the delay is over.</p>
+</section>
+<section id="extra-credit-2-proportional-surface-control" class="level2">
+<h2 class="anchored" data-anchor-id="extra-credit-2-proportional-surface-control">Extra Credit 2: Proportional Surface Control</h2>
+<p>In this section you will implement a Proportional surface control system with your AUV using the GPS on your motherboard. Use <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_07_EC2/E80_Lab_07_EC2.ino">E80_Lab_07_EC2.ino</a> as the starter code for this portion. You will also interact with two new library files: SurfaceControl.cpp and SurfaceControl.h. Confirm that you can compile and upload the starter code to your Teensy.</p>
+<p>Add a Proportional surface control system to your robot by modifying the SurfaceControl.cpp file. Add the following steps:</p>
+<ul>
+<li>Calculate the desired yaw angle using the atan2 function, i.e.&nbsp;yaw_des = atan2(y_des - y, x_des - x). In this case, (x_des, y_des) is the desired position of the robot.</li>
+<li>Calculate the error e as the difference between yaw_des and the yaw you calculated in section 4.</li>
+<li>Set the control effort u to be a product of the control gain Kp and the error e.</li>
+<li>Set the right and left motor thruster values (uR and uL) to be the avgPower + u and avgPower - u respectively. Start by setting avgPower to be 50. This can be modified later if you want your robot to have faster or slower forward motion.</li>
+<li>Multiply uR and uL by Kr and Kl respectively, (e.g.&nbsp;uR = uR*Kr;). The default values for Kr and Kl are 1.0, but you can change them later if your motors don’t run at the same speed when given the same PWM signal. Bound the control values to be between 0 and 127.</li>
+</ul>
+<p>Test your P control by walking the campus in the direction your P control guides you when the path is defined in the code to be the three x,y coordinates (125,-40), (150,-40), (125,-40). This should walk you 25 meters along the centerline of campus (see picture <a href="https://drive.google.com/file/d/0BwiB3SVueuOpTUc5X3pWR3hZR3M/view?usp=sharing&amp;resourcekey=0-COFjIscDDQXvc7NwLBZAuA">here</a>). Walk at a slow speed , turning in response to the u_R and u_L values printed to the Serial monitor. E.g. if the the values are u_R=45 and u_L = 55, then veer right. Be sure to log your data. Plot the logged path of x, y points, (bonus points if plotted on top of an image of campus). Also plot the angle error and control effort u as a function of time.</p>
+<p>Finally, attach motors to the Motor A and Motor B port and repeat the above experiment, this time obeying your observations of the motor’s rotation rates rather than printed u_R and u_L values. Modify Kr and Kl if necessary to balance your motors. Pay special attention to how motors affect your yaw measurement: they have powerful magnetic fields that are likely to disrupt your experiment if you don’t handle them with care. Include plots of your x,y points, angle and control error.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

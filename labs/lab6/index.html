@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.330">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>. - Lab 6: Fluid Dynamics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">.</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../lectures/" rel="" target="">
+ <span class="menu-text">Lectures</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../matlab/" rel="" target="">
+ <span class="menu-text">MATLAB Assignments</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../../labs/lab_overview" rel="" target="">
+ <span class="dropdown-text">Lab Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab0" rel="" target="">
+ <span class="dropdown-text">Lab 0: Optional Tutorial</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab1" rel="" target="">
+ <span class="dropdown-text">Lab 1: Go Autonomous</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab2" rel="" target="">
+ <span class="dropdown-text">Lab 2: BEM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab3" rel="" target="">
+ <span class="dropdown-text">Lab 3: Op-Amps</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab4" rel="" target="">
+ <span class="dropdown-text">Lab 4: Temperature</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab5" rel="" target="">
+ <span class="dropdown-text">Lab 5: Acoustics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab6" rel="" target="">
+ <span class="dropdown-text">Lab 6: Fluids</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../labs/lab7" rel="" target="">
+ <span class="dropdown-text">Lab 7: Navigation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../project/" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reference/" rel="" target="">
+ <span class="menu-text">Reference Designs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../history/" rel="" target="">
+ <span class="menu-text">History</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HMC-E80/E80-SP2024" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">0. Introduction</a></li>
+  <li><a href="#wind-tunnel-experiments" id="toc-wind-tunnel-experiments" class="nav-link" data-scroll-target="#wind-tunnel-experiments">1. Wind Tunnel Experiments</a>
+  <ul class="collapse">
+  <li><a href="#getting-to-know-your-wind-tunnel" id="toc-getting-to-know-your-wind-tunnel" class="nav-link" data-scroll-target="#getting-to-know-your-wind-tunnel">1.1 Getting to Know Your Wind Tunnel</a></li>
+  <li><a href="#measuring-the-drag-forces-on-cylindrical-objects" id="toc-measuring-the-drag-forces-on-cylindrical-objects" class="nav-link" data-scroll-target="#measuring-the-drag-forces-on-cylindrical-objects">1.2 Measuring the Drag Forces on Cylindrical Objects</a></li>
+  <li><a href="#measuring-the-drag-forces-on-a-scale-robot-model" id="toc-measuring-the-drag-forces-on-a-scale-robot-model" class="nav-link" data-scroll-target="#measuring-the-drag-forces-on-a-scale-robot-model">1.3 Measuring the Drag Forces on a Scale Robot Model</a></li>
+  </ul></li>
+  <li><a href="#cfd-simulations-of-cylindrical-objects" id="toc-cfd-simulations-of-cylindrical-objects" class="nav-link" data-scroll-target="#cfd-simulations-of-cylindrical-objects">2. CFD Simulations of Cylindrical Objects</a></li>
+  <li><a href="#cfd-simulations-of-wings" id="toc-cfd-simulations-of-wings" class="nav-link" data-scroll-target="#cfd-simulations-of-wings">3. CFD Simulations of Wings</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">4. Deliverables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 6: Fluid Dynamics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Team size: 4</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>After successful completion of this lab, you will be able to…</p>
+<ol type="1">
+<li>Perform computational fluid dynamics simulations in COMSOL Multiphysics.</li>
+<li>Use the wind tunnel to perform experiments to verify the results of your fluid dynamics simulations.</li>
+</ol>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">0. Introduction</h2>
+<p>This lab will take place in Parsons B178 and the wind tunnel room. E80 students should already have card access to Parsons B178. If you cannot access the room, please contact Sue Lindley in the Engineering Department Office.</p>
+<p>You will be using COMSOL Multiphysics software Version 5.6 in this lab. You may practice using COMSOL and go through Granny Spark’s COMSOL tutorials outside of your designated lab time. However, you CANNOT run COMSOL simulations on LAB-RELATED objects outside of your designated lab time. These objects include the cylindrical objects tested in the wind tunnel, the NACA 6412 wing, your team’s low-drag body, and your team’s wing.</p>
+<p>This lab will be completed in full teams. It is up to the team to determine which parts of the lab are done by whom, and at what time during the 4 hours of lab time.</p>
+<p>Each team will have exactly 60 minutes to use the wind tunnel to run experiments and collect data.</p>
+<p>The instructions for this lab are not detailed. You are expected to review the resources, plan out your experiments, and fill in the blanks.</p>
+<p>Not all deliverables are due at the end of lab this week. You will submit a submission sheet at the end of lab as a team (per usual), but each of you will write a technical memorandum about the team’s process and findings individually. Details of the tech memo are discussed in the deliverables section below, but it is important to lay out the boundaries of collaboration on the tech memo. Specifically, the team must not collaborate on any writing in the tech memo at any time, and the team may not collaborate on the data or code after the assigned lab section is finished.</p>
+<p><strong>For pre-lab purposes</strong>, a sample submission sheet that contains all of the questions and requirements on the submission sheet is<a href="https://docs.google.com/document/d/19XiX8GF38uZAgTSeCKnpc-Rh6QZxuwuRBFS4EH77MO0/edit?usp=sharing">here</a>.</p>
+<p>By the end of the laboratory the student will:</p>
+<ol type="1">
+<li>Demonstration of the safe start-up and shut-down sequence for the wind tunnel.</li>
+<li>Determination of wind speeds in the wind tunnel using a Pitot tube and digital manometer.</li>
+<li>Measurement of drag forces on various shapes in the wind tunnel at various flow velocities.</li>
+<li>Utilize COMSOL computational fluid dynamics (CFD) to model the drag and lift forces of the objects tested in the wind tunnel.</li>
+<li>Compare the results obtained in the wind tunnel to those predicted by COMSOL.</li>
+<li>Use COMSOL to create and simulate your own low-drag object and predict the drag forces that it will experience during service.</li>
+<li>Use COMSOL to create, simulate, and predict the lift and drag characteristics of a NACA 6412 wing.</li>
+<li>Use COMSOL to create, simulate, and predict the lift and drag characteristics of your own wing.</li>
+</ol>
+<p>You will be provided with:</p>
+<ul>
+<li>The HMC wind tunnel.</li>
+<li>A stainless steel Pitot tube (similar to the one shown<a href="https://dwyer-inst.com/series-160-stainless-steel-pitot-tube.html">here</a>).</li>
+<li>A Dwyer Series 475 Mark III Digital Manometer (click<a href="http://www.dwyer-inst.com/Product/Pressure/Manometers/Digital/Series475">here</a> for more information).
+<ul>
+<li>Note: Dwyer has released an app that you will find very useful. Search for “Dwyer Air Velocity Calculator” on Google Play or the App Store.</li>
+</ul></li>
+<li>A cylinder to be mounted in the wind tunnel. These will be provided to you at the start of the lab, and you will measure their dimensions during lab.</li>
+<li>Three different nose shapes for the cylinder. These will be provided to you at the start of the lab, and you will measure their dimensions during lab.</li>
+<li>A computer with COMSOL in the Engineering Computing Facility (ECF). It is highly recommended that you practice using COMSOL in your pre-lab. Please see the links to the Grandma Spark’s Step-By-Step guides and COMSOL tutorial videos mentioned below. You will not have time to learn COMSOL during lab.</li>
+</ul>
+<p>Here are informative resources on fluids, aerodynamics, and COMSOL that you should review PRIOR to lab:</p>
+<ul>
+<li>NASA Beginner’s Guide to Aerodynamics (click<a href="https://www.grc.nasa.gov/www/k-12/airplane/short.html">here</a>)</li>
+<li>E80 fluid measurements lecture notes (click<a href="https://drive.google.com/file/d/1R1AHWD5GR1xRkoNJdMfdgkJvw1xmn8XO/view?usp=sharing">here</a>)</li>
+<li>Airfoil database (click<a href="http://www.airfoiltools.com/search/index?m%5Bgrp%5D=naca4d&amp;m%5Bsort%5D=1">here</a>)</li>
+<li>Airfoil and angle of attack definitions (click<a href="http://www.esru.strath.ac.uk/EandE/Web_sites/11-12/MORE/hydrofoil/img/1.jpg">here</a>)</li>
+<li>NASA Wing geometry definitions (click<a href="https://www.grc.nasa.gov/www/k-12/airplane/geom.html">here</a>)</li>
+<li>NASA Reynolds Number guide (click<a href="https://www.grc.nasa.gov/www/BGH/reynolds.html">here</a>)</li>
+<li>Grandma Spark’s step-by-step video guide to using COMSOL to model a cylinder in laminar flow (105 MB PowerPoint File, click<a href="https://drive.google.com/drive/folders/1llecHQqT-IsAfxxNEL-jZWsQFFYYczDG?usp=sharing">here</a>)
+<ul>
+<li>Each slide on the PowerPoint contains a video! Make sure that you press play on each video!</li>
+</ul></li>
+<li>Grandma Spark’s step-by-step video guide to using COMSOL to model a NACA 0009 airfoil in laminar flow (164 MB PowerPoint File, click<a href="https://drive.google.com/drive/folders/1llecHQqT-IsAfxxNEL-jZWsQFFYYczDG?usp=sharing">here</a>)
+<ul>
+<li>Each slide on the PowerPoint contains a video! Make sure that you press play on each video!</li>
+</ul></li>
+<li>COMSOL video tutorials for beginners (click<a href="https://www.comsol.com/video/how-set-up-run-simulation-comsol-multiphysics">here</a>)</li>
+<li>How to use COMSOL 3D geometry tools (click<a href="https://www.youtube.com/watch?v=1AggdrJzHyg">here</a>)</li>
+<li>How to form unions in COMSOL (click<a href="https://www.youtube.com/watch?v=Q7fOawr58H0">here</a>)</li>
+<li>Computing lift and drag forces in COMSOL (click<a href="https://www.comsol.com/blogs/how-do-i-compute-lift-and-drag/">here</a>)</li>
+</ul>
+<p>NOTE: The COMSOL CFD portion of this lab will consume most of your time in this lab. You will not finish this lab if you are not prepared. Reviewing the COMSOL resources above and practicing COMSOL ahead of time will be essential to your team’s success in this lab.</p>
+<p>IMPORTANT SAFETY TIPS: For in-person labs</p>
+<ul>
+<li>Follow the dress code for E80 Lab. Everyone must wear safety goggles during the test. Hearing protection will be provided if needed.</li>
+<li>Never turn the fan on before checking to see that loose objects are NOT in the test chamber and the test chamber cover plate is secure.</li>
+<li>Ensure that all test personnel are at a safe distance from the wind tunnel itself (at least 24” in any direction).</li>
+<li>Make sure the article under test is securely fastened inside the test chamber.</li>
+<li>Never run the wind tunnel without a proctor or professor present.</li>
+</ul>
+</section>
+<section id="wind-tunnel-experiments" class="level2">
+<h2 class="anchored" data-anchor-id="wind-tunnel-experiments">1. Wind Tunnel Experiments</h2>
+<p>Your team will have exactly 60 minutes to complete this section. The order in which teams will conduct experiments in the wind tunnel will be randomly determined at the start of each section. Be ready to go first! If you are in a six-team section, you may be using the wind tunnel during the final hour of lab, and therefore you must have a plan in place to obtain data and submit your report by the deadline.</p>
+<section id="getting-to-know-your-wind-tunnel" class="level3">
+<h3 class="anchored" data-anchor-id="getting-to-know-your-wind-tunnel">1.1 Getting to Know Your Wind Tunnel</h3>
+<p>In this sub-section, you will familiarize yourself with the wind tunnel and relate airspeed to fan RPM.</p>
+<ol type="1">
+<li>A professor or proctor will take you to the wind tunnel room.</li>
+<li>Locate the gray box that is the fan RPM controller for the wind tunnel. Click<a href="http://www.eng.hmc.edu/NewE80/images/ControlPanel.jpg">here</a> to see what it looks like.</li>
+<li>Locate the white box that displays the fan speed RPM. Click<a href="https://drive.google.com/file/d/1Ca68NwGW_zSPMplpEriqC1aEvM0gSzak/view?usp=sharing">here</a> to see what it looks like.</li>
+<li>Locate the LVDT box that displays lift and drag forces. It is located above the wind tunnel test chamber. Ensure that it is turned on. If it is not, the switch is on the right side of the box in the rear. DO NOT TOUCH THE KNOBS ON THE FRONT OF THIS BOX. Click<a href="https://drive.google.com/file/d/0BzDxiDWHdPM6U21naVZSUGstU1k/view?usp=sharing&amp;resourcekey=0-sotpLWHTgUCH_hEq54tl2w">here</a> to see what the box looks like.</li>
+<li>Ensure that the fan is not running in the wind tunnel by pushing the “STOP” button.</li>
+<li>Open the wind tunnel test chamber by removing the four clamps and gently removing the window.</li>
+<li>Verify that there is nothing but a Pitot probe and the force measurement stand in the wind tunnel. If there are other objects in the wind tunnel, remove them.</li>
+<li>Observe the mounting of the Pitot probe in the wind tunnel. Ensure that the end of the tube is properly oriented directly facing the incoming airflow. Ensure that the pitot probe is connected to the digital manometer.</li>
+<li>Turn on the digital manometer. Zero it. To calculate air velocity, you can use this Excel spreadsheet<a href="https://docs.google.com/spreadsheets/d/1JXKPa2uhD6FO39ZgqziKAnF7XNatieHe/edit?usp=share_link&amp;ouid=105511935419108795487&amp;rtpof=true&amp;sd=true">PitotVelocityCalculator</a> , this<a href="https://docs.google.com/spreadsheets/d/1m22gxiGKOKdak-1UFEZurIgK5epST0CCiMBFQLzDiQM/copy?usp=sharing">Google Sheet</a>, the Dwyer Air Velocity Calculator app or use the Dwyer Air Velocity Calculation Card that has been placed next to the wind tunnel. Use of these tools or the card requires that you know:
+<ul>
+<li>The ambient (room) temperature. Read the temperature sensor in the room.</li>
+<li>The relative humidity. Read the humidity sensor in the room.</li>
+<li>The absolute air pressure. Use a barometric pressure app on a cell phone.</li>
+</ul></li>
+<li>GENTLY push on the left side of the force measurement stand with one finger. What is happening to the drag force shown on the LVDT?<br>
+</li>
+<li>GENTLY push on the right side of the force measurement stand with one finger. What is happening to the drag force shown on the LVDT?</li>
+<li>GENTLY push on the top of the force measurement stand with one finger. What is happening to the drag force shown on the LVDT?</li>
+<li>GENTLY pull on the top side of the force measurement stand with two fingers. What is happening to the lift force shown on the LVDT?<br>
+</li>
+<li>Install the window on the test section and ensure that it is clamped at four corners. Make sure that everyone in the room is wearing safety goggles.</li>
+<li>Power up the wind tunnel by pushing the green button labeled “START” on the gray box. You adjust the speed with the knob on the gray box. You read the RPM in the white box near the main power switch. Measure the airspeed from 20% to 90% of max fan speed (in increments of 10%). Allow time at each measurement for the wind tunnel to come to steady state. Repeat measurements with increasing and decreasing RPM to ensure reproducible results.<br>
+</li>
+<li>Observe the lift and drag forces exhibited by the force measurement stand at each RPM setting. How will these values be used in your calculations?</li>
+<li>Plot a calibration curve of airspeed in the test section versus RPM. Perform the necessary regression analysis and display the appropriate error bars.</li>
+<li>Zero the speed in the wind tunnel and push the red button labeled “STOP” on the gray box.</li>
+</ol>
+</section>
+<section id="measuring-the-drag-forces-on-cylindrical-objects" class="level3">
+<h3 class="anchored" data-anchor-id="measuring-the-drag-forces-on-cylindrical-objects">1.2 Measuring the Drag Forces on Cylindrical Objects</h3>
+<p>PLEASE BE GENTLE WHEN MOUNTING FIXTURES ONTO THE FORCE MEASUREMENT STAND. IT IS A SENSITIVE PIECE OF EQUIPMENT. DO NOT PUSH, PULL, PRESS DOWN, OR PULL UP WITH GREAT FORCE. ASK FOR HELP FROM A PROCTOR OR PROFESSOR IF YOU NEED IT.</p>
+<ol type="1">
+<li>When opening the wind tunnel, always ensure that there is no airflow by pressing the red “STOP” button and verifying that the fan RPM is zero.</li>
+<li>Mount the cylindrical fixture on the force measurement stand and ensure that it is horizontal. Make sure that the side of the cylinder that says “FRONT TOWARDS FLOW” is actually facing the incoming flow.</li>
+<li>Install “Nose #1” on the cylinder.</li>
+<li>After ensuring that the window is securely clamped, power up the wind tunnel.</li>
+<li>What values for lift and drag are shown on the LVDT box at zero flow velocity? How will these values be used in your calculations?</li>
+<li>Measure the drag force on the object from 20% to 90% of max fan speed (in increments of 10%).
+<ul>
+<li>Using Excel, MATLAB, or other graphing software, plot a curve of Drag Force vs.&nbsp;Reynolds Number for Nose #1 (Do this in Parsons B178).<br>
+</li>
+<li>Using Excel, MATLAB, or other graphing software, plot a curve of Drag Coefficient vs.&nbsp;Reynolds Number for Nose #1 (Do this in Parsons B178). What are the correct reference area and characteristic length?</li>
+</ul></li>
+<li>Bring the flow back down to zero and press the red “STOP” button, and then repeat steps 3-6 for “Nose #2” and “Nose #3”.
+<ul>
+<li>Using Excel, MATLAB, or other graphing software, plot a curve of Drag Force vs.&nbsp;Reynolds Number for Nose #2 and for Nose #3 (Do this in Parsons B178).<br>
+</li>
+<li>Using Excel, MATLAB, or other graphing software, plot a curve of Drag Coefficient vs.&nbsp;Reynolds Number for Nose #2 and for Nose #3 (Do this in Parsons B178). What are the correct reference area and characteristic length?</li>
+</ul></li>
+</ol>
+</section>
+<section id="measuring-the-drag-forces-on-a-scale-robot-model" class="level3">
+<h3 class="anchored" data-anchor-id="measuring-the-drag-forces-on-a-scale-robot-model">1.3 Measuring the Drag Forces on a Scale Robot Model</h3>
+<ol type="1">
+<li>When opening the wind tunnel, always ensure that there is no airflow by pressing the red “STOP” button and verifying that the fan RPM is zero.</li>
+<li>Mount the 1/3 scale model of the robot in the wind tunnel chamber using a zip tie (as shown<a href="https://drive.google.com/open?id=1FAAhZU4SAByqlIppNAKiqhA1wdv5jFGf">here</a>,<a href="https://drive.google.com/open?id=1MqhkhDmNm1tU7GKHu_Luwqd1PNU8G9d8">here</a> and<a href="https://drive.google.com/open?id=11Ly9iVza1-aJfTqkso-RaUQFSXsJPE67">here</a>). Pay attention to its orientation. Ensure the window is securely clamped and power up the wind tunnel.</li>
+<li>Record necessary calibration information, then record drag force on the object from 20%-90% of max fan speed (in increments of 10%).
+<ul>
+<li>Using Excel, MATLAB, or other graphing software, plot a curve of Drag Force vs.&nbsp;Reynolds Number for the scale model of the robot (Do this in Parsons B178).<br>
+</li>
+<li>Using Excel, MATLAB, or other graphing software, plot a curve of Drag Coefficient vs.&nbsp;Reynolds Number for the scale model of the robot (Do this in Parsons B178). What are the correct reference area and characteristic length?</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="cfd-simulations-of-cylindrical-objects" class="level2">
+<h2 class="anchored" data-anchor-id="cfd-simulations-of-cylindrical-objects">2. CFD Simulations of Cylindrical Objects</h2>
+<p>Make sure to download and watch Grandma Spark’s step-by-step video guide to using COMSOL to model a cylinder in laminar flow (106 MB PowerPoint File, click<a href="https://docs.google.com/presentation/d/1e_maE5dcjPOEUGKOjZue8UUbkSufHgzy/edit?usp=sharing&amp;ouid=100121681850908143159&amp;rtpof=true&amp;sd=true">here</a>). Each slide on the PowerPoint contains a video. Make sure that you press play on each video.<br>
+</p>
+<ol type="1">
+<li>Use<a href="https://docs.google.com/presentation/d/1AQ0p3PNQByWXpu6GPy96D1zLtXJzXUER/edit?usp=share_link&amp;ouid=105511935419108795487&amp;rtpof=true&amp;sd=true">these dimensions</a> of the objects that will be tested in the wind tunnel. Note that the wind tunnel test section is 1 ft x 1 ft x 2 ft.</li>
+<li>Perform COMSOL CFD simulations of your tests in the wind tunnel for the Cylindrical Object with Nose #1.
+<ul>
+<li>Using Excel, MATLAB, or other graphing software, create a graph of Drag Force vs.&nbsp;Reynolds Number for air velocities between 5 m/s and 45 m/s (in increments of 10 m/s). How does drag force change with Reynolds Number?</li>
+<li>Using Excel, MATLAB, or other graphing software, create a graph of Cd vs.&nbsp;Reynolds Number for air velocities between 5 m/s and 45 m/s (in increments of 10 m/s). How does Cd change with Reynolds Number?</li>
+<li>Create a velocity profile (single slice at centerline of body) for the 45 m/s flow condition. Grandma Sparks step-by-step guide shows you how to do this.</li>
+<li>Create a pressure contour plot (Contour Type: Filled) for the 45 m/s flow condition. Grandma Sparks step-by-step guide shows you how to do this.</li>
+<li>How do your computational results for drag and Cd compare to your experimental results? Were there any similarities or differences? What factors caused the differences? Explain.</li>
+</ul></li>
+<li>Perform COMSOL CFD simulations of your tests in the wind tunnel for the Cylindrical Object with Nose #2.
+<ul>
+<li>Hint: An object can be rotated in COMSOL by selecting a Cartesian Axis and entering values for x, y, and z.</li>
+<li>Using Excel, MATLAB, or other graphing software, create a graph of Drag Force vs.&nbsp;Reynolds Number for air velocities between 5 m/s and 45 m/s (in increments of 10 m/s). How does drag force change with Reynolds Number?</li>
+<li>Using Excel, MATLAB, or other graphing software, create a graph of Cd vs.&nbsp;Reynolds Number for air velocities between 5 m/s and 45 m/s (in increments of 10 m/s). How does Cd change with Reynolds Number?</li>
+<li>Create a velocity profile (single slice at centerline of body) for the 45 m/s flow condition.</li>
+<li>Create a pressure contour plot (Contour Type: Filled) for the 45 m/s flow condition.</li>
+<li>How do your computational results for drag and Cd compare to your experimental results? Were there any similarities or differences? What factors caused the differences?</li>
+</ul></li>
+<li>Perform COMSOL CFD simulations of your tests in the wind tunnel for the Cylindrical Object with Nose #3.
+<ul>
+<li>Hint: An object can be rotated in COMSOL by selecting a Cartesian Axis and entering values for x, y, and z.</li>
+<li>Using Excel, MATLAB, or other graphing software, create a graph of Drag Force vs.&nbsp;Reynolds Number for air velocities between 5 m/s and 45 m/s (in increments of 10 m/s). How does drag force change with Reynolds Number?</li>
+<li>Using Excel, MATLAB, or other graphing software, create a graph of Cd vs.&nbsp;Reynolds Number for air velocities between 5 m/s and 45 m/s (in increments of 10 m/s). How does Cd change with Reynolds Number?</li>
+<li>Create a velocity profile (single slice at centerline of body) for the 45 m/s flow condition.</li>
+<li>Create a pressure contour plot (Contour Type: Filled) for the 45 m/s flow condition.</li>
+<li>How do your computational results for drag and Cd compare to your experimental results? Were there any similarities or differences? What factors caused the differences?</li>
+</ul></li>
+<li>Design an object using COMSOL that can achieve a LOWER Drag Coefficient than ALL of the cylindrical configurations that you have tested. Your team’s object should have the same reference area as the cylindrical bodies that you have tested, and should have a minimum length that is no less than the cylindrical object with Nose #1, and a maximum length no more than the cylindrical object with Nose #3.
+<ul>
+<li>HINT: If your object does not converge during the study, it is not possible for COMSOL to simulate it. Please re-design your object so that it converges during the study.<br>
+</li>
+<li>Provide a detailed drawing of your object that shows relevant dimensions.</li>
+<li>Discuss the design process for your team’s low-drag body. Why did you choose the dimensions and shape of your object?</li>
+<li>Using Excel, MATLAB, or other graphing software, create a graph of Cd vs.&nbsp;Reynolds Number for air velocities between 5 m/s and 45 m/s (in increments of 10 m/s).</li>
+<li>How does the performance of your team’s low-drag object compare to the ones that you tested?<br>
+</li>
+<li>Create a velocity profile (single slice at centerline of body) and a pressure contour plot (Contour Type: Filled) for the 45 m/s flow condition.</li>
+</ul></li>
+<li>Use COMSOL to determine the drag forces that your custom cylindrical body will encounter when it is moving in water. COMSOL allows you to change the fluid in your simulations from air to water. However, changing the fluid to water alone is not enough. You need to use similitude to determine appropriate velocities in water. Use the concept of similitude to convert velocities in air between 5 m/s to 45 m/s to velocities in water. Once appropriate velocities in water are determined…
+<ul>
+<li>Plot the drag force vs.&nbsp;Reynolds Number for your cylindrical body in water.<br>
+</li>
+<li>Plot the Cd vs.&nbsp;Reynolds Number for your cylindrical body in water.</li>
+</ul></li>
+<li>Simulate a model of your robot (found<a href="https://drive.google.com/file/d/1S4ma0dsIwoG4uevQlVbE5IhP2XK05xuQ/view?usp=sharing">here</a>) in water at various velocities such that the Reynold’s number is comparable to the Reynold’s number of the scale model of the robot in the wind tunnel.
+<ul>
+<li>Plot the drag force vs.&nbsp;Reynolds Number for your simulated robot</li>
+<li>Plot the Cd vs.&nbsp;Reynolds Number for your simulated robot</li>
+<li>Note that you’re not expected to construct this model during the lab like the other shapes. The following instructions will help to do that
+<ul>
+<li>Select Model Wizard -&gt; 3D -&gt; Laminar Flow -&gt; Stationary. Set units under the Geometry tab in the left hand column.</li>
+<li>Right click on “Geometry” in the left hand column and select “Import”. When importing, make sure that under “Objects to import” both the “Solids” and “Surfaces” boxes are checked and that under “For surface objects:” you select “Form solids” (see<a href="https://drive.google.com/open?id=16wiHEtWr8RCOmuXWEbpKF-HmT8qrxdqY">photo</a>).</li>
+<li>Create the box and set up the laminar flow simulation as usual.</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="cfd-simulations-of-wings" class="level2">
+<h2 class="anchored" data-anchor-id="cfd-simulations-of-wings">3. CFD Simulations of Wings</h2>
+<p>For parts 2 and 3 of this section, please make sure to watch Grandma Spark’s step-by-step video guide to using COMSOL to model a NACA 0009 airfoil in laminar flow (164 MB PowerPoint File, click<a href="https://docs.google.com/presentation/d/1KFulcloNJmJO0Bwzbz9RL0ppA24EBcsr/edit?usp=sharing&amp;ouid=100121681850908143159&amp;rtpof=true&amp;sd=true">here</a>). Each slide on the PowerPoint contains a video. Make sure that you press play on each video.</p>
+<ol type="1">
+<li>Use these<a href="https://docs.google.com/presentation/d/1TPHPbobRlIaPJLmFxf8QPqOL-NvRkuun/edit?usp=share_link&amp;ouid=105511935419108795487&amp;rtpof=true&amp;sd=true">dimensions</a> of a wing that COULD be tested in the wind tunnel. Note that the wind tunnel test section is 1 ft x 1 ft x 2 ft. What are the appropriate reference area and characteristic length to determine the lift force and coefficient of lift for the flat plate?<br>
+</li>
+<li>Perform COMSOL CFD simulations of your tests in the wind tunnel for the “Flat Plate Wing”. At three angles of attack (5, 15, and 45 degrees), vary the flow velocities between 5 m/s and 45 m/s.<br>
+</li>
+</ol>
+<ul>
+<li>Plot the lift force vs.&nbsp;Reynolds Number at each angle of attack at flow velocities between 5 m/s and 45 m/s (in increments of 10 m/s). Plot the three curves on the same axes so that you can compare your results.
+<ul>
+<li>Make sure that you indicate the angle of attack on each curve on the plot. A legend or labels would be helpful!<br>
+</li>
+</ul></li>
+<li>Plot the coefficient of lift (Cl) vs.&nbsp;Reynolds Number at each angle of attack at flow velocities between 5 m/s and 45 m/s (in increments of 10 m/s). Plot the three curves on the same axes so that you can compare your results.
+<ul>
+<li>Make sure that you indicate the angle of attack on each curve on the plot. A legend or labels would be helpful!<br>
+</li>
+</ul></li>
+<li>Create a pressure contour plot (Contour Type: Filled) for the 45 m/s flow condition at a 15 degree angle of attack.</li>
+<li>How does the pressure on the bottom of the wing compare to the top of the wing at a 15 degree angle of attack?</li>
+</ul>
+<ol type="1">
+<li>Perform COMSOL CFD simulations of a wing based on the NACA 6412 airfoil that has a similar reference area as your flat plate at three angles of attack (5, 15, and 45 degrees). Vary the flow velocities between 5 m/s and 45 m/s.
+<ul>
+<li>Plot the lift force vs.&nbsp;Reynolds Number at each angle of attack at flow velocities between 5 m/s and 45 m/s (in increments of 10 m/s). Plot the three curves on the same axes so that you can compare your results.
+<ul>
+<li>Make sure that you indicate the angle of attack on each curve on the plot. A legend or labels would be helpful!<br>
+</li>
+</ul></li>
+<li>Plot Cl vs.&nbsp;Reynolds Number at each angle of attack at flow velocities between 5 m/s and 45 m/s (in increments of 10 m/s). Plot the three curves on the same axes so that you can compare your results.
+<ul>
+<li>Make sure that you indicate the angle of attack on each curve on the plot. A legend or labels would be helpful!</li>
+</ul></li>
+<li>How does the NACA 6412 wing’s Coefficient of Lift compare to the flat plate at an angle of attack of 15 degrees?</li>
+<li>Create a pressure contour plot (Contour Type: Filled) for the 45 m/s flow condition at a 15 degree angle of attack.</li>
+<li>How do the pressure differences between the top and bottom surfaces of the NACA 6412 wing compare to the pressure difference on the flat plate at 45 m/s and a 15 degree angle of attack?</li>
+</ul></li>
+<li>Design a wing that will have a higher Cl than the flat plate and NACA 6412 wing at a chosen angle of attack (pick one: 5, 15, or 45 degrees), varying the flow velocities between 5 m/s and 45 m/s. Your wing must have the same reference area as the flat plate and NACA 6412 wing. You could either draw an airfoil in COMSOL and extrude it, plot it using points in the yz work plane followed by an extrusion, or any other method that your team chooses. This wing has to be unique to your team. You may use features of other airfoils in the airfoil database for inspiration, but you are not allowed to use any of the airfoils in the database.
+<ul>
+<li>Provide a detailed drawing of your wing that shows relevant dimensions (e.g.&nbsp;chord line, camber line, max thickness, click<a href="http://www.esru.strath.ac.uk/EandE/Web_sites/11-12/MORE/hydrofoil/img/1.jpg">here</a> for details).</li>
+<li>Plot the lift force vs.&nbsp;Reynolds Number at your chosen angle of attack for flow velocities between 5 m/s and 45 m/s (in increments of 10 m/s). Overlay the results of the flat plate and NACA 6412 wing at this angle of attack to compare the performance of the three wings.
+<ul>
+<li>Make sure that you indicate the chosen angle of attack on the plot. A legend or labels would be helpful!<br>
+</li>
+</ul></li>
+<li>Plot the Cl vs.&nbsp;Reynolds Number at your chosen angle of attack for flow velocities between 5 m/s and 45 m/s (in increments of 10 m/s). Overlay the results of the flat plate and NACA 6412 wing at this angle of attack to compare the performance of the three wings.
+<ul>
+<li>Make sure that you indicate the chosen angle of attack on the plot. A legend or labels would be helpful!</li>
+</ul></li>
+<li>How does your wing’s Coefficient of Lift compare to the NACA 6412 wing and the flat plate at your chosen angle of attack?</li>
+<li>Create a pressure contour plot (Contour Type: Filled) for the 45 m/s flow condition your chosen angle of attack.</li>
+</ul></li>
+</ol>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">4. Deliverables</h2>
+<p>For pre-lab purposes, a sample submission sheet that contains all of the questions and requirements on the submission sheet is<a href="https://docs.google.com/document/d/19XiX8GF38uZAgTSeCKnpc-Rh6QZxuwuRBFS4EH77MO0/edit?usp=sharing">here</a>.</p>
+<p>Recall that no late work is accepted, we will grade whatever is submitted at the deadlines.</p>
+<p>In addition, you will each individually submit a technical memorandum, which requires you to combine the writing skills that we have practiced in previous weeks in a longer format. Because the memorandum is longer, it is not due at the end of your lab week. Final report due date is 3/3/2023 for Group B and 3/10/2023 for Group A.Beware that the E72 final problem set has a due date that occasionally conflicts with this memo, so plan your time carefully.</p>
+<p>The memo will be written based on<a href="https://drive.google.com/open?id=1x1NvKDmtAg4lXwxrBZ3tjtVtku8t3i0M">this prompt</a>, and we will do<a href="https://docs.google.com/presentation/d/1iyhcOw_lI1LpVT7DtUEsRWngSS-IUEgH/edit#slide=id.p1">this activity</a> during the writing and reflection (Friday, 2/24/2023 for Group B and Friday, 3/3/2023 for Group A) section of the week in which lab 6 is carried out. The activity won’t take the whole section, so we encourage you to use the time to get started writing. When you have a draft, feel free to use this<a href="https://drive.google.com/open?id=1wpTIxQv4nZ6GcpaTAYyTMoLUzk0Jzemn">peer review worksheet</a> on your own time. We are grading on the criterion shown in<a href="https://drive.google.com/open?id=1VCUnBQLSrwEUWhNtePDKEKU2eUPXrxt6">this rubric</a>, but we’ve left out the point breakdown because we want you to figure out what’s important to emphasize on your own.</p>
+<p>You are allowed to process your data any time until the report is due to write this report. If you are unable to generate results with your data in any section, then you may generate your own, simulated example data inside of MATLAB to analyze. You may not record any new data or run new COMSOL simulations. You may not share code, figures or text with any other students while writing this memo, though you may discuss ideas. We recommend that you make use of the writing center. Remember that you must submit a tech memo to pass the class.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
