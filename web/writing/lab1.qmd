@@ -1,0 +1,60 @@
+---
+title: "Lab 1 Writing Assignment"
+subtitle: Figures and Captions
+format:
+  pdf: default
+  docx: default
+---
+
+## Writing Assignment
+In this writing assignment you will create a figure, write a caption for it, and write a paragraph of text to reference and explain the figure.
+In doing this, you will learn how to create a well-designed figure to clearly and effectively present captured data.
+You will also learn how to refer to the figure in supporting text by writing a short paragraph to explain the signficance of the data and the important takeaways.
+
+## Learning Objectives
+
+By the end of this writing assignment you will...
+
+- Learn how to design a clear figure
+- Understand what information should be in the figure, figure caption, and text referencing the figure.
+
+## Required Resources
+
+- [ ] Data from Lab 1
+- [ ] Code used to process and plot Lab 1 data
+- [ ] Figure generated from Lab 1 
+
+## Specifications
+
+### Figure Design
+
+- [ ] Y-axis label is clear and descriptive of the dependent variable
+- [ ] X-axis label is clear and descriptive of the independent variable
+- [ ] All axis ticks are 
+- [ ] Graph is easily readable (e.g., appropriate fonts, line weights and data markers and not overly cluttered)
+- [ ] Legend is present and well-placed (e.g., no on top of any data)
+- [ ] Correct units in the labels for both axes (e.g., Distance [m])
+- [ ] Data is shown with good level of zoom to highlight the important parts of the captured trace. Beginning and end of the trace is trimmed.
+- [ ] Data overlayed well (e.g., all three axes of acceleration measurements are plotted together on the same axes in different colors.)
+
+### Caption
+
+- [ ] Contains a figure number.
+- [ ] Includes a succinct description of the contents of the figure.
+- [ ] Is free of grammar and spelling issues.
+
+### Supporting Text
+
+- [ ] Refers to each figure
+- [ ] Explains the signifiance and meaning of the figure.
+- [ ] Correct sentence mechanics like cohesion and coherence between sentences and no run-ons
+- [ ] Correct paragraph mechanics like topic sentences and placement at breaks between ideas
+- [ ] Language is not stilted and jargon is kept to a reasonable minimum.
+
+### Code
+
+- [ ] Code used to process and plot the captured data is present
+- [ ] Each script file has a descriptive filename (e.g., `acceleration-data-procesor.m`)
+- [ ] Filename, author name, author email, and date included at the top of each script file.
+- [ ] Each function contains a comment at the top describing its inputs and outputs
+- [ ] Script file automatically exports and generated figures or processed data to files.
