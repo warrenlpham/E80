@@ -2,8 +2,9 @@
 title: "Lab 2 Writing Assignment"
 subtitle: Methods, Results, Equations, and Tables
 format:
+  html: default
   pdf: default
-  docx: default
+permalink: writing/lab2/index.html
 ---
 
 ## Writing Assignment
@@ -71,9 +72,9 @@ By the end of this writing assignment you will...
 - [ ] Correct paragraph mechanics like topic sentences and placement at breaks between ideas
 - [ ] Language is not stilted and jargon is kept to a reasonable minimum.
 
-
+<!-- 
 # ToDo
 
 - Add table formatting examples
 - Describe specific equations to include
-- List tools for schematic creation
+- List tools for schematic creation -->

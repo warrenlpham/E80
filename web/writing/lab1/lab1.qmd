@@ -2,8 +2,9 @@
 title: "Lab 1 Writing Assignment"
 subtitle: Figures and Captions
 format:
+  html: default
   pdf: default
-  docx: default
+permalink: writing/lab1/index.html
 ---
 
 ## Writing Assignment

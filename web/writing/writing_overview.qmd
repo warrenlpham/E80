@@ -1,0 +1,16 @@
+---
+title: "Writing Overview"
+format:
+  html: default
+permalink: writing/
+---
+
+## Writing Assignments
+
+- [Lab 1: Figures and Captions](./lab1/lab1.qmd)
+- [Lab 2: Methods, Results, Equations, and Tables](./lab2/lab2.qmd)
+- [Lab 3: Electrical Schematics and Mechanical Drawings](./lab3/lab3.qmd)
+- [Lab 4: Introductions](./lab4/lab4.qmd)
+- [Lab 5: Mathematical Derivations]((./lab5/lab5.qmd))
+- [Lab 6: Technical Memos](./lab6/lab6.qmd)
+- [Lab 7: Abstracts]((./lab7/lab7.qmd))
