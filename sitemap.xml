@@ -1,63 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab_overview/index.html</loc>
-    <lastmod>2023-05-02T21:45:46.728Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab1/index.html</loc>
-    <lastmod>2023-05-02T21:45:47.842Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab6/index.html</loc>
-    <lastmod>2023-05-02T21:45:49.343Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab7/index.html</loc>
-    <lastmod>2023-05-02T21:45:50.369Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab0/index.html</loc>
-    <lastmod>2023-05-02T21:45:50.778Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab5/index.html</loc>
-    <lastmod>2023-05-02T21:45:52.045Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab2/index.html</loc>
-    <lastmod>2023-05-02T21:45:52.981Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab3/index.html</loc>
-    <lastmod>2023-05-02T21:45:53.957Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/labs/lab4/index.html</loc>
-    <lastmod>2023-05-02T21:45:54.694Z</lastmod>
-  </url>
-  <url>
     <loc>https://HMC-E80.github.io/E80/index.html</loc>
-    <lastmod>2023-05-02T21:45:55.347Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/project/index.html</loc>
-    <lastmod>2023-05-02T21:45:56.387Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/matlab/index.html</loc>
-    <lastmod>2023-05-02T21:45:56.696Z</lastmod>
-  </url>
-  <url>
-    <loc>https://HMC-E80.github.io/E80/history/index.html</loc>
-    <lastmod>2023-05-02T21:45:57.052Z</lastmod>
+    <lastmod>2024-01-12T01:55:00.184Z</lastmod>
   </url>
   <url>
     <loc>https://HMC-E80.github.io/E80/lectures/index.html</loc>
-    <lastmod>2023-05-02T21:45:57.460Z</lastmod>
+    <lastmod>2024-01-12T01:54:58.537Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab0/index.html</loc>
+    <lastmod>2024-01-12T01:54:56.401Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab1/index.html</loc>
+    <lastmod>2024-01-12T01:54:55.317Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab_overview/index.html</loc>
+    <lastmod>2024-01-12T01:54:52.547Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab2/index.html</loc>
+    <lastmod>2024-01-12T01:54:50.417Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab4/index.html</loc>
+    <lastmod>2024-01-12T01:54:46.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/project/index.html</loc>
+    <lastmod>2024-01-12T01:54:45.107Z</lastmod>
   </url>
   <url>
     <loc>https://HMC-E80.github.io/E80/reference/index.html</loc>
-    <lastmod>2023-05-02T21:45:57.774Z</lastmod>
+    <lastmod>2024-01-12T01:54:45.574Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab6/index.html</loc>
+    <lastmod>2024-01-12T01:54:48.904Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab7/index.html</loc>
+    <lastmod>2024-01-12T01:54:51.844Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab5/index.html</loc>
+    <lastmod>2024-01-12T01:54:54.034Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/labs/lab3/index.html</loc>
+    <lastmod>2024-01-12T01:54:57.931Z</lastmod>
+  </url>
+  <url>
+    <loc>https://HMC-E80.github.io/E80/history/index.html</loc>
+    <lastmod>2024-01-12T01:54:59.021Z</lastmod>
   </url>
 </urlset>
