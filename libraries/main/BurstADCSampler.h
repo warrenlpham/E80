@@ -24,6 +24,7 @@ private:
 	//helper func
 	void update(void);
 	void save(void);	
+	const int pinMap[NUM_PINS] =  {21,14,15,16,17,24,25,26,27};
 };
 
 

@@ -4,7 +4,7 @@
 // create lists for each pin and rapidly collect data from each pin
 // and save data into seperate file
 void BurstADCSampler::sample(){
-	for ( int i = 0; i < 10; i++){
+	for ( int i = 0; i < 50; i++){
 		update();
 	}
 	save();
@@ -15,26 +15,30 @@ void BurstADCSampler::sample(){
 void BurstADCSampler::update(){
 	for ( int i = 0; i < NUM_PINS; i++){
 		node* curr = new node;
-		curr->data = i;
+		curr->data = analogRead(pinMap[i]);
 		curr->next = headarray[i];
 		headarray[i] = curr;
 	}
 }
 
+
+
+// save data into seperate file
+void BurstADCSampler::save(){
+
+}
+
 // for debugging
 // dump each list into serial
 void BurstADCSampler::print(){
-	for ( int i = 0; i < NUM_PINS; ++i){
+	for ( int i = 0; i < NUM_PINS; i++){
 		node* curr = headarray[i];
 		while(curr != nullptr){
 			Serial.print(curr->data);
+			Serial.print(",");
 			curr = curr->next;
 		}
 		printf("\n");
 	}
 }
 
-// save data into seperate file
-void BurstADCSampler::save(){
-
-}
