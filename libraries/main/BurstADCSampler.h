@@ -23,7 +23,11 @@ private:
 
 	//helper func
 	void update(void);
-	void save(void);	
+	void timestamp(void);
+	void save(void);
+
+
+	const int TIME_INDEX = 0;
 	const int pinMap[NUM_PINS] =  {21,14,15,16,17,24,25,26,27};
 };
 

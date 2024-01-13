@@ -13,7 +13,8 @@ void BurstADCSampler::sample(){
 // for each pin
 // create new node, read data from pin, add to the list
 void BurstADCSampler::update(){
-	for ( int i = 0; i < NUM_PINS; i++){
+	timestamp();
+	for ( int i = 1; i < NUM_PINS; i++){
 		node* curr = new node;
 		curr->data = analogRead(pinMap[i]);
 		curr->next = headarray[i];
@@ -21,6 +22,13 @@ void BurstADCSampler::update(){
 	}
 }
 
+// update the TIME_INDEX list with current time
+void BurstADCSampler::timestamp(){
+	node* time_node = new node;
+	time_node->data = micros();
+	time_node->next = headarray[TIME_INDEX];
+	headarray[TIME_INDEX] = time_node;
+}
 
 
 // save data into seperate file
