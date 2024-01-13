@@ -9,24 +9,22 @@
 
 struct node{
 	int data;
-	struct node* next_node;
+	struct node* next;
 }typedef node;
 
 class BurstADCSampler
 {
 public:
-	BurstADCSampler(void);
 	void sample(void);
+	void print(void);
 
 private:
-	node* dataArray[NUM_PINS];
-	void update(void);	
+	node* headarray[NUM_PINS];
+
+	//helper func
+	void update(void);
 	void save(void);	
 };
 
 
 #endif
-
-
-
-
