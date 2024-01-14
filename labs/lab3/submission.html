@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>E80 SP24 - E72+E80 MATLAB Tutorial</title>
+<title>E80 SP24 - Lab 3 Submission Sheet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -161,28 +161,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-to-submit" id="toc-what-to-submit" class="nav-link active" data-scroll-target="#what-to-submit">What to Submit</a></li>
-  <li><a href="#matlab-tutorial" id="toc-matlab-tutorial" class="nav-link" data-scroll-target="#matlab-tutorial">MATLAB Tutorial</a>
-  <ul class="collapse">
-  <li><a href="#installing-matlab-on-your-personal-computer" id="toc-installing-matlab-on-your-personal-computer" class="nav-link" data-scroll-target="#installing-matlab-on-your-personal-computer">1. Installing MATLAB on your personal computer</a></li>
-  <li><a href="#matlab-onramp" id="toc-matlab-onramp" class="nav-link" data-scroll-target="#matlab-onramp">2. MATLAB Onramp</a></li>
-  <li><a href="#matlab-plotting-video" id="toc-matlab-plotting-video" class="nav-link" data-scroll-target="#matlab-plotting-video">3. MATLAB Plotting Video</a></li>
-  <li><a href="#matlab-debugging-tips-optional-but-strongly-recommended" id="toc-matlab-debugging-tips-optional-but-strongly-recommended" class="nav-link" data-scroll-target="#matlab-debugging-tips-optional-but-strongly-recommended">4. MATLAB Debugging Tips (optional, but strongly recommended)</a></li>
-  <li><a href="#practice-debugging-in-matlab" id="toc-practice-debugging-in-matlab" class="nav-link" data-scroll-target="#practice-debugging-in-matlab">5. Practice Debugging in MATLAB</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="submission.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">E72+E80 MATLAB Tutorial</h1>
+<h1 class="title">Lab 3 Submission Sheet</h1>
 </div>
 
 
@@ -197,89 +182,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Welcome to the E72+E80 MATLAB Tutorial! If you need more support, ask someone during E72 office hours. Also, there are lots of resources online for using MATLAB.</p>
-<section id="what-to-submit" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-submit">What to Submit</h2>
-<p>At the end of this assignment you will submit pieces of information:</p>
-<ol type="1">
-<li>A screenshot showing you’ve completed the assigned sections of the <a href="#matlab-onramp">MATLAB On-ramp tutorial</a>.</li>
-<li>A brief, 2-3 sentence reflection detailing something you learned from the <a href="#matlab-plotting-video">plotting question</a>.</li>
-<li>A brief, 4-5 sentence reflection detailing something you learned from the <a href="#practice-debugging-in-matlab">debugging practice</a>.</li>
-</ol>
-<p>You should prepare these items in an MS Word document or Google Doc and then download it as a PDF to submit on Canvas.</p>
-</section>
-<section id="matlab-tutorial" class="level2">
-<h2 class="anchored" data-anchor-id="matlab-tutorial">MATLAB Tutorial</h2>
-<section id="installing-matlab-on-your-personal-computer" class="level3">
-<h3 class="anchored" data-anchor-id="installing-matlab-on-your-personal-computer">1. Installing MATLAB on your personal computer</h3>
-<p>There is a version of MATLAB that youone can run in the cloud via a browser, but because we’ll be using MATLAB a lot in this class, so we recommend that you install it on your personal computer. To do so, follow <a href="https://docs.google.com/document/d/1-dmjftyCPrAWVC4g5OvJ4mv9C1jUWgiwmJVQw4iSR5w/edit">these instructions</a>. Please install MATLAB R2023b or later.</p>
-<p><strong>Important:</strong> When you are installing MATLAB, you’ll be asked what packages you want included. For E72, you need at minimum the following toolboxes:</p>
-<ul>
-<li>Curve Fitting Toolbox</li>
-<li>Optimization Toolbox</li>
-<li>Signal Processing Toolbox</li>
-<li>Symbolic Math Toolbox</li>
-</ul>
-<p>If you’ve previously installed MATLAB, you can add the packages by going through the installation process again. To see what packages you have installed, type “ver” at the command window. You can also install packages within MATLAB by clicking on <code>Apps</code>, then <code>Get More Apps</code>, typing in the name of the toolbox in the search bar, and making sure <code>Toolboxes and Products</code> is checked under <code>Filter by Type</code> on the left side bar. If you get an error <code>Your administrator has restricted your download access...</code>, first try restarting MATLAB.</p>
-<p>There are lots of videos on MATLAB online. For example, if you want to know how to use <code>fsolve</code>, you can search “<a href="https://www.youtube.com/results?search_query=matlab+fsolve+tutorial&amp;search=Search">MATLAB fsolve tutorial</a>” on YouTube.</p>
-</section>
-<section id="matlab-onramp" class="level3">
-<h3 class="anchored" data-anchor-id="matlab-onramp">2. MATLAB Onramp</h3>
-<div id="fig-matlab-onramp" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="./img/matlab-onramp.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Screenshot of MATLAB Onramp</figcaption>
-</figure>
-</div>
-<p>First, you will learn some basics of MATLAB using the MATLAB Academy tutorial called Onramp. Note that Onramp does not require you to install MATLAB, since it uses an online programming environment that simulates MATLAB’s look, feel, and functionality.</p>
-<ol type="1">
-<li>Navigate to the <a href="https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted" target="_blank">MATLAB Onramp self-paced online course</a>. You will need to login using the account that you created earlier.</li>
-<li>Complete the following modules of Onramp:
-<ul>
-<li>Course Overview</li>
-<li>Commands</li>
-<li>Vectors and Matrices</li>
-<li>Importing Data</li>
-<li>Indexing into and Modifying Arrays</li>
-</ul></li>
-</ol>
-<p>Feel free to explore other parts of this too to build your confidence with MATLAB.</p>
-<p>Once you’ve finished the modules in the list above, take a screenshot of the Course modules pages which shows your progress and green checkmarks next to the segments you’ve completed. You’ll need to submit this screenshot for this assignment.</p>
-</section>
-<section id="matlab-plotting-video" class="level3">
-<h3 class="anchored" data-anchor-id="matlab-plotting-video">3. MATLAB Plotting Video</h3>
-<p>Watch this 17-minute video <a href="https://vimeo.com/57954461" target="_blank">https://vimeo.com/57954461</a> to learn how to create various 2-D and 3-D graphs in MATLAB.</p>
-<p>We strongly recommend that you don’t watch the videos passively. Instead, pause frequently while watching the video so that you can try things out on your own in MATLAB.</p>
-</section>
-<section id="matlab-debugging-tips-optional-but-strongly-recommended" class="level3">
-<h3 class="anchored" data-anchor-id="matlab-debugging-tips-optional-but-strongly-recommended">4. MATLAB Debugging Tips (optional, but strongly recommended)</h3>
-<p>Watch this 17-minute video <a href="https://vimeo.com/501103844" target="_blank">https://vimeo.com/501103844</a> to learn how to find and fix errors in your MATLAB code. This skill will <em>greatly</em> aid you in all classes that require the use of MATLAB.</p>
-<p>If you want to try using the debugger yourself with this piece of code, download <a href="https://github.com/HMC-E80/E80/tree/main/MATLAB/debugpractice.m">debugpractice.m</a>.</p>
-<p>To download the file, you can click the little downward pointing arrow in the toolbard at the top right of the code.</p>
-<div id="fig-project-box-with-penetrator-bolt" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="./img/github-download-file.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Button to download individual file from the GitHub repository.</figcaption>
-</figure>
-</div>
-</section>
-<section id="practice-debugging-in-matlab" class="level3">
-<h3 class="anchored" data-anchor-id="practice-debugging-in-matlab">5. Practice Debugging in MATLAB</h3>
-<p>Practice your MATLAB debugging skills on this script <a href="https://github.com/HMC-E80/E80/tree/main/MATLAB/debugme.m">debugme.m</a>, which is supposed to create a matrix like the one below.</p>
-<p>The code should be able to produce a matrix with a user-specified number of columns. In the diagram below, we show what the output matrix should look like if it has 10 columns. The number of rows in this case would need to be 32, since the matrix has three 10x10 blocks in the middle, sandwiched by the row of ones at the top and row of ones at the bottom.</p>
-<div id="fig-desired-matrix" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="./img/matlab-matrix-example.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Desired code output matrix.</figcaption>
-</figure>
-</div>
-<div class="hint-box">
-<p><strong>Hint:</strong> In MATLAB, if you create a matrix with a certain size and then you try to assign an element of that matrix outside of its existing dimensions, MATLAB won’t give you an error. Instead, it will just extend the matrix outward as large as necessary to accommodate that new element.</p>
-</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
