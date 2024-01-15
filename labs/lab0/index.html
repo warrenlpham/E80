@@ -168,13 +168,19 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#team-forming" id="toc-team-forming" class="nav-link" data-scroll-target="#team-forming">Team Forming</a>
+  <ul class="collapse">
+  <li><a href="#team-proverb" id="toc-team-proverb" class="nav-link" data-scroll-target="#team-proverb">Team Proverb</a></li>
+  <li><a href="#get-to-know-your-teammates" id="toc-get-to-know-your-teammates" class="nav-link" data-scroll-target="#get-to-know-your-teammates">Get to Know Your Teammates</a></li>
+  <li><a href="#kick-off-the-semester" id="toc-kick-off-the-semester" class="nav-link" data-scroll-target="#kick-off-the-semester">Kick Off the Semester</a></li>
+  </ul></li>
   <li><a href="#frame-assembly" id="toc-frame-assembly" class="nav-link" data-scroll-target="#frame-assembly">Frame Assembly</a></li>
   <li><a href="#battery" id="toc-battery" class="nav-link" data-scroll-target="#battery">Battery</a></li>
   <li><a href="#breadboarding" id="toc-breadboarding" class="nav-link" data-scroll-target="#breadboarding">Breadboarding</a></li>
   <li><a href="#oscilloscope" id="toc-oscilloscope" class="nav-link" data-scroll-target="#oscilloscope">Oscilloscope</a></li>
   <li><a href="#soldering" id="toc-soldering" class="nav-link" data-scroll-target="#soldering">Soldering</a></li>
-  <li><a href="#arduino" id="toc-arduino" class="nav-link" data-scroll-target="#arduino">Arduino</a></li>
-  <li><a href="#github-desktop-setup" id="toc-github-desktop-setup" class="nav-link" data-scroll-target="#github-desktop-setup">Github Desktop Setup</a></li>
+  <li><a href="#github-desktop-and-arduino-ide-setup" id="toc-github-desktop-and-arduino-ide-setup" class="nav-link" data-scroll-target="#github-desktop-and-arduino-ide-setup">Github Desktop and Arduino IDE Setup</a></li>
+  <li><a href="#arduino-practice" id="toc-arduino-practice" class="nav-link" data-scroll-target="#arduino-practice">Arduino Practice</a></li>
   <li><a href="#matlab-access" id="toc-matlab-access" class="nav-link" data-scroll-target="#matlab-access">MATLAB Access</a></li>
   <li><a href="#matlab-on-ramp" id="toc-matlab-on-ramp" class="nav-link" data-scroll-target="#matlab-on-ramp">MATLAB On-ramp</a></li>
   </ul>
@@ -203,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Team size: 4</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In the first week of E80, we have a regular lab scheduled, but there is no submission sheet. This is an opportunity for refreshing your skills and getting software and hardware setup for Labs 1 through 7.</p>
+<p>In the first week of E80, we have a regular lab scheduled, but there is no submission sheet. This is an opportunity for refreshing your skills and getting software and hardware setup for Labs 1 through 6 and the project Jump Start.</p>
 <p>By the end of this lab you should have:</p>
 <ul class="task-list">
 <li><input type="checkbox">Chosen and resized an E79 robot frame</li>
@@ -217,36 +223,132 @@ ul.task-list li input[type="checkbox"] {
 <li><input type="checkbox">Set up MATLAB</li>
 </ul>
 <p>Ask your instructor for any guidance including where to find tools. Don’t forget to clean up afterwards.</p>
-<p>Although less critical for this introduction lab, <strong>it will be imperative to get into the habit of distributing work across team members.</strong> Identify dependencies and <strong>work in parallel.</strong> Smells like pre-lab work.</p>
+<p>This lab is a little different than most E80 labs because we want each team member to individially practice most of the skills. In future labs, it will be <strong>imperative</strong> to get into the habit of distributing work across team members and <strong>working in parallel.</strong> Deciding how to break up that work is a great pre-lab exercise, and you’ll be hearing more about prelab soon.</p>
+<p>Every member of the team should complete the following sections:</p>
+<ul>
+<li>Breadboarding</li>
+<li>Oscilloscope</li>
+<li>Soldering (though only one person can solder the Teensy, everyone should practice)</li>
+<li>Github Desktop and Arduino IDE Setup</li>
+<li>Arduino Practice</li>
+<li>MATLAB Access</li>
+<li>MATLAB On-ramp</li>
+</ul>
+<p>The remaining sections can be broken into parallel tasks</p>
+<ul>
+<li>Frame Assembly (it makes sense to break up frame assembly and motor construction)</li>
+<li>Battery</li>
+</ul>
+<p>And, of course, every team member should participate in the team forming activity</p>
+</section>
+<section id="team-forming" class="level2">
+<h2 class="anchored" data-anchor-id="team-forming">Team Forming</h2>
+<p>Welcome to your new E80 team! Working well together is important to your success. Do this introduction game, even if it seems silly, to lay the foundation for your future teamwork!</p>
+<section id="team-proverb" class="level3">
+<h3 class="anchored" data-anchor-id="team-proverb">Team Proverb</h3>
+<p>Compose a proverb one word at a time by following these instructions:</p>
+<ol type="1">
+<li>Everyone in the team stands in a circle.</li>
+<li>Someone begins a proverb by saying one word.</li>
+<li>The person next to them continues the proverb with another word.</li>
+<li>Keep moving around the cirle until the proverb feels complete.</li>
+<li>Celebrate the proverb by having everyone in the circle tap their fingers together saying “yesyesyesyes…”</li>
+<li>Repeat 1-2 more times.</li>
+</ol>
+<p>To get you started, here are some example proverbs:</p>
+<ul>
+<li>A real one: “A bird in the hand is worth two in the bush.”</li>
+<li>One from the E80 teaching team: “A dog says ‘woof’ if happy or sad … yesyesyesyes…”</li>
+</ul>
+</section>
+<section id="get-to-know-your-teammates" class="level3">
+<h3 class="anchored" data-anchor-id="get-to-know-your-teammates">Get to Know Your Teammates</h3>
+<p>Next, please take turns sharing the following. The person whose birthday is soonest goes first!</p>
+<ol type="1">
+<li>Your name and where you live on campus</li>
+<li>Your favorite breakfast cereal</li>
+<li>One thing that makes you excited about E80</li>
+<li>One thing that makes you nervous about E80</li>
+<li>What you most hope to learn from E80</li>
+</ol>
+</section>
+<section id="kick-off-the-semester" class="level3">
+<h3 class="anchored" data-anchor-id="kick-off-the-semester">Kick Off the Semester</h3>
+<p>Celebrate your team formation with some gesture before diving in to the work. Options include:</p>
+<ul>
+<li>Putting hands together and yelling, “go team!”</li>
+<li>One clap in unison</li>
+<li>Steely eyed stares and nods for ~5 seconds</li>
+<li>Solemnly swearing to support one another’s learning</li>
+<li>Some other token you invent</li>
+</ul>
+</section>
 </section>
 <section id="frame-assembly" class="level2">
 <h2 class="anchored" data-anchor-id="frame-assembly">Frame Assembly</h2>
-<p>We will be reusing the frames from the ROV’s you constructed during E79 but some modifications will need to be made in order to change your ROV (Remotely Controlled Vehicle) into an AUV (Autonomous Underwater Vehicle).</p>
-<p>To fit the waterproof box that will house the motherboard, microcontroller, battery, additional sensors, etc., you will need to increase the width of the frame.</p>
-<p>Obtain two additional 6.5’’ PVC pieces to replace the 4.5’’ ones. Don’t forget to drill the mounting holes for your vertical motor.</p>
-<p><img src="img/rov.png" class="img-fluid"></p>
-<p>You will be mounting your AUV’s motors in the same manner as the three motor assembly in <a href="https://sites.google.com/g.hmc.edu/e79-practicum/module-1/practicum-1a">Practicum 1A Section 4.7</a>.</p>
-<p>Each team will be provided with 2 used motors. You will need to construct at least one additional motor from scratch. Reference <a href="https://sites.google.com/g.hmc.edu/e79-practicum/module-1/practicum-1a">Practicum 1A Section 4.2</a> for assembly instructions.</p>
-<p>Make sure to test that all three of your motors pull less than 500 mA before mounting them on the new frame. To do this, supply 6 V to the motor using a power supply.</p>
+<p>We will be reusing the frames from the ROV’s you constructed during E79, but a minor modification will need to be made in order to change your ROV (Remotely Controlled Vehicle) into an AUV (Autonomous Underwater Vehicle). Specifically, you will need to increase the width of the frame to fit the waterproof box that will house the motherboard, microcontroller, battery, additional sensors, etc.</p>
+<p>This image is a helpful reference for the modification:</p>
+<div id="fig-ROV" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/rov.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Modified E79 ROV for use in E80.</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Obtain two additional 6.5’’ PVC pieces to replace the 4.5’’ ones.</li>
+<li>Drill the mounting holes for your vertical motor. You will be mounting your AUV’s motors in the same manner as the three motor assembly in <a href="https://sites.google.com/g.hmc.edu/e79-practicum/module-1/practicum-1a">Practicum 1A Section 4.7</a>.</li>
+<li>Construct at least one additional motor from scratch. Reference <a href="https://sites.google.com/g.hmc.edu/e79-practicum/module-1/practicum-1a">Practicum 1A Section 4.2</a> for assembly instructions. Each team will be provided with 2 used motors, but needs to make a third, and may make more to have backups.</li>
+<li>Test that all three of your motors pull less than 500 mA. To do this, supply 6 V to the motor using a power supply.</li>
+<li>Mount the motors on the new frame.</li>
+</ol>
 </section>
 <section id="battery" class="level2">
 <h2 class="anchored" data-anchor-id="battery">Battery</h2>
-<p>Your AUV will need power, and we provide that with a battery pack. The battery pack used in E80 is a 3000 mAh to 3500 mAh, 30 C, 11.1 V LiPo battery pack. Determine the maximum, minimum and nominal voltage outputs of these battery packs. Determine how many cells are in the battery pack. To charge the batteries, we will use a <a href="https://hitecrcd.com//images/products/pdf/419_X1mini_Manual_BAS-V2-Web.pdf">HiTec x1 Mini charger</a> or a <a href="http://www.hrpdealer.com/pdf/manuals/UPTUP60AC%20Manual.pdf">UP60AC multi charger</a>. Read the manual on how to use the chargers.</p>
-<p>Request a battery and a LiPo safe bag from an instructor and set up your battery for charging. ASK AN INSTRUCTOR OR PROCTOR TO CHECK YOUR RECHARGE SETUP. Here are some helpful <a href="https://drive.google.com/open?id=1K1DSOdeqAjU_JU-sTOdiBUnwMmpwUTPP">images</a>. Charge the battery up to its maximum voltage.</p>
-<div class="note-box">
-<p><strong>Note</strong>: Make sure you plug the balancer cable into the balance lead socket (the black wire should align with the minus sign). <strong>Failure to do this may cause the battery to explode!</strong> Always use a LiPo-safe bag while charging.</p>
+<p>Your AUV will need power, and we provide that with a battery pack. The battery pack used in E80 is a 3000 mAh to 3500 mAh, 30 C, 11.1 V LiPo battery pack. To charge the batteries, we will use a <a href="https://hitecrcd.com//images/products/pdf/419_X1mini_Manual_BAS-V2-Web.pdf">HiTec x1 Mini charger</a> or a <a href="http://www.hrpdealer.com/pdf/manuals/UPTUP60AC%20Manual.pdf">UP60AC multi charger</a>. Here are some helpful <a href="https://drive.google.com/open?id=1K1DSOdeqAjU_JU-sTOdiBUnwMmpwUTPP">images</a> showing a correct charging setup.</p>
+<ol type="1">
+<li>Read the manual on how to use the chargers.</li>
+<li>Determine how many cells are in the battery pack, and the maximum, minimum and nominal voltage outputs of these battery packs.</li>
+<li>Request a battery and a LiPo safe bag from an instructor and set up your battery for charging.</li>
+<li><strong>Important!</strong> Ask an instructor or proctor to check your recharging setup before you begin charging!</li>
+<li>Charge the battery up to its maximum voltage.</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure you plug the balancer cable into the balance lead socket (the black wire should align with the minus sign). <strong>Failure to do this may cause the battery to explode!</strong> Always use a LiPo-safe bag while charging. Never charge above 12.6 V or allow your battery to discharbe below 11.1V.</p>
+</div>
 </div>
 </section>
 <section id="breadboarding" class="level2">
 <h2 class="anchored" data-anchor-id="breadboarding">Breadboarding</h2>
-<p>A few videos that may help explain how a breadboard works and how to use one can be found below. Note that internal connections of breadboards can break.</p>
+<p>We do a lot of electronics prototyping in E80 because most experimental measurements are electrical. A breadboard is a crucial tool for electronics prototyping. The videos below explain how a breadboard works and how to use one. Watch the first two videos and follow along with them. Give the third one a try if you have time.</p>
 <ol type="1">
-<li><p><a href="https://www.youtube.com/watch?v=wCJKMFGEuuI">Simple LED Lesson</a>: The tutorial shows an LED circuit without a current limiting resistor. LED’s resistance decreases quickly as the forward voltage (the ”on” voltage) is exceeded. The LED then draws more and more current, overheats and eventually burns up. Sometimes literally. Please use one.</p>
+<li><p><a href="https://www.youtube.com/watch?v=wCJKMFGEuuI">Simple LED Lesson</a>: The tutorial shows an LED circuit without a current limiting resistor, which can make the LED burn up. Sometimes literally. So please place a resistor in series with your LED, and calculate an appropriate resistance value using this formula:</p>
 <p><span class="math display">\[R=\frac{(V_s-V_F)}{I_F}\]</span></p>
-<p>where <span class="math inline">\(V_S\)</span> is the supply voltage, and <span class="math inline">\(V_F\)</span> and <span class="math inline">\(I_F\)</span> are the foward voltage and current of the diode respectively and can be found on LED datasheet found <a href="https://www.aopled.com/AOP_PDFs/L513SRD-C.pdf">here</a>.</p></li>
+<p>where <span class="math inline">\(V_S\)</span> is the supply voltage, and <span class="math inline">\(V_F\)</span> and <span class="math inline">\(I_F\)</span> are the foward voltage and current of the diode respectively. <span class="math inline">\(V_F\)</span> and <span class="math inline">\(I_F\)</span> can be found on <a href="https://www.aopled.com/AOP_PDFs/L513SRD-C.pdf">LED datasheet</a>.</p></li>
 <li><p><a href="https://www.youtube.com/watch?v=S_a-qCy6Ekk" target="_blank">Breadboard Internals</a>.</p></li>
 <li><p><a href="https://www.youtube.com/watch?v=Vbz_MKT7KnI" target="_blank">How to build a 555 Timer circuit</a>. Here is a <a href="https://www.elprocus.com/blinking-led-using-555-timer-ic/">link with a circuit diagram</a>. Here is a <a href="https://www.youtube.com/watch?time_continue=385&amp;v=i0SNb__dkYI&amp;feature=emb_logo" target="_blank">video on how the 555 works.</a></p></li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note: one super tricky failure mode in breadboards is that internal connections of breadboards can break. You can always trace connectivity with a multimeter if you’re stumped with a failing circuit.</p>
+</div>
+</div>
 </section>
 <section id="oscilloscope" class="level2">
 <h2 class="anchored" data-anchor-id="oscilloscope">Oscilloscope</h2>
@@ -254,9 +356,13 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="soldering" class="level2">
 <h2 class="anchored" data-anchor-id="soldering">Soldering</h2>
-<p>You will need to checkout a Teensy from an instructor and solder header pins in order to easily interact with microcontroller on board. For the first half of this course you will only need to interact with the pins on either side of the Teensy; however, you may need to add additional pins during the project phase.</p>
-<p><strong>Teensys are in limited supply.</strong> Practice boards are available if you need a refresher.</p>
-<p>A helpful video on how to solder can be found <a href="https://www.youtube.com/watch?v=Qps9woUGkvI" target="_blank">here</a>.</p>
+<p>You will need to solder printed circuit boards and wire connections in E80, so it’s worthwhile to practice if you’re rusty. Your team also needs to solder pins onto a Teensy today and make sure the soldering job worked.</p>
+<ol type="1">
+<li>Review a helpful video on how to solder, found <a href="https://www.youtube.com/watch?v=Qps9woUGkvI" target="_blank">here</a>.</li>
+<li>Find a practice solder board and solder a few joints.</li>
+<li>One team member should check out a Teensy from an instructor. Note that <strong>Teensys are in limited supply</strong>, so practice soldering before checking this out.</li>
+<li>One team member should solder header pins to the Teensy. Use the reference images below as a guide, and make sure your pins are oriented as indicated in the references before you solder.</li>
+</ol>
 <p>Remember to:</p>
 <ol type="1">
 <li>Never leave your soldering iron unattended.</li>
@@ -266,40 +372,108 @@ ul.task-list li input[type="checkbox"] {
 <li>Wash hands after handling solder – solder is 40% lead. Skin contact is harmless, but ingestion can occur with unwashed hands when eating, drinking, or smoking.</li>
 <li>Always tin the tip of your iron before turning it off.</li>
 </ol>
-<p><img src="img/teensy.png" class="img-fluid"></p>
+<div id="fig-teensy" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-unsoldered-teensy" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/teensy.png" class="img-fluid figure-img" data-ref-parent="fig-teensy"></p>
+<figcaption class="figure-caption">(a) Unsoldered Teensy and strip of header pins.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-soldered-teensy" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/teensy40_pins.jpg" class="img-fluid figure-img" data-ref-parent="fig-teensy"></p>
+<figcaption class="figure-caption">(b) Soldered Teensy 4.0.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Reference diagrams for Teensy assembly.</figcaption><p></p>
+</figure>
+</div>
 </section>
-<section id="arduino" class="level2">
-<h2 class="anchored" data-anchor-id="arduino">Arduino</h2>
-<p>You should install Arduino on your own computer using the instructions in <a href="../../labs/lab1/#arduino-programming">Section 3 of Lab 1</a>. This kind of work, where you read a lab ahead of time and take preparatory actions that are in-keeping with the pre-lab policy on the home page, is called pre-lab work. Pre-lab work is extremely valuable, so setting up Arduino this way is a great first step into the course.</p>
-<p>Run through a few more Arduino tutorials: You will need to solder pins to the Teensy.</p>
+<section id="github-desktop-and-arduino-ide-setup" class="level2">
+<h2 class="anchored" data-anchor-id="github-desktop-and-arduino-ide-setup">Github Desktop and Arduino IDE Setup</h2>
+<p>Robot behavior is specified in software, so we need to set up two tools for working with software on your machine. First, we need the Arduino integrated development environment (IDE). An integrated development environment (IDE) is a program that makes writing software easier, and we’ll use the Arduino IDE to program our Teensys. Second, we need version control software so we can keep your code up to date. Git is a distributed version control system that allows you to download a local copy of all the E80 software. It also allows you to easily track the changes that you make to your code. While we won’t be using all the features of git in E80, we will introduce you to the main features that will enable you to interact with the code base for your robot.</p>
+<p>Follow the <a href="https://github.com/HMC-E80/E80?tab=readme-ov-file#arduino-ide-setup">setup instructions</a> at bottom of the <a href="https://github.com/HMC-E80/E80-SP2023#git-setup">E80 Github page</a>. After completing these instructions you should have a folder on your computer with all the E80 starter source code for the semester and have the Arduino IDE set up to easily access and load the provided sketchbooks.</p>
+</section>
+<section id="arduino-practice" class="level2">
+<h2 class="anchored" data-anchor-id="arduino-practice">Arduino Practice</h2>
+<p>Once you have the Arduino IDE installed, Github Desktop set up, and pins soldered on your Teensy, share the Teensy among your teammates to run through a few more Arduino tutorials:</p>
+<p>Test your connection to the Teensy by compiling and uploading the RGB LED example in the Arduino IDE. Then ensure you can compile and uplaod the E80 code.</p>
 <ol type="1">
-<li><p><a href="https://www.pjrc.com/teensy/tutorial.html">Blinking lights on the Arduino board</a>:</p></li>
-<li><p><a href="https://www.pjrc.com/teensy/tutorial2.html">Hooking up an external LED</a></p></li>
+<li>Plug your Teensy into your laptop</li>
+<li>Open the RGB LED example by navigating to <code>File -&gt; Examples -&gt; 0.1 Basics -&gt; Blink</code>.</li>
+<li>Follow the instructions <a href="https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-uploading-a-sketch">here</a> to compile and upload to the Teensy</li>
+<li>Change the Arduino IDE Sketchbook location to the E80 Gitlab folder, which you downloaded earlier in the section, by using <code>File-&gt;Preferences</code>.</li>
+<li>Open <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_01/E80_Lab_01.ino">E80_Lab_01.ino</a>.</li>
+<li>Confirm that you can compile and upload the starter code to your Teensy. Since your Teensy is not plugged into your motherboard here, this code will do little. It is fully tested in <a href="../../labs/lab1/">Lab 1</a>.</li>
 </ol>
-</section>
-<section id="github-desktop-setup" class="level2">
-<h2 class="anchored" data-anchor-id="github-desktop-setup">Github Desktop Setup</h2>
-<p>Next you need to configure Git on your machine. Git is a distributed version control system. This means you can download a local clone of a collection of source code files and easily track the changes that you make to your code. While we won’t be using all the features of git in E80, we will introduce you to the main features that will enable you to interact with the code base for your robot.</p>
-<p>Navigate to the Github page with the <a href="https://github.com/HMC-E80/E80-SP2023#git-setup">E80 codebase</a> and scroll down to the section titled “Git Setup.” You can also follow the direct link <a href="https://github.com/HMC-E80/E80-SP2023#git-setup">here</a>.</p>
-<p>After completing these instructions you should have a folder on your computer with all the E80 starter source code for the semester and have the Arduino IDE set up to easily access and load the provided sketchbooks.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You must use a micro USB cable (see image <a href="https://drive.google.com/file/d/0BwiB3SVueuOpd3VHSjZFczUwZ1E/view?usp=sharing&amp;resourcekey=0-mdD6t8RsgB-2txW00XCDYw">here</a>) to connect the Teensy to your computer before you can upload sketches.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When connecting and disconnecting the USB cable from your Teensy be sure to <strong>only apply force horizontally</strong> and not vertically. Failing to follow this may result in accidentally pulling the USB connector off your Teensy board, thus destroying it.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You will not have a Teensy for pre-labs, but downloading the necessary software and trying to modify and compile your lab code in the IDE is great Prelab practice.</p>
+</div>
+</div>
+<p>Then try these tutorials if you have time.</p>
+<ol type="1">
+<li><a href="https://www.pjrc.com/teensy/tutorial.html">Blinking lights on the Arduino board</a>:<br>
+</li>
+<li><a href="https://www.pjrc.com/teensy/tutorial2.html">Hooking up an external LED</a></li>
+</ol>
 </section>
 <section id="matlab-access" class="level2">
 <h2 class="anchored" data-anchor-id="matlab-access">MATLAB Access</h2>
-<p>You will be using MATLAB to help analyze and interact with data throughout this course.</p>
-<p>You will first need to <a href="https://www.mathworks.com/academia/tah-portal/harvey-mudd-college-30622674.html">Visit the MATLAB Portal</a> and log in using your Mathworks account. If you do not have an account, create one using your <code>username@hmc.edu</code> credentials.</p>
-<p>To acquire a local install of MATLAB on your computer you can do the following:</p>
+<p>You will be using MATLAB to help analyze and interact with data throughout this course, so you need to install MATLAB. You will first need to <a href="https://www.mathworks.com/academia/tah-portal/harvey-mudd-college-30622674.html">Visit the MATLAB Portal</a> and log in using your Mathworks account. If you do not have an account, create one using your <code>username@hmc.edu</code> credentials.</p>
+<p>Then, do the following to install MATLAB on your computer:</p>
 <ol type="1">
 <li><a href="https://www.mathworks.com/academia/tah-portal/harvey-mudd-college-30622674.html">Visit the MATLAB Portal</a>.</li>
 <li>Choose to download the installer and select your operating system.</li>
 <li>Run the installer and log into your Mathworks account again.</li>
 <li>Select “Individual” license and complete the installation process.</li>
 </ol>
-<p>It is also possible to use an online copy of MATLAB <a href="https://matlab.mathworks.com">here</a>.</p>
+<p>It is also possible to use an online copy of MATLAB <a href="https://matlab.mathworks.com">here</a>, but we discourage doing so in this course.</p>
 </section>
 <section id="matlab-on-ramp" class="level2">
 <h2 class="anchored" data-anchor-id="matlab-on-ramp">MATLAB On-ramp</h2>
-<p>If you have extra time during Lab 0 you may work on the MATLAB on-ramp tutorial.</p>
-<p>You can find the assignment <a href="../../labs/lab0/matlab-startup.html">here</a>.</p>
+<p>If you have extra time during Lab 0 you may work on the MATLAB on-ramp tutorial. You can find the assignment <a href="../../labs/lab0/matlab-startup.html">here</a>.</p>
 
 
 </section>

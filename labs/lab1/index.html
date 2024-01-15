@@ -167,9 +167,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">0. Introduction</a></li>
-  <li><a href="#battery" id="toc-battery" class="nav-link" data-scroll-target="#battery">1. Battery</a></li>
   <li><a href="#motherboard-assembly" id="toc-motherboard-assembly" class="nav-link" data-scroll-target="#motherboard-assembly">2. Motherboard Assembly</a></li>
-  <li><a href="#arduino-programming" id="toc-arduino-programming" class="nav-link" data-scroll-target="#arduino-programming">3. Arduino Programming</a></li>
   <li><a href="#motherboard-validation-imu-calibration-and-imu-error-measurement" id="toc-motherboard-validation-imu-calibration-and-imu-error-measurement" class="nav-link" data-scroll-target="#motherboard-validation-imu-calibration-and-imu-error-measurement">4. Motherboard Validation, IMU Calibration, and IMU Error Measurement</a></li>
   <li><a href="#penetrator-and-motor-assembly" id="toc-penetrator-and-motor-assembly" class="nav-link" data-scroll-target="#penetrator-and-motor-assembly">5. Penetrator and Motor Assembly</a></li>
   <li><a href="#auv-assembly" id="toc-auv-assembly" class="nav-link" data-scroll-target="#auv-assembly">6. AUV Assembly</a></li>
@@ -199,7 +197,19 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>UNDER CONSTRUCTION, DO NOT USE FOR PRELAB</strong></p>
+</div>
+</div>
 <p>Team size: 4 <a href="../../labs/lab2/submission.html">Submission Sheet</a> <a href="../../labs/lab2/submission.docx">Word</a> <a href="../../labs/lab2/writing.qmd">Writing</a></p>
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
@@ -214,83 +224,14 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="introduction">0. Introduction</h2>
 <p>The objectives of this lab are to transform the ROV (remotely operated vehicle) used in E79 into an AUV (autonomous underwater vehicle). An ROV is controlled from the surface through long cables, but an AUV carries an autonomous controller on board. While most AUVs built in Lab 1 will look the same, students will modify these vehicles as the course progresses so that by end of semester, each will be configured and equipped for unique ocean-sampling experiments.</p>
 <p>Lab 1 is completed in teams of 4.</p>
-<p>Be sure to read the <a href="../../labs/lab_overview/index.html">Lab Overview</a> to learn about safety requirements, expensive equipment handling and prelab rules. You must review all SAFETY QUESTION boxes below as part of prelab. If you ever reach a safety question box and either can’t answer it or feel unsure, grab an instructor.</p>
-</section>
-<section id="battery" class="level2">
-<h2 class="anchored" data-anchor-id="battery">1. Battery</h2>
-<p>Your AUV will need power, and we provide that with a battery pack. The battery pack used in E80 is a 3000 mAh to 3500 mAh, 30 C, 11.1 V LiPo battery pack. To charge the batteries, we will use a <a href="https://hitecrcd.com//images/products/pdf/419_X1mini_Manual_BAS-V2-Web.pdf">HiTec x1 Mini charger</a> or a <a href="http://www.hrpdealer.com/pdf/manuals/UPTUP60AC%20Manual.pdf">UP60AC multi charger</a>. Read the manual on how to use the chargers. Here are some helpful <a href="https://drive.google.com/open?id=1K1DSOdeqAjU_JU-sTOdiBUnwMmpwUTPP">images</a> showing correct charger use.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-SAFETY QUESTION: What is the maximum voltage output of these battery packs?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>12.6V. Don’t charge above this level. This is calculated by observing that there are 3 cells in your battery (i.e.: it is 3S), and that each cell maxes out at 4.2V.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-SAFETY QUESTION: What is the nominal voltage output of these battery packs?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>11.1V. Don’t discharge below this level. Li-ion batteries discharge quickly when their voltage sinks below the nominal level, so keep a close watch on this. This is calculated by observing that there are 3 cells in your battery (i.e.: it is 3S), and that each cell has a nominal voltage of 3.7V.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-SAFETY QUESTION: Should the balancer cable be plugged in during charging?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Yes, with the black cable aligned with the minus sign. <strong>Failing to do this can cause the battery to light on fire.</strong></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-SAFETY QUESTION: Should I use a LiPo safe bag while charging?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Yes, always. This keeps you, other students, and the lab safe in case of battery fire.</p>
-</div>
-</div>
-</div>
-<p>Request a battery and a LiPo safe bag from an instructor. You will need to check out and set up your battery for charging as soon as you start the lab. ASK AN INSTRUCTOR OR PROCTOR TO CHECK YOUR RECHARGE SETUP. Charge the battery up to its nominal voltage, NOT its maximum voltage, which means that you will need to periodically monitor the voltage on the battery and stop the charging at the appropriate time.</p>
+<p>Be sure to read the <a href="../../labs/lab_overview/index.html">Lab Overview</a> to learn about safety requirements, expensive equipment handling and other rules. You must review all SAFETY QUESTION boxes below as part of prelab. If you ever reach a safety question box and either can’t answer it or feel unsure, grab an instructor.</p>
 </section>
 <section id="motherboard-assembly" class="level2">
 <h2 class="anchored" data-anchor-id="motherboard-assembly">2. Motherboard Assembly</h2>
 <p>For E80, a motherboard has been designed to interface the major electrical components of your AUV. Familiarize yourself with the components on the motherboard by reading the <a href="https://drive.google.com/file/d/18bMajGNwH1K2yHB1dQLZRx5eqrYiNQWA/view?usp=sharing">Introduction to the E80 Motherboard</a> document. You will add some necessary components to the board in Lab 1. Use this <a href="https://docs.google.com/document/d/1v1vE3GXXUw8o6T2IJJws_xr_b3ntKiPx/edit?usp=sharing&amp;ouid=105511935419108795487&amp;rtpof=true&amp;sd=true">motherboard assembly document</a> as a guide and add the components. For reference, the schematic for the motherboard is <a href="https://drive.google.com/file/d/1pk_mORYsxhedKjjqzhMrxj9H5ZVH3zqp/view?usp=sharing">here</a> , the layout is <a href="https://drive.google.com/file/d/1pmm8xwpyAHAL5YvwMIQma4W8DuV-MP31/view?usp=sharing">here</a> , and <a href="https://www.kicad.org/">KiCAD</a> design files are <a href="https://drive.google.com/file/d/1pi9WNW7WoIx80xgb_0LWSUyA-LMfp94Z/view?usp=sharing">here</a>.</p>
 <p>There are two ways that <strong>you can damage your motherboard irreparably</strong> during this process, and you should take precautions against each of them. One is soldering components in the wrong position or orientation (e.g., screw terminals facing inward or header on the back side of the board), which is very difficult to rework. Double check that you are using the correct header and try fitting all the pieces together before soldering. The other is flipping power and ground by attaching your battery or power supply leads backwards or soldering the red and black wires to the incorrect terminals on the motherboard. Have an instructor or proctor check your battery connector, and make sure to heed the warnings in the assembly guide.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -299,7 +240,7 @@ SAFETY QUESTION: What are the two ways I can damage my board in this section?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Soldering components in the wrong position or orientation, and attaching battery or power supply leads backwards.</p>
 </div>
@@ -316,51 +257,6 @@ SAFETY QUESTION: What are the two ways I can damage my board in this section?
 <li>Cover the back of your motherboard with insulating foam sheet using these<a href="https://drive.google.com/open?id=1x0CMBDFia2uY5qxPkWFfg_pN3FcR7Pth">instructions</a> to prevent inadvertent short circuits when you set it down.</li>
 <li>Find a sharpie and color the GND side of your P.S. screw black, so that you don’t forget the polarity of the connector.</li>
 </ol>
-</section>
-<section id="arduino-programming" class="level2">
-<h2 class="anchored" data-anchor-id="arduino-programming">3. Arduino Programming</h2>
-<p>You will use the Arduino language to program your microcontroller, the <a href="https://www.pjrc.com/store/teensy40.html">Teensy 4.0</a>.</p>
-<p>Install the Arduino integrated development environment (IDE) software and download the E80 reference code.</p>
-<ol type="1">
-<li>If your computer doesn’t have Arduino software installed, go to <a href="https://www.arduino.cc/en/software">the Arduino download page</a> and download the latest version of the Arduino IDE (2.2.1 as of this writing).</li>
-<li>Since version 2.0.0, the Teensy is supported directly in the Arduino software. Follow the instructions <a href="https://www.pjrc.com/arduino-ide-2-0-0-teensy-support/">here</a> to add the required board support packages to the Arduino IDE.</li>
-<li>If you have not done so yet, complete the Github Desktop Setup in <a href="../../labs/lab0/index.html">Lab 0</a> and clone the <a href="https://github.com/HMC-E80/E80-SP2023">E80 codebase</a>.</li>
-</ol>
-<p>Test your connection to the Teensy by compiling and uploading the RGB LED example in the Arduino IDE. Then ensure you can compile and uplaod the E80 code.</p>
-<ol type="1">
-<li>Plug your Teensy into your laptop</li>
-<li>Open the RGB LED example by navigating to File -&gt; Examples -&gt; 0.1 Basics -&gt; Blink.</li>
-<li>Follow the instructions <a href="https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-uploading-a-sketch">here</a> to compile and upload to the Teensy</li>
-<li>Change the Arduino IDE Sketchbook location to the E80 Gitlab folder, which you downloaded earlier in the section, by using File-&gt;Preferences.</li>
-<li>Open <a href="https://github.com/HMC-E80/E80-SP2023/blob/main/E80_Lab_01/E80_Lab_01.ino">E80_Lab_01.ino</a>.</li>
-<li>Confirm that you can compile and upload the starter code to your Teensy. Since your Teensy is not plugged into your motherboard here, this code will do little. It is fully tested in Section 4.</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You must use a micro USB cable (see image <a href="https://drive.google.com/file/d/0BwiB3SVueuOpd3VHSjZFczUwZ1E/view?usp=sharing&amp;resourcekey=0-mdD6t8RsgB-2txW00XCDYw">here</a>) to connect the Teensy to your computer before you can upload sketches.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note: you will not have a Teensy for pre-lab, but you can download the necessary software, go through the tutorial and try modifying and compiling the code.</p>
-</div>
-</div>
 </section>
 <section id="motherboard-validation-imu-calibration-and-imu-error-measurement" class="level2">
 <h2 class="anchored" data-anchor-id="motherboard-validation-imu-calibration-and-imu-error-measurement">4. Motherboard Validation, IMU Calibration, and IMU Error Measurement</h2>
