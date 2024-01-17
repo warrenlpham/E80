@@ -1,13 +1,16 @@
 #include "BurstADCSampler.h"
+#include <SPI.h>
+#include <SD.h>
+#include <stdio.h>
 
 
 // create lists for each pin and rapidly collect data from each pin
 // and save data into seperate file
 void BurstADCSampler::sample(){
-	for ( int i = 0; i < 50; i++){
+	for ( int i = 0; i < 3500; i++){
 		update();
 	}
-	save();
+	//save()
 }
 
 // for each pin
@@ -33,7 +36,26 @@ void BurstADCSampler::timestamp(){
 
 // save data into seperate file
 void BurstADCSampler::save(){
+	Serial.print("Initializing SD Card... ");
+	if (!SD.begin()) {
+		Serial.println("failed!");
+	return;
+	}
+	Serial.print("done!");
 
+	File dataFile = SD.open("datalog_2.txt", FILE_WRITE);
+	if (dataFile) {
+		for ( int i = 0; i < NUM_PINS; i++){
+			node* curr = headarray[i];
+			while(curr != nullptr){
+				dataFile.print(curr->data);
+				dataFile.print(",");
+				curr = curr->next;
+			}
+			dataFile.print("\n");
+		}
+		dataFile.close();
+	}
 }
 
 // for debugging
@@ -46,7 +68,7 @@ void BurstADCSampler::print(){
 			Serial.print(",");
 			curr = curr->next;
 		}
-		printf("\n");
+		Serial.print("\n");
 	}
 }
 

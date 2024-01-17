@@ -3,8 +3,15 @@
 
 #include <Arduino.h>
 #include "Pinouts.h"
+#include <SPI.h>
+#include <SD.h>
+#include <stdio.h>
 
 #define NUM_PINS 9
+
+// should be no more than 3500 samples
+// which samples for around .5 seconds
+#define NUM_SAMPLES 3500
 
 
 struct node{
@@ -17,6 +24,7 @@ class BurstADCSampler
 public:
 	void sample(void);
 	void print(void);
+	void save(void);
 
 private:
 	node* headarray[NUM_PINS];
@@ -24,7 +32,6 @@ private:
 	//helper func
 	void update(void);
 	void timestamp(void);
-	void save(void);
 
 
 	const int TIME_INDEX = 0;
