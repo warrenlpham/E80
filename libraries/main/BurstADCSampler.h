@@ -24,7 +24,6 @@ class BurstADCSampler
 public:
 	void sample(void);
 	void print(void);
-	void save(void);
 
 private:
 	node* headarray[NUM_PINS];
@@ -32,6 +31,8 @@ private:
 	//helper func
 	void update(void);
 	void timestamp(void);
+	void save(void);
+	void cleanup(void);
 
 
 	const int TIME_INDEX = 0;

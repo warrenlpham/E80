@@ -7,10 +7,24 @@
 // create lists for each pin and rapidly collect data from each pin
 // and save data into seperate file
 void BurstADCSampler::sample(){
-	for ( int i = 0; i < 3500; i++){
+	for ( int i = 0; i < NUM_SAMPLES; i++){
 		update();
 	}
-	//save()
+	save();
+	cleanup();
+}
+
+
+// delete all dynamically allocated memory
+void BurstADCSampler::cleanup(){
+	for ( int i = 0; i < NUM_PINS; i++){
+		node* curr = headarray[i];
+		while(curr != nullptr){
+			node* next = curr->next;
+			delete curr;
+			curr = next;
+		}
+	}
 }
 
 // for each pin
