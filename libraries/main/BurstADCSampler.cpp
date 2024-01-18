@@ -57,7 +57,7 @@ void BurstADCSampler::save(){
 	}
 	Serial.print("done!");
 
-	File dataFile = SD.open("datalog_2.txt", FILE_WRITE);
+	File dataFile = SD.open(namefile(), FILE_WRITE);
 	if (dataFile) {
 		for ( int i = 0; i < NUM_PINS; i++){
 			node* curr = headarray[i];
@@ -71,6 +71,18 @@ void BurstADCSampler::save(){
 		dataFile.close();
 	}
 }
+
+// name the burst file
+char* BurstADCSampler::namefile(){
+	String filename = basename;
+	int i = 0;
+	while(SD.exists(filename.c_str())){
+		i++;
+		filename = basename + i;
+	}
+	return filename.c_str();
+}
+
 
 // for debugging
 // dump each list into serial
