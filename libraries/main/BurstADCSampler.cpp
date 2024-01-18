@@ -105,4 +105,3 @@ void BurstADCSampler::print(){
 		Serial.print("\n");
 	}
 }
-
