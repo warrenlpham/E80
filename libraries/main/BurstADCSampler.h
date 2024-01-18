@@ -24,6 +24,7 @@ class BurstADCSampler
 public:
 	void sample(void);
 	void print(void);
+	void init(void);
 
 private:
 	node* headarray[NUM_PINS];
@@ -33,9 +34,10 @@ private:
 	void timestamp(void);
 	void save(void);
 	void cleanup(void);
-	char* namefile(void);
+	void namefile(void);
 
 	String basename = "datalog";
+	String filename = "";
 	const int TIME_INDEX = 0;
 	const int pinMap[NUM_PINS] =  {21,14,15,16,17,24,25,26,27};
 };

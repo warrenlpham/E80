@@ -4,6 +4,16 @@
 #include <stdio.h>
 
 
+void BurstADCSampler::init(){
+	Serial.print("Initializing SD Card... ");
+	if (!SD.begin()) {
+		Serial.println("failed!");
+	return;
+	}
+	Serial.print("done!");
+	namefile();
+}
+
 // create lists for each pin and rapidly collect data from each pin
 // and save data into seperate file
 void BurstADCSampler::sample(){
@@ -48,16 +58,9 @@ void BurstADCSampler::timestamp(){
 }
 
 
-// save data into seperate file
+// save data onto SD card
 void BurstADCSampler::save(){
-	Serial.print("Initializing SD Card... ");
-	if (!SD.begin()) {
-		Serial.println("failed!");
-	return;
-	}
-	Serial.print("done!");
-
-	File dataFile = SD.open(namefile(), FILE_WRITE);
+	File dataFile = SD.open(filename.c_str(), FILE_WRITE);
 	if (dataFile) {
 		for ( int i = 0; i < NUM_PINS; i++){
 			node* curr = headarray[i];
@@ -73,14 +76,16 @@ void BurstADCSampler::save(){
 }
 
 // name the burst file
-char* BurstADCSampler::namefile(){
-	String filename = basename;
+// only done once per run
+// all subsequent calls to update() will
+//append to file, NOT create a new file during same run
+void BurstADCSampler::namefile(){
+	filename = basename;
 	int i = 0;
 	while(SD.exists(filename.c_str())){
 		i++;
 		filename = basename + i;
 	}
-	return filename.c_str();
 }
 
 
