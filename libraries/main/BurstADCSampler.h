@@ -27,7 +27,7 @@ public:
 	void init(void);
 
 private:
-	node* headarray[NUM_PINS];
+	node* headarray[NUM_PINS] = {NULL};
 
 	//helper func
 	void update(void);

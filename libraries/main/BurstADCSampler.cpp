@@ -35,6 +35,9 @@ void BurstADCSampler::cleanup(){
 			curr = next;
 		}
 	}
+	for (int i = 0; i < NUM_PINS; i++) {
+        headarray[i] = NULL;
+    }
 }
 
 // for each pin
